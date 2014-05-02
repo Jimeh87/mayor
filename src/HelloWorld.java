@@ -4,7 +4,7 @@ public class HelloWorld {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("hello world");
-		System.out.println("i'm jim im a huge fag");
+		System.out.println("i'm josh im a huge fag");
 	}
 
 }
