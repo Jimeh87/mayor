@@ -21,12 +21,6 @@ public abstract class Zone extends Tile {
 	public void setBuildingId(Integer buildingId) {
 		this.buildingId = buildingId;
 	}
-	public int getCurrentOccupancy() {
-		return currentOccupancy;
-	}
-	public void setCurrentOccupancy(int currentOccupancy) {
-		this.currentOccupancy = currentOccupancy;
-	}
 	public int getMaxOccupancy() {
 		return maxOccupancy;
 	}
