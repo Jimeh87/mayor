@@ -27,20 +27,23 @@ public class InitGame extends Application {
 	
 	// Grid Pane Constructor and Grid Constraints UI Spacing
 	private Parent createGridPane() {
+		
 		GridPane gridPane = new GridPane();
+		gridPane.setHgap(16);gridPane.setVgap(16);
 		
 		
 		Label lbTitle = new Label("Mayor");
 		GridPane.setHalignment(lbTitle, HPos.CENTER);
 		GridPane.setValignment(lbTitle, VPos.CENTER);
-		gridPane.add(lbTitle, 2, 4);
+		gridPane.add(lbTitle, 1, 1);
+		
 		
 		return gridPane;
 		
+
 	}
-
-
 	public static void main(String[] args) {
-		launch(args);
+		Application.launch(args);
 	}
+
 }
