@@ -1,0 +1,13 @@
+#topLeftBar{
+	-fx-background-color: blue;
+}
+
+#topBar{
+	-fx-background-color: red;
+}
+
+#empty{
+	-fx-background-image: url(emptyTile.jpg); 
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
