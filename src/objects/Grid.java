@@ -1,7 +1,10 @@
 package objects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Grid {
-	Grid(int xSize, int ySize) {
+	public Grid(int xSize, int ySize) {
 		this.xSize = xSize;
 		this.ySize = ySize;
 		this.tileArray = initializeGrid();
@@ -30,6 +33,17 @@ public class Grid {
 
 	public void setTile(int xLocation, int yLocation, Tile tile) {
 		tileArray[xLocation][yLocation] = tile;
+	}
+	
+	public List<Tile> getTileList() {
+		List<Tile> tileList = new ArrayList<Tile>();
+		
+		for (int x = 0; x < xSize; x++) {
+			for (int y = 0; y < ySize; y++) {
+				tileList.add(tileArray[x][y]);
+			}
+		}
+		return tileList;
 	}
 	
 	
