@@ -1,6 +1,6 @@
 package objects;
 
-public abstract class Tile {
+public class Tile {
 	public Tile(int xLocation, int yLocation) {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
