@@ -1,27 +1,15 @@
 import java.util.ArrayList;
+import java.util.List;
 
 import objects.Grid;
 import objects.Tile;
-import objects.TileType;
 
 
 public class City {
-	public City(int xSize, int ySize) {
-		generateTiles(xSize, ySize);
-		grid = new Grid(xSize, ySize);
-		
-	}
 	
-	public initializeTiles(int xSize, int ySize) {
-		
-		List<Tile> tileList = 
-		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
-				tileArray[x][y] = new Tile(x, y, TileType.EMPTY);
-			}
-		}
-		
-		return tileArray;
+	List<Tile> tileList;
+	public City(int xSize, int ySize) {
+		grid = new Grid(xSize, ySize);
 	}
 
 	private Grid grid;
@@ -33,6 +21,7 @@ public class City {
 	public void setGrid(Grid grid) {
 		this.grid = grid;
 	}
+
 
 	public ArrayList<Tile> processTick() {
 		
