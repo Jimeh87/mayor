@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 public class InitGame extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
+		try {  
 			
 			//Main Scene Build
 			Scene scene = new Scene(createGridPane(), 1920, 1080);
@@ -42,7 +42,7 @@ public class InitGame extends Application {
 		
 
 	}
-	public static void main(String[] args) {
+	public static void launchApplication(String[] args) {
 		Application.launch(args);
 	}
 
