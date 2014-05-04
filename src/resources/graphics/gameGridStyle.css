@@ -6,8 +6,14 @@
 	-fx-background-color: red;
 }
 
+#controlGridFrame{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
 #empty{
 	-fx-background-image: url(emptyTile.jpg); 
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
+
