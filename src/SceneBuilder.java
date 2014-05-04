@@ -1,5 +1,5 @@
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import objects.Tile;
@@ -41,6 +41,7 @@ public class SceneBuilder {
 				 
 			}
 			gridPane.add(gpGameGrid, 1, 1);
+			
 			 
 			//Control GridPane 
 			GridPane gpControlGrid = new GridPane();
@@ -49,12 +50,19 @@ public class SceneBuilder {
 			gridPane.add(gpControlGrid, 2, 1);
 			
 			//Zone Residential Button
-			Button resBtn = new Button();
-			resBtn.setId("ResButton");
-			resBtn.setMinSize(60, 30);
-			resBtn.setText("Zone Residential");
+			Label resBtn = new Label();
+			resBtn.setId("resButton");
+			resBtn.setMinSize(235,30);
+			resBtn.setMaxSize(235,30);
 			gpControlGrid.add(resBtn, 0,0);
 			
+			//Zone Commercial Button
+			Label commBtn = new Label();
+			commBtn.setId("commButton");
+			commBtn.setMinSize(235,30);
+			commBtn.setMaxSize(235,30);
+			commBtn.setText("Zone Commercial");
+			gpControlGrid.add(commBtn, 0, 1);
 			
 			return gridPane;
 		}
