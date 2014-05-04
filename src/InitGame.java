@@ -1,3 +1,4 @@
+import objects.TileType;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,7 +49,7 @@ public class InitGame extends Application {
 				Pane pnGameGrid = new Pane();
 				pnGameGrid.setMinSize(32, 32);
 				pnGameGrid.setMaxSize(32,  32);
-				pnGameGrid.setId("empty");
+				pnGameGrid.setId(TileType.EMPTY.getId());
 				gpGameGrid.add(pnGameGrid, gridY, gridX);
 			}
 			 
