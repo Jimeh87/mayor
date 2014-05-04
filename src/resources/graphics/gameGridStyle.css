@@ -6,6 +6,9 @@
 	-fx-background-color: red;
 }
 
+#topRightBar{
+	-fx-background-color: grey;
+}
 
 #controlGrid{
 	-fx-border-style: solid;
@@ -45,7 +48,6 @@
 #commButton{
 	-fx-background-image: url(buttonGraphic.jpg);
 	-fx-font-size: 24;
-	-fx-font-weight: heavy;
 	-fx-alignment: baseline-right;
 	-fx-text-fill: rgb(255,255,0);
 }
