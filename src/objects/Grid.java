@@ -20,7 +20,11 @@ public class Grid {
 		
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
-				tileArray[x][y] = new Tile(x, y, TileType.EMPTY);
+				TileType tileType = TileType.EMPTY;
+				if ((x % 2 == 0) && (y % 2 == 0)) {
+					tileType = TileType.RESIDENTIAL;
+				}
+				tileArray[x][y] = new Tile(x, y, tileType);
 			}
 		}
 		
@@ -60,6 +64,10 @@ public class Grid {
 
 	public void setYSize(int ySize) {
 		this.ySize = ySize;
+	}
+	
+	public String toString() {
+		return "GRID BITCHES";
 	}
 
 }
