@@ -7,11 +7,11 @@
 }
 
 
-#controlGridFrame{
+#controlGrid{
 	-fx-border-style: solid;
 	-fx-border-color: black;
+	-fx-background-color: aliceblue;
 }
-
 
 
 #empty{
