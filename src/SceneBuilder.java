@@ -9,7 +9,7 @@ public class SceneBuilder {
 	// Grid Pane Constructor and Grid Constraints UI Spacing
 	// Returns GridPane to main scene Uses City for ini info
 	// Style info set by gameGridStyle.css in resources.graphics
-		Parent createGridPane(City city) {
+		Parent generateGridPane(City city) {
 			
 			GridPane gridPane = new GridPane();
 			gridPane.setHgap(1);gridPane.setVgap(1);
