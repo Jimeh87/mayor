@@ -6,10 +6,13 @@
 	-fx-background-color: red;
 }
 
+
 #controlGridFrame{
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
+
+
 
 #empty{
 	-fx-background-image: url(emptyTile.jpg); 
@@ -17,3 +20,20 @@
 	-fx-border-color: black;
 }
 
+#residential{
+	-fx-background-image:url(residentialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#commercial{
+	-fx-background-image:url(commercialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#industrial{
+	-fx-background-image:url(industrialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
