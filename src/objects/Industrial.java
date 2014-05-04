@@ -6,7 +6,7 @@ public class Industrial extends Zone {
 
 	public Industrial(int xLocation, int yLocation, Integer buildingId,
 			int maxOccupancy, List<Person> personList) {
-		super(xLocation, yLocation, buildingId, maxOccupancy, personList);
+		super(xLocation, yLocation, TileType.INDUSTRIAL, maxOccupancy, personList);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import objects.Grid;
+import objects.Residential;
 import objects.Tile;
 
 
@@ -22,9 +23,10 @@ public class City {
 		this.grid = grid;
 	}
 
-
-	public ArrayList<Tile> processTick() {
-		
-		return null;
+	public List<Tile> processTick() {
+		grid.setTile(0, 0, new Residential(0, 0, 1));
+		List<Tile> updateList = new ArrayList<Tile>();
+		updateList.add(grid.getTile(0,  0));
+		return updateList;
 	}
 }
