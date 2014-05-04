@@ -4,9 +4,8 @@ import java.util.List;
 
 public abstract class Zone extends Tile {
 
-	public Zone(int xLocation, int yLocation, Integer buildingId, int maxOccupancy, List<Person> personList) {
-		super(xLocation, yLocation);
-		this.buildingId = buildingId;
+	public Zone(int xLocation, int yLocation, TileType tileType, int maxOccupancy, List<Person> personList) {
+		super(xLocation, yLocation, tileType);
 		this.maxOccupancy = maxOccupancy;
 		this.setPersonList(personList);
 	}

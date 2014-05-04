@@ -45,7 +45,21 @@ public class Grid {
 		}
 		return tileList;
 	}
-	
-	
-	
+
+	public int getXSize() {
+		return xSize;
+	}
+
+	public void setXSize(int xSize) {
+		this.xSize = xSize;
+	}
+
+	public int getYSize() {
+		return ySize;
+	}
+
+	public void setYSize(int ySize) {
+		this.ySize = ySize;
+	}
+
 }
