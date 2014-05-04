@@ -59,7 +59,7 @@ public class Main extends Application {
 			
 			//Main Scene Build
 			SceneBuilder sceneBuilder = new SceneBuilder();
-			Scene scene = new Scene(sceneBuilder.createGridPane(city), 1920, 1080);
+			Scene scene = new Scene(sceneBuilder.generateGridPane(city), 1920, 1080);
 			scene.getStylesheets().add("/resources/graphics/gameGridStyle.css");
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreen(true);
