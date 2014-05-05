@@ -1,5 +1,7 @@
 #topLeftBar{
-	-fx-background-color: blue;
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-font-size: 20;
 }
 
 #topBar{

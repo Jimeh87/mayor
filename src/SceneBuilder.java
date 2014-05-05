@@ -4,14 +4,17 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import objects.Cursor;
 import objects.Tile;
+import objects.TileType;
 
 
 public class SceneBuilder {
 	// Grid Pane Constructor and Grid Constraints UI Spacing
 	// Returns GridPane to main scene Uses City for ini info
 	// Style info set by gameGridStyle.css in resources.graphics
+	// Event Handler for UI interaction
 		Parent generateGridPane(City city) {
 			
 			final Cursor cursor = new Cursor("empty");
@@ -19,11 +22,15 @@ public class SceneBuilder {
 			gridPane.setHgap(1);gridPane.setVgap(1);
 			
 			//Top Gap Spacers Used for Whatever
-			Pane pnLeftGap = new Pane();
+			GridPane pnLeftGap = new GridPane();
 			pnLeftGap.setMinSize(240, 135);
 			pnLeftGap.setMaxSize(240, 135);
 			pnLeftGap.setId("topLeftBar");
 			gridPane.add(pnLeftGap, 0, 0);
+			
+			final Text txtType = new Text();
+			txtType.setText("Tile Type: ");
+			pnLeftGap.add(txtType, 0, 0);
 			
 			Pane pnTopGap = new Pane();
 			pnTopGap.setMinSize(1440, 135);
@@ -44,22 +51,40 @@ public class SceneBuilder {
 					final Pane pnGameGrid = new Pane();
 					pnGameGrid.setMinSize(32, 32);
 					pnGameGrid.setMaxSize(32,  32);
-					Tile tile = city.getGrid().getTile(gridX, gridY);
+					final Tile tile = city.getGrid().getTile(gridX, gridY);
 					pnGameGrid.setId(tile.getTileType().getId());
+					//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
+					pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
+							new EventHandler<MouseEvent>() {
+								public void handle(MouseEvent e) {
+									txtType.setText("Tile Type: " + tile.getTileType().getId());
+								}
+							});
+					pnGameGrid.addEventHandler(MouseEvent.MOUSE_EXITED,
+							new EventHandler<MouseEvent>() {
+								public void handle(MouseEvent e) {
+									txtType.setText("Tile Type:");
+								}
+					});
+					//Mouse Click Events For GameGrid Filtered by Current Cursor Type
 					pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 							new EventHandler<MouseEvent>() {
 								public void handle(MouseEvent e) {
 									if (cursor.getCursorType() == "zoneEmpty") {
 										pnGameGrid.setId("empty");
+										tile.setTileType(TileType.EMPTY);
 									}
 									if (cursor.getCursorType() == "zoneRes") {
 										pnGameGrid.setId("residential");
+										tile.setTileType(TileType.RESIDENTIAL);
 									}
 									if (cursor.getCursorType() == "zoneComm") {
 										pnGameGrid.setId("commercial");
+										tile.setTileType(TileType.COMMERCIAL);
 									}
 									if (cursor.getCursorType() == "zoneInds") {
 										pnGameGrid.setId("industrial");
+										tile.setTileType(TileType.INDUSTRIAL);
 									}
 								}
 					});
@@ -82,6 +107,7 @@ public class SceneBuilder {
 			emptyBtn.setMinSize(235,30);
 			emptyBtn.setMaxSize(235,30);
 			emptyBtn.setText("Zone Empty");
+			//Mouse Click Event sets Cursor to Zone Empty
 			emptyBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
 						public void handle(MouseEvent e) {
@@ -97,6 +123,7 @@ public class SceneBuilder {
 			resBtn.setMinSize(235,30);
 			resBtn.setMaxSize(235,30);
 			resBtn.setText("Zone Residential");
+			//Mouse Click Event sets Cursor to Zone Residential
 			resBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
 						public void handle(MouseEvent e) {
@@ -106,32 +133,34 @@ public class SceneBuilder {
 					});	
 			gpControlGrid.add(resBtn, 0,1);
 			
-			//Zone Commercial Button
+			//Zone Commercial Button Setup and Event handle
 			Button commBtn = new Button();
 			commBtn.setId("commButton");
 			commBtn.setMinSize(235,30);
 			commBtn.setMaxSize(235,30);
 			commBtn.setText("Zone Commercial");
+			//Mouse Click Event sets Cursor to Zone Commercial
 			commBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
-				public void handle(MouseEvent e) {
-					pnTopRightGap.setId("commTopRight");
-					cursor.setCursorType("zoneComm");
+						public void handle(MouseEvent e) {
+							pnTopRightGap.setId("commTopRight");
+							cursor.setCursorType("zoneComm");
 				}
 			});	
 			gpControlGrid.add(commBtn, 0, 2);
 			
-			//Zone Industrial Button
+			//Zone Industrial Button Setup and Event handle
 			Button indsBtn = new Button();
 			indsBtn.setId("indsButton");
 			indsBtn.setMinSize(235,30);
 			indsBtn.setMaxSize(235,30);
 			indsBtn.setText("Zone Industrial");
+			//Mouse Click Event sets Cursor to Zone Industrial
 			indsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
-				public void handle(MouseEvent e) {
-					pnTopRightGap.setId("indsTopRight");
-					cursor.setCursorType("zoneInds");
+						public void handle(MouseEvent e) {
+							pnTopRightGap.setId("indsTopRight");
+							cursor.setCursorType("zoneInds");
 				}
 			});	
 			gpControlGrid.add(indsBtn, 0, 3);
