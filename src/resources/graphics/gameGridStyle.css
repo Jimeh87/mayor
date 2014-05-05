@@ -29,25 +29,25 @@
 }
 
 
-#empty{
+#Empty{
 	-fx-background-image: url(emptyTile.jpg); 
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
 
-#residential{
+#Residential{
 	-fx-background-image:url(residentialTile.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
 
-#commercial{
+#Commercial{
 	-fx-background-image:url(commercialTile.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
 
-#industrial{
+#Industrial{
 	-fx-background-image:url(industrialTile.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
