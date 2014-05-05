@@ -1,5 +1,7 @@
 import java.util.List;
+
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.Tile;
@@ -60,6 +62,7 @@ public class Main extends Application {
 			SceneBuilder sceneBuilder = new SceneBuilder();
 			Scene scene = new Scene(sceneBuilder.generateGridPane(city), 1920, 1080);
 			scene.getStylesheets().add("/resources/graphics/gameGridStyle.css");
+			
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreen(true);
 			primaryStage.show();

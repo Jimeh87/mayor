@@ -6,10 +6,20 @@
 	-fx-background-color: red;
 }
 
-#topRightBar{
+#emptyTopRight{
 	-fx-background-color: grey;
 }
+#resTopRight{
+	-fx-background-color: green;
+}
 
+#commTopRight{
+	-fx-background-color: blue;
+}
+
+#indsTopRight{
+	-fx-background-color: yellow;
+}
 #controlGrid{
 	-fx-border-style: solid;
 	-fx-border-color: black;
@@ -41,13 +51,20 @@
 	-fx-border-color: black;
 }
 
+#emptyButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+
 #resButton{
-	-fx-background-image: url(ZoneResidentialButton.jpg);
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
 }
 
 #commButton{
-	-fx-background-image: url(buttonGraphic.jpg);
-	-fx-font-size: 24;
-	-fx-alignment: baseline-right;
-	-fx-text-fill: rgb(255,255,0);
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
 }
