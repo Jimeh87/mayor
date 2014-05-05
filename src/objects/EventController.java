@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class EventController {
-	public static void setTileEvents(final Pane pnGameGrid, final Text txtType, final String cursorType, final Tile tile) {
+	public static void setTileEvents(final Pane pnGameGrid, final Text txtType, final Cursor cursor, final Tile tile) {
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
@@ -23,6 +23,7 @@ public class EventController {
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
+						String cursorType = cursor.getCursorType();
 						if (cursorType.equals("zoneEmpty")) {
 							tile.setTileType(TileType.EMPTY);
 						} else if (cursorType.equals("zoneRes")) {
