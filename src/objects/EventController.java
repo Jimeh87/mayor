@@ -1,12 +1,14 @@
 package objects;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class EventController {
 	public static void setTileEvents(final Pane pnGameGrid, final Text txtType, final Cursor cursor, final Tile tile) {
+		//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
@@ -22,23 +24,23 @@ public class EventController {
 		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e) {
-						String cursorType = cursor.getCursorType();
-						if (cursorType.equals("zoneEmpty")) {
-							tile.setTileType(TileType.EMPTY);
-						} else if (cursorType.equals("zoneRes")) {
-							tile.setTileType(TileType.RESIDENTIAL);
-						} else if (cursorType.equals("zoneComm")) {
-							tile.setTileType(TileType.COMMERCIAL);
-						} else if (cursorType.equals("zoneInds")) {
-							tile.setTileType(TileType.INDUSTRIAL);
-						}
+					public void handle(MouseEvent e){	
+						tile.setTileType(cursor.getCursorType().getTileType());
 						pnGameGrid.setId(tile.getTileType().getId());
 					}
 		});
 	}
 	
-	public static void setButtonEvents() {
+	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final CursorType newCursorType ) {
+		//Mouse Click Event sets Cursor to Zone Empty
+		Btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
+				new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent e) {
+						cursor.setCursorType(newCursorType);
+						pnTopRightGap.setId(cursor.getCursorType().getCursorIndicator().getZone());
+					}
+				});	
 		
 	}
+	
 }
