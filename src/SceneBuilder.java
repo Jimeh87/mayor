@@ -9,6 +9,7 @@ import objects.Cursor;
 import objects.EventController;
 import objects.Tile;
 import objects.TileType;
+import objects.CursorType;
 
 
 public class SceneBuilder {
@@ -18,7 +19,7 @@ public class SceneBuilder {
 	// Event Handler for UI interaction
 		Parent generateGridPane(City city) {
 			
-			final Cursor cursor = new Cursor("empty");
+			final Cursor cursor = new Cursor(CursorType.ZONE_EMPTY);
 			GridPane gridPane = new GridPane();
 			gridPane.setHgap(1);gridPane.setVgap(1);
 			
@@ -55,8 +56,9 @@ public class SceneBuilder {
 					pnGameGrid.setMaxSize(32,  32);
 					final Tile tile = city.getGrid().getTile(gridX, gridY);
 					pnGameGrid.setId(tile.getTileType().getId());
-					//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
+					//Event Controller Call
 					EventController.setTileEvents(pnGameGrid, txtType, cursor, tile);
+					//Add Pane to GameGrid
 					gpGameGrid.add(pnGameGrid, gridX, gridY);
 				}
 				 
@@ -76,14 +78,9 @@ public class SceneBuilder {
 			emptyBtn.setMinSize(235,30);
 			emptyBtn.setMaxSize(235,30);
 			emptyBtn.setText("Zone Empty");
-			//Mouse Click Event sets Cursor to Zone Empty
-			emptyBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
-					new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent e) {
-							pnTopRightGap.setId("emptyTopRight");
-							cursor.setCursorType("zoneEmpty");
-						}
-					});	
+			//Event Controller Call Zone Empty
+			EventController.setButtonEvents(emptyBtn, pnTopRightGap, cursor, CursorType.ZONE_EMPTY);
+			//Add Button To Control Grid
 			gpControlGrid.add(emptyBtn, 0,0);
 			
 			//Zone Residential Button Setup and Event handle
@@ -92,14 +89,8 @@ public class SceneBuilder {
 			resBtn.setMinSize(235,30);
 			resBtn.setMaxSize(235,30);
 			resBtn.setText("Zone Residential");
-			//Mouse Click Event sets Cursor to Zone Residential
-			resBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
-					new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent e) {
-							pnTopRightGap.setId("resTopRight");
-							cursor.setCursorType("zoneRes");
-						}
-					});	
+			//Event Controller Call Zone Residential
+			EventController.setButtonEvents(resBtn, pnTopRightGap, cursor, CursorType.ZONE_RESIDENTIAL);
 			gpControlGrid.add(resBtn, 0,1);
 			
 			//Zone Commercial Button Setup and Event handle
@@ -108,14 +99,15 @@ public class SceneBuilder {
 			commBtn.setMinSize(235,30);
 			commBtn.setMaxSize(235,30);
 			commBtn.setText("Zone Commercial");
-			//Mouse Click Event sets Cursor to Zone Commercial
-			commBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
-					new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent e) {
-							pnTopRightGap.setId("commTopRight");
-							cursor.setCursorType("zoneComm");
-				}
-			});	
+			EventController.setButtonEvents(commBtn, pnTopRightGap, cursor, CursorType.ZONE_COMMERCIAL);
+//			//Mouse Click Event sets Cursor to Zone Commercial
+//			commBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
+//					new EventHandler<MouseEvent>() {
+//						public void handle(MouseEvent e) {
+//							pnTopRightGap.setId("commTopRight");
+//							cursor.setCursorType("zoneComm");
+//				}
+//			});	
 			gpControlGrid.add(commBtn, 0, 2);
 			
 			//Zone Industrial Button Setup and Event handle
@@ -124,14 +116,15 @@ public class SceneBuilder {
 			indsBtn.setMinSize(235,30);
 			indsBtn.setMaxSize(235,30);
 			indsBtn.setText("Zone Industrial");
-			//Mouse Click Event sets Cursor to Zone Industrial
-			indsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
-					new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent e) {
-							pnTopRightGap.setId("indsTopRight");
-							cursor.setCursorType("zoneInds");
-				}
-			});	
+			EventController.setButtonEvents(indsBtn, pnTopRightGap, cursor, CursorType.ZONE_INDUSTRIAL);
+//			//Mouse Click Event sets Cursor to Zone Industrial
+//			indsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
+//					new EventHandler<MouseEvent>() {
+//						public void handle(MouseEvent e) {
+//							pnTopRightGap.setId("indsTopRight");
+//							cursor.setCursorType("zoneInds");
+//				}
+//			});	
 			gpControlGrid.add(indsBtn, 0, 3);
 			
 			return gridPane;
