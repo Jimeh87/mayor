@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import objects.Cursor;
+import objects.EventController;
 import objects.Tile;
 import objects.TileType;
 
@@ -55,37 +56,7 @@ public class SceneBuilder {
 					final Tile tile = city.getGrid().getTile(gridX, gridY);
 					pnGameGrid.setId(tile.getTileType().getId());
 					//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
-					pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
-							new EventHandler<MouseEvent>() {
-								public void handle(MouseEvent e) {
-									txtType.setText("Tile Type: " + tile.getTileType().getId());
-								}
-							});
-					pnGameGrid.addEventHandler(MouseEvent.MOUSE_EXITED,
-							new EventHandler<MouseEvent>() {
-								public void handle(MouseEvent e) {
-									txtType.setText("Tile Type:");
-								}
-					});
-					//Mouse Click Events For GameGrid Filtered by Current Cursor Type
-					pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
-							new EventHandler<MouseEvent>() {
-								public void handle(MouseEvent e) {
-									if (cursor.getCursorType() == "zoneEmpty") {
-										tile.setTileType(TileType.EMPTY);
-									}
-									if (cursor.getCursorType() == "zoneRes") {
-										tile.setTileType(TileType.RESIDENTIAL);
-									}
-									if (cursor.getCursorType() == "zoneComm") {
-										tile.setTileType(TileType.COMMERCIAL);
-									}
-									if (cursor.getCursorType() == "zoneInds") {
-										tile.setTileType(TileType.INDUSTRIAL);
-									}
-									pnGameGrid.setId(tile.getTileType().getId());
-								}
-					});
+					EventController.setTileEvents(pnGameGrid, txtType, cursor.getCursorType(), tile);
 					gpGameGrid.add(pnGameGrid, gridX, gridY);
 				}
 				 
