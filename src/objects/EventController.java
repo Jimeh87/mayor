@@ -9,29 +9,51 @@ import javafx.scene.text.Text;
 public class EventController {
 	public static void setTileEvents(final Pane pnGameGrid, final Text txtType, final Cursor cursor, final Tile tile) {
 		//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
+		pnGameGrid.addEventHandler(MouseEvent.MOUSE_MOVED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type: " + tile.getTileType().getId());
+						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) {
+							pnGameGrid.setId(cursor.getCursorType().getTileType().getId());
+						}
 					}
-				});
+		});
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type:");
+						pnGameGrid.setId(tile.getTileType().getId());
 					}
 		});
+		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent e) {
+						if (cursor.isMouseHeld()){
+							tile.setTileType(cursor.getCursorType().getTileType());
+							pnGameGrid.setId(tile.getTileType().getId());
+						}
+					}	
+		});
+		pnGameGrid.addEventHandler(MouseEvent.MOUSE_RELEASED,
+				new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent e) {
+						cursor.setMouseHeld(false);
+					}	
+		});
 		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
+		pnGameGrid.addEventHandler(MouseEvent.MOUSE_PRESSED, 
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e){	
-						tile.setTileType(cursor.getCursorType().getTileType());
-						pnGameGrid.setId(tile.getTileType().getId());
+						cursor.setMouseHeld(true);
+						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) {
+							tile.setTileType(cursor.getCursorType().getTileType());
+							pnGameGrid.setId(tile.getTileType().getId());
+						}
 					}
 		});
 	}
 	
-	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final CursorType newCursorType ) {
+	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final CursorType newCursorType) {
 		//Mouse Click Event sets Cursor to Zone Empty
 		Btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {

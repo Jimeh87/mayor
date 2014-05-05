@@ -5,22 +5,35 @@
 }
 
 #topBar{
-	-fx-background-color: red;
+	-fx-background-color: white;
 }
 
 #emptyTopRight{
-	-fx-background-color: grey;
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: white;
 }
 #resTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
 	-fx-background-color: green;
 }
 
 #commTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
 	-fx-background-color: blue;
 }
 
 #indsTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
 	-fx-background-color: yellow;
+}
+#bulldozeTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: red;
 }
 #controlGrid{
 	-fx-border-style: solid;
@@ -31,6 +44,7 @@
 
 #Empty{
 	-fx-background-image: url(emptyTile.jpg); 
+	-fx-opacity: .2;
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
@@ -66,6 +80,16 @@
 }
 
 #commButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+#indsButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+#bulldozeButton{
 	-fx-font-size: 14;
 	-fx-alignment: baseline-center;
 	-fx-text-fill: black;
