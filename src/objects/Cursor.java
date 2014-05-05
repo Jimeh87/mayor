@@ -9,7 +9,7 @@ public class Cursor{
 	Integer yLocation;
 	
 	//Construct
-	public Cursor(String type, Integer xLocation, Integer yLocation) {
+	public Cursor(String type) {
 		this.cursorType = type;
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
