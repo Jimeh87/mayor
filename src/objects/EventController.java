@@ -7,13 +7,20 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class EventController {
+	/** EventControlling Method for GameGrid Tile events
+	 * @param pnGameGrid the Pane that is clicked
+	 * @param txtType the Stats being displayed
+	 * @param cursor 
+	 * @param tile
+	 */
 	public static void setTileEvents(final Pane pnGameGrid, final Text txtType, final Cursor cursor, final Tile tile) {
 		//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_MOVED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type: " + tile.getTileType().getId());
-						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) {
+						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) 
+						{
 							pnGameGrid.setId(cursor.getCursorType().getTileType().getId());
 						}
 					}
@@ -28,33 +35,25 @@ public class EventController {
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						if (cursor.isMouseHeld()){
-							tile.setTileType(cursor.getCursorType().getTileType());
+						if (cursor.isZoning()){
 							pnGameGrid.setId(tile.getTileType().getId());
 						}
-					}	
-		});
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_RELEASED,
-				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e) {
-						cursor.setMouseHeld(false);
 					}	
 		});
 		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_PRESSED, 
+		pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e){	
-						cursor.setMouseHeld(true);
-						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) {
+					public void handle(MouseEvent e){
+						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) 
+						{
 							tile.setTileType(cursor.getCursorType().getTileType());
 							pnGameGrid.setId(tile.getTileType().getId());
 						}
-					}
-		});
+					}});
 	}
 	
 	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final CursorType newCursorType) {
-		//Mouse Click Event sets Cursor to Zone Empty
+		//Mouse Click Event sets Cursor to Zoning Tool
 		Btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
@@ -63,6 +62,5 @@ public class EventController {
 					}
 				});	
 		
-	}
+	}}
 	
-}
