@@ -56,7 +56,7 @@ public class SceneBuilder {
 					final Tile tile = city.getGrid().getTile(gridX, gridY);
 					pnGameGrid.setId(tile.getTileType().getId());
 					//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
-					EventController.setTileEvents(pnGameGrid, txtType, cursor.getCursorType(), tile);
+					EventController.setTileEvents(pnGameGrid, txtType, cursor, tile);
 					gpGameGrid.add(pnGameGrid, gridX, gridY);
 				}
 				 

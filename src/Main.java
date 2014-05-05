@@ -35,7 +35,7 @@ public class Main extends Application {
 				tilesToUpdate = tick();
 				delta--;
 			}
-//			render(tilesToUpdate);
+			render(tilesToUpdate);
 			running = false;
 		}
 	}
@@ -44,11 +44,11 @@ public class Main extends Application {
 		return city.processTick();
 	}
 
-//	private static void render(List<Tile> tilesToUpdate) {
-//		for (Tile tile : tilesToUpdate) {
-//			
-//		}
-//	}
+	private static void render(List<Tile> tilesToUpdate) {
+		for (Tile tile : tilesToUpdate) {
+			
+		}
+	}
 
 	private static void initializeGame(String[] args) {
 		launchApplication(args);
