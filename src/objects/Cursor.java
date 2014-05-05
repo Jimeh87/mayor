@@ -4,23 +4,23 @@ package objects;
 public class Cursor{
 	
 	//Fields
-	String cursorType;
+	CursorType cursorType;
 	Integer xLocation;
 	Integer yLocation;
 	
 	//Construct
-	public Cursor(String type) {
-		this.cursorType = type;
+	public Cursor(CursorType cursorType) {
+		this.cursorType = cursorType;
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
 	}
 	
 	//Methods
-	public String getCursorType() {
+	public CursorType getCursorType() {
 		return cursorType;
 	}
-	public void setCursorType(String type) {	
-		this.cursorType = type;
+	public void setCursorType(CursorType cursorType) {	
+		this.cursorType = cursorType;
 	}
 	public Integer getXLocation(){
 		return xLocation;
