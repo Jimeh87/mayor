@@ -21,7 +21,8 @@ public class SceneBuilder {
 			GridPane gridPane = new GridPane();
 			gridPane.setHgap(1);gridPane.setVgap(1);
 			
-			//Top Gap Spacers Used for Whatever
+			//Top Gap Spacers 
+			//Top Left GridPane used for MouseOver info
 			GridPane pnLeftGap = new GridPane();
 			pnLeftGap.setMinSize(240, 135);
 			pnLeftGap.setMaxSize(240, 135);
