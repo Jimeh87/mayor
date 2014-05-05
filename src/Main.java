@@ -45,9 +45,7 @@ public class Main extends Application {
 	}
 
 	private static void render(List<Tile> tilesToUpdate) {
-		for (Tile tile : tilesToUpdate) {
-			
-		}
+		
 	}
 
 	private static void initializeGame(String[] args) {
