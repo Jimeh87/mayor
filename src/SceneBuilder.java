@@ -72,21 +72,18 @@ public class SceneBuilder {
 							new EventHandler<MouseEvent>() {
 								public void handle(MouseEvent e) {
 									if (cursor.getCursorType() == "zoneEmpty") {
-										pnGameGrid.setId("empty");
 										tile.setTileType(TileType.EMPTY);
 									}
 									if (cursor.getCursorType() == "zoneRes") {
-										pnGameGrid.setId("residential");
 										tile.setTileType(TileType.RESIDENTIAL);
 									}
 									if (cursor.getCursorType() == "zoneComm") {
-										pnGameGrid.setId("commercial");
 										tile.setTileType(TileType.COMMERCIAL);
 									}
 									if (cursor.getCursorType() == "zoneInds") {
-										pnGameGrid.setId("industrial");
 										tile.setTileType(TileType.INDUSTRIAL);
 									}
+									pnGameGrid.setId(tile.getTileType().getId());
 								}
 					});
 					gpGameGrid.add(pnGameGrid, gridX, gridY);
