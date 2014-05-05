@@ -20,11 +20,7 @@ public class Grid {
 		
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
-				TileType tileType = TileType.EMPTY;
-				if ((x % 2 == 0) && (y % 2 == 0)) {
-					tileType = TileType.RESIDENTIAL;
-				}
-				tileArray[x][y] = new Tile(x, y, tileType);
+				tileArray[x][y] = new Tile(x, y, TileType.EMPTY);
 			}
 		}
 		
