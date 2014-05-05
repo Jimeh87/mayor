@@ -4,9 +4,10 @@ package objects;
 public class Cursor{
 	
 	//Fields
-	CursorType cursorType;
-	Integer xLocation;
-	Integer yLocation;
+	private CursorType cursorType;
+	private Integer xLocation;
+	private Integer yLocation;
+	private boolean mouseHeld = false;
 	
 	//Construct
 	public Cursor(CursorType cursorType) {
@@ -33,6 +34,14 @@ public class Cursor{
 	}
 	public void setYLocation(Integer yLocation){
 		this.yLocation = yLocation;
+	}
+
+	public boolean isMouseHeld() {
+		return mouseHeld;
+	}
+
+	public void setMouseHeld(boolean mouseHeld) {
+		this.mouseHeld = mouseHeld;
 	}
 	
 }

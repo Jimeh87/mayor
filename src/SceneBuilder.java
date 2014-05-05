@@ -1,15 +1,12 @@
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import objects.Cursor;
+import objects.CursorType;
 import objects.EventController;
 import objects.Tile;
-import objects.TileType;
-import objects.CursorType;
 
 
 public class SceneBuilder {
@@ -77,7 +74,7 @@ public class SceneBuilder {
 			emptyBtn.setId("emptyButton");
 			emptyBtn.setMinSize(235,30);
 			emptyBtn.setMaxSize(235,30);
-			emptyBtn.setText("Zone Empty");
+			emptyBtn.setText("Empty Hand");
 			//Event Controller Call Zone Empty
 			EventController.setButtonEvents(emptyBtn, pnTopRightGap, cursor, CursorType.ZONE_EMPTY);
 			//Add Button To Control Grid
@@ -91,6 +88,7 @@ public class SceneBuilder {
 			resBtn.setText("Zone Residential");
 			//Event Controller Call Zone Residential
 			EventController.setButtonEvents(resBtn, pnTopRightGap, cursor, CursorType.ZONE_RESIDENTIAL);
+			//Add Button to Control Grid
 			gpControlGrid.add(resBtn, 0,1);
 			
 			//Zone Commercial Button Setup and Event handle
@@ -100,14 +98,7 @@ public class SceneBuilder {
 			commBtn.setMaxSize(235,30);
 			commBtn.setText("Zone Commercial");
 			EventController.setButtonEvents(commBtn, pnTopRightGap, cursor, CursorType.ZONE_COMMERCIAL);
-//			//Mouse Click Event sets Cursor to Zone Commercial
-//			commBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
-//					new EventHandler<MouseEvent>() {
-//						public void handle(MouseEvent e) {
-//							pnTopRightGap.setId("commTopRight");
-//							cursor.setCursorType("zoneComm");
-//				}
-//			});	
+			//Add Button to Control Grid
 			gpControlGrid.add(commBtn, 0, 2);
 			
 			//Zone Industrial Button Setup and Event handle
@@ -117,16 +108,19 @@ public class SceneBuilder {
 			indsBtn.setMaxSize(235,30);
 			indsBtn.setText("Zone Industrial");
 			EventController.setButtonEvents(indsBtn, pnTopRightGap, cursor, CursorType.ZONE_INDUSTRIAL);
-//			//Mouse Click Event sets Cursor to Zone Industrial
-//			indsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,
-//					new EventHandler<MouseEvent>() {
-//						public void handle(MouseEvent e) {
-//							pnTopRightGap.setId("indsTopRight");
-//							cursor.setCursorType("zoneInds");
-//				}
-//			});	
+			//Add Button to Control Grid
 			gpControlGrid.add(indsBtn, 0, 3);
 			
+			//Bulldoze Button Setup and Event handle
+			Button bulldozeBtn = new Button();
+			bulldozeBtn.setId("bulldozeButton");
+			bulldozeBtn.setMinSize(235,30);
+			bulldozeBtn.setMaxSize(235,30);
+			bulldozeBtn.setText("Bulldoze Zone");
+			//Event Controller Call Zone Bulldoze
+			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, CursorType.ZONE_BULLDOZE);
+			//Add Button To Control Grid
+			gpControlGrid.add(bulldozeBtn, 0, 4);
 			return gridPane;
 		}
 }
