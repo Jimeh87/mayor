@@ -26,14 +26,16 @@ public class EventController {
 								&& tile.isBuildingExists()) {
 							
 							buildingId = tile.getTileType().getBuildingIdMainType(); //show zone for current building
-						} else if (tile.getTileType() == TileType.EMPTY) { //can't add to tile that already exists
+						} else if (tile.getTileType() != TileType.EMPTY
+								|| cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
+							
 							buildingId = cursor.getCursorType().getTileType().getBuildingIdMainType();
 						}
 						
 						if (buildingId != null) {
 							tile.getPane().setId(buildingId);
 						}
-						txtType.setText("Tile Type: " + tile.getTileType().getName());
+						txtType.setText(tile.getPopUpDetails());
 					}
 		});
 		tile.getPane().addEventHandler(MouseEvent.MOUSE_EXITED,
@@ -50,12 +52,15 @@ public class EventController {
 							if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE //BULLDOZE LOGIC
 									&& tile.getTileType().isZone()
 									&& tile.isBuildingExists()) {
+								
 								tile.setBuildingIdSubType(null); //just remove building, not zone
-							} else if (tile.getTileType() == TileType.EMPTY) { //can't add to tile that already exists
+							} else if (tile.getTileType() == TileType.EMPTY
+									|| cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
+								
 								tile.setTileType(cursor.getCursorType().getTileType());
 							}
 							tile.refreshPane();
-							txtType.setText("Tile Type: " + tile.getTileType().getName());
+							txtType.setText(tile.getPopUpDetails());
 						}
 					}});
 	}

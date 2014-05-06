@@ -101,4 +101,12 @@ public class Tile {
 	public void refreshPane() {
 		pane.setId(tileType.getBuildingIdMainType() + getBuildingIdSubTypeAsString());
 	}
+	
+	/**
+	 * Returns pop up details
+	 * @return
+	 */
+	public String getPopUpDetails() {
+		return ("Tile Type: " + getTileType().getName() + "\nBuilding subType: " + getBuildingIdSubTypeAsString());
+	}
 }
