@@ -1,11 +1,11 @@
 package objects;
 
 public enum CursorType {
-	ZONE_EMPTY(TileType.EMPTY, CursorIndicator.EMPTY),
+	ZONE_EMPTY(null, CursorIndicator.EMPTY),
 	ZONE_RESIDENTIAL(TileType.RESIDENTIAL, CursorIndicator.RESIDENTIAL),
 	ZONE_COMMERCIAL(TileType.COMMERCIAL, CursorIndicator.COMMERCIAL),
 	ZONE_INDUSTRIAL(TileType.INDUSTRIAL, CursorIndicator.INDUSTRIAL),
-	ZONE_BULLDOZE(TileType.BULLDOZE, CursorIndicator.BULLDOZE);
+	ZONE_BULLDOZE(TileType.EMPTY, CursorIndicator.BULLDOZE);
 	
 	TileType tileType;
 	CursorIndicator cursorIndicator;
