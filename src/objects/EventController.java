@@ -19,8 +19,7 @@ public class EventController {
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type: " + tile.getTileType().getId());
-						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) 
-						{
+						if (cursor.getCursorType().getTileType() != null) {
 							pnGameGrid.setId(cursor.getCursorType().getTileType().getId());
 						}
 					}
@@ -35,17 +34,14 @@ public class EventController {
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						if (cursor.isZoning()){
-							pnGameGrid.setId(tile.getTileType().getId());
-						}
+						pnGameGrid.setId(tile.getTileType().getId());
 					}	
 		});
 		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
 		pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e){
-						if (!"Hand".equals(cursor.getCursorType().getTileType().getId())) 
-						{
+						if (cursor.getCursorType().getTileType() != null) {
 							tile.setTileType(cursor.getCursorType().getTileType());
 							pnGameGrid.setId(tile.getTileType().getId());
 						}

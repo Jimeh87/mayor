@@ -17,6 +17,8 @@ public class Tile {
 	
 	private TileType tileType;
 	
+	private Integer desirability = 0;
+	
 	public int getXLocation() {
 		return xLocation;
 	}

@@ -1,11 +1,10 @@
 package objects;
 
 public enum TileType {
-	EMPTY ("Hand"),
+	EMPTY ("Empty"),
 	RESIDENTIAL ("Residential"),
 	COMMERCIAL ("Commercial"),
-	INDUSTRIAL ("Industrial"),
-	BULLDOZE ("Empty");
+	INDUSTRIAL ("Industrial");
 	
 	String id;
 	private TileType(String id) {

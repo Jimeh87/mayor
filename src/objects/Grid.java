@@ -20,7 +20,7 @@ public class Grid {
 		
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
-				tileArray[x][y] = new Tile(x, y, TileType.BULLDOZE);
+				tileArray[x][y] = new Tile(x, y, TileType.EMPTY);
 			}
 		}
 		

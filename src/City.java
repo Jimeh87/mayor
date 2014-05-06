@@ -5,6 +5,10 @@ import objects.Grid;
 import objects.Residential;
 import objects.Tile;
 
+/**
+ * @author Jim
+ * 
+ */
 public class City {
 	
 	List<Tile> tileList;
