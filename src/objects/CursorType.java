@@ -1,5 +1,9 @@
 package objects;
 
+/**
+ * Used to indicate the current cursor in use.
+ * @author Josh
+ */
 public enum CursorType {
 	ZONE_EMPTY(null, CursorIndicator.EMPTY),
 	ZONE_RESIDENTIAL(TileType.RESIDENTIAL, CursorIndicator.RESIDENTIAL),
@@ -22,6 +26,11 @@ public enum CursorType {
 		return cursorIndicator;
 	}
 	
+	/**
+	 * Indicates if the tile type exists. This is generally used to tell if the cursor is "Empty Hand".
+	 * If the tile type does not exist, then we are using "Empty Hand". 
+	 * @return boolean
+	 */
 	public boolean isTileTypeExists() {
 		return tileType != null ? true : false;
 	}
