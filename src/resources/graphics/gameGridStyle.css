@@ -42,27 +42,45 @@
 }
 
 
-#Empty{
+#E{
 	-fx-background-image: url(emptyTile.jpg); 
 	-fx-opacity: .2;
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
 
-#Residential{
+#R{
 	-fx-background-image:url(residentialTile.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
 
-#Commercial{
+#C{
 	-fx-background-image:url(commercialTile.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
 
-#Industrial{
+#I{
 	-fx-background-image:url(industrialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#R0{
+	-fx-background-image:url(ResHouse1.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#C0{
+	-fx-background-image:url(OfficeBuilding.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#I0{
+	-fx-background-image:url(factory.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
