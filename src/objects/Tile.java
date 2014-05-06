@@ -43,6 +43,7 @@ public class Tile {
 	}
 	public void setTileType(TileType tileType) {
 		this.tileType = tileType;
+		setBuildingIdSubType(null); //reset tile sub type
 	}
 	public Pane getPane() {
 		return pane;
@@ -55,7 +56,7 @@ public class Tile {
 		return buildingIdSubType != null ? buildingIdSubType.toString() : "";
 	}
 	
-	public boolean isBuildingIdExists() {
+	public boolean isBuildingExists() {
 		return buildingIdSubType != null ? true : false;
 	}
 	
