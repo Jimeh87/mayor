@@ -19,6 +19,9 @@ public enum TileType {
 	
 	public String getBuildingIdMainType() {
 		return buildingIdMainType;
-		
+	}
+	
+	public boolean isZone() {
+		return (this == TileType.RESIDENTIAL || this == TileType.COMMERCIAL || this == TileType.INDUSTRIAL);
 	}
 }
