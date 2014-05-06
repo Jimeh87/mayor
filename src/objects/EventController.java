@@ -13,37 +13,38 @@ public class EventController {
 	 * @param cursor 
 	 * @param tile
 	 */
-	public static void setTileEvents(final Pane pnGameGrid, final Text txtType, final Cursor cursor, final Tile tile) {
+	public static void setTileEvents(final Text txtType, final Cursor cursor, final Tile tile) {
 		//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_MOVED,
+		tile.getPane().addEventHandler(MouseEvent.MOUSE_MOVED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type: " + tile.getTileType().getId());
 						if (cursor.getCursorType().getTileType() != null) {
-							pnGameGrid.setId(cursor.getCursorType().getTileType().getId());
+							tile.getPane().setId(cursor.getCursorType().getTileType().getId());
 						}
 					}
 		});
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_EXITED,
+		tile.getPane().addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type:");
-						pnGameGrid.setId(tile.getTileType().getId());
+						tile.getPane().setId(tile.getTileType().getId());
 					}
 		});
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_ENTERED,
+		tile.getPane().addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						pnGameGrid.setId(tile.getTileType().getId());
+						tile.getPane().setId(tile.getTileType().getId());
 					}	
 		});
 		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
-		pnGameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, 
+		tile.getPane().addEventHandler(MouseEvent.MOUSE_PRESSED, 
 				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e){
+					public void handle(MouseEvent e) {
 						if (cursor.getCursorType().getTileType() != null) {
 							tile.setTileType(cursor.getCursorType().getTileType());
-							pnGameGrid.setId(tile.getTileType().getId());
+							tile.getPane().setId(tile.getTileType().getId());
+							txtType.setText("Tile Type: " + tile.getTileType().getId());
 						}
 					}});
 	}
