@@ -48,15 +48,12 @@ public class SceneBuilder {
 			GridPane gpGameGrid = new GridPane();
 			for (int gridY = 0; gridY < 28; gridY++) {
 				for (int gridX = 0; gridX < 45; gridX++) {
-					final Pane pnGameGrid = new Pane();
-					pnGameGrid.setMinSize(32, 32);
-					pnGameGrid.setMaxSize(32,  32);
 					final Tile tile = city.getGrid().getTile(gridX, gridY);
-					pnGameGrid.setId(tile.getTileType().getId());
+					tile.getPane().setId(tile.getTileType().getId());
 					//Event Controller Call
-					EventController.setTileEvents(pnGameGrid, txtType, cursor, tile);
+					EventController.setTileEvents(txtType, cursor, tile);
 					//Add Pane to GameGrid
-					gpGameGrid.add(pnGameGrid, gridX, gridY);
+					gpGameGrid.add(tile.getPane(), gridX, gridY);
 				}
 				 
 			}
