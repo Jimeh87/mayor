@@ -20,18 +20,17 @@ public class EventController {
 					public void handle(MouseEvent e) {
 						txtType.setText("Tile Type: " + tile.getTileType().getName());
 						if (cursor.getCursorType().isTileTypeExists() && !tile.isBuildingIdExists()) {
-							tile.getPane().setId(cursor.getCursorType().getTileType().getBuildingPrefix());
+							tile.getPane().setId(cursor.getCursorType().getTileType().getBuildingIdMainType());
 						}
 					}
 		});
 		tile.getPane().addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						//txtType.setText("Tile Type:"); //commented out, don't think it's needed
 						tile.refreshPane(); //Sets Pane with current Tile values
 					}
 		});
-		tile.getPane().addEventHandler(MouseEvent.MOUSE_ENTERED, //CAN THIS BE REMOVED TOO???
+		tile.getPane().addEventHandler(MouseEvent.MOUSE_ENTERED, //CAN THIS BE REMOVED?? Not sure it is needed
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						tile.refreshPane();

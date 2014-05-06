@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 import objects.Grid;
@@ -26,8 +25,6 @@ public class City {
 	}
 
 	public void tick() {
-		Tile tile = grid.getTile(5,  4);
-		tile.setBuildingIdSuffix(0);
-		tile.refreshPane();
+		grid.tick();
 	}
 }

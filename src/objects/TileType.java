@@ -7,18 +7,18 @@ public enum TileType {
 	INDUSTRIAL ("Industrial", "I");
 	
 	String name;
-	String buildingIdPrefix;
-	private TileType(String name, String buildingIdPrefix) {
+	String buildingIdMainType;
+	private TileType(String name, String buildingIdMainType) {
 		this.name = name;
-		this.buildingIdPrefix = buildingIdPrefix;
+		this.buildingIdMainType = buildingIdMainType;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public String getBuildingPrefix() {
-		return buildingIdPrefix;
+	public String getBuildingIdMainType() {
+		return buildingIdMainType;
 		
 	}
 }

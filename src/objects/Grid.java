@@ -62,8 +62,17 @@ public class Grid {
 		this.ySize = ySize;
 	}
 	
-	public String toString() {
-		return "GRID BITCHES";
+	/**
+	 * Just test code here for now
+	 */
+	public void tick() {
+		List<Tile> tileList = getTileList();
+		for (Tile tile : tileList) {
+			if (tile.getTileType() != TileType.EMPTY) {
+				tile.setBuildingIdSubType(0);
+				tile.refreshPane();
+			}
+		}
 	}
 
 }

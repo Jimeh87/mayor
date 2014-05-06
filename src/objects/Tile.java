@@ -22,7 +22,7 @@ public class Tile {
 
 	private TileType tileType;
 	
-	private Integer buildingIdSuffix = null;
+	private Integer buildingIdSubType = null;
 	
 	private Integer desirability = 0;
 	
@@ -47,16 +47,19 @@ public class Tile {
 	public Pane getPane() {
 		return pane;
 	}
-	public void setBuildingIdSuffix(Integer buildingIdSuffix) {
-		this.buildingIdSuffix = buildingIdSuffix;
+	public void setBuildingIdSubType(Integer buildingIdSubType) {
+		this.buildingIdSubType = buildingIdSubType;
+	}
+	
+	private String getBuildingIdSubTypeAsString() {
+		return buildingIdSubType != null ? buildingIdSubType.toString() : "";
 	}
 	
 	public boolean isBuildingIdExists() {
-		return buildingIdSuffix != null ? true : false;
+		return buildingIdSubType != null ? true : false;
 	}
 	
 	public void refreshPane() {
-		String buildingIdSuffix = this.buildingIdSuffix == null ? "" : this.buildingIdSuffix.toString();
-		pane.setId(tileType.getBuildingPrefix() + buildingIdSuffix);
+		pane.setId(tileType.getBuildingIdMainType() + getBuildingIdSubTypeAsString());
 	}
 }
