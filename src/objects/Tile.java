@@ -22,6 +22,8 @@ public class Tile {
 
 	private TileType tileType;
 	
+	private Integer buildingIdSuffix = null;
+	
 	private Integer desirability = 0;
 	
 	public int getXLocation() {
@@ -44,5 +46,17 @@ public class Tile {
 	}
 	public Pane getPane() {
 		return pane;
+	}
+	public void setBuildingIdSuffix(Integer buildingIdSuffix) {
+		this.buildingIdSuffix = buildingIdSuffix;
+	}
+	
+	public boolean isBuildingIdExists() {
+		return buildingIdSuffix != null ? true : false;
+	}
+	
+	public void refreshPane() {
+		String buildingIdSuffix = this.buildingIdSuffix == null ? "" : this.buildingIdSuffix.toString();
+		pane.setId(tileType.getBuildingPrefix() + buildingIdSuffix);
 	}
 }

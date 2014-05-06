@@ -7,17 +7,10 @@ public class Cursor{
 	private CursorType cursorType;
 	private Integer xLocation;
 	private Integer yLocation;
-	private Integer isZoningColStart;
-	private Integer isZoningRowStart;
-	private boolean isZoning = false;
 	
 	//Construct
 	public Cursor(CursorType cursorType) {
 		this.cursorType = cursorType;
-		this.xLocation = xLocation;
-		this.yLocation = yLocation;
-		this.isZoningColStart = 0;
-		this.isZoningRowStart = 0;
 	}
 	
 	//Methods
@@ -40,28 +33,6 @@ public class Cursor{
 		this.yLocation = yLocation;
 	}
 
-	public boolean isZoning() {
-		return isZoning;
-	}
 
-	public void setIsZoning(boolean isZoning) {
-		this.isZoning = isZoning;
-	}
-
-	public Integer getIsZoningColStart() {
-		return isZoningColStart;
-	}
-
-	public void setIsZoningColStart(Integer isZoningColStart) {
-		this.isZoningColStart = isZoningColStart;
-	}
-
-	public Integer getIsZoningRowStart() {
-		return isZoningRowStart;
-	}
-
-	public void setIsZoningRowStart(Integer isZoningRowStart) {
-		this.isZoningRowStart = isZoningRowStart;
-	}
 	
 }

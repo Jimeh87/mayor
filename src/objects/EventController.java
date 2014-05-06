@@ -18,33 +18,33 @@ public class EventController {
 		tile.getPane().addEventHandler(MouseEvent.MOUSE_MOVED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						txtType.setText("Tile Type: " + tile.getTileType().getId());
-						if (cursor.getCursorType().getTileType() != null) {
-							tile.getPane().setId(cursor.getCursorType().getTileType().getId());
+						txtType.setText("Tile Type: " + tile.getTileType().getName());
+						if (cursor.getCursorType().isTileTypeExists() && !tile.isBuildingIdExists()) {
+							tile.getPane().setId(cursor.getCursorType().getTileType().getBuildingPrefix());
 						}
 					}
 		});
 		tile.getPane().addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						txtType.setText("Tile Type:");
-						tile.getPane().setId(tile.getTileType().getId());
+						//txtType.setText("Tile Type:"); //commented out, don't think it's needed
+						tile.refreshPane(); //Sets Pane with current Tile values
 					}
 		});
-		tile.getPane().addEventHandler(MouseEvent.MOUSE_ENTERED,
+		tile.getPane().addEventHandler(MouseEvent.MOUSE_ENTERED, //CAN THIS BE REMOVED TOO???
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						tile.getPane().setId(tile.getTileType().getId());
+						tile.refreshPane();
 					}	
 		});
 		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
 		tile.getPane().addEventHandler(MouseEvent.MOUSE_PRESSED, 
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						if (cursor.getCursorType().getTileType() != null) {
+						if (cursor.getCursorType().isTileTypeExists()) {
 							tile.setTileType(cursor.getCursorType().getTileType());
-							tile.getPane().setId(tile.getTileType().getId());
-							txtType.setText("Tile Type: " + tile.getTileType().getId());
+							tile.refreshPane();
+							txtType.setText("Tile Type: " + tile.getTileType().getName());
 						}
 					}});
 	}

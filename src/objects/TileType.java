@@ -1,17 +1,24 @@
 package objects;
 
 public enum TileType {
-	EMPTY ("Empty"),
-	RESIDENTIAL ("Residential"),
-	COMMERCIAL ("Commercial"),
-	INDUSTRIAL ("Industrial");
+	EMPTY ("Empty", "E"),
+	RESIDENTIAL ("Residential", "R"),
+	COMMERCIAL ("Commercial", "C"),
+	INDUSTRIAL ("Industrial", "I");
 	
-	String id;
-	private TileType(String id) {
-		this.id = id;
+	String name;
+	String buildingIdPrefix;
+	private TileType(String name, String buildingIdPrefix) {
+		this.name = name;
+		this.buildingIdPrefix = buildingIdPrefix;
 	}
 	
-	public String getId() {
-		return id;
+	public String getName() {
+		return name;
+	}
+	
+	public String getBuildingPrefix() {
+		return buildingIdPrefix;
+		
 	}
 }

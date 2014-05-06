@@ -21,4 +21,8 @@ public enum CursorType {
 	public CursorIndicator getCursorIndicator(){
 		return cursorIndicator;
 	}
+	
+	public boolean isTileTypeExists() {
+		return tileType != null ? true : false;
+	}
 }  

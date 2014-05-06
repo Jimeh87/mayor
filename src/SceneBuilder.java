@@ -49,7 +49,7 @@ public class SceneBuilder {
 			for (int gridY = 0; gridY < 28; gridY++) {
 				for (int gridX = 0; gridX < 45; gridX++) {
 					final Tile tile = city.getGrid().getTile(gridX, gridY);
-					tile.getPane().setId(tile.getTileType().getId());
+					tile.refreshPane();
 					//Event Controller Call
 					EventController.setTileEvents(txtType, cursor, tile);
 					//Add Pane to GameGrid
