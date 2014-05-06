@@ -1,29 +1,33 @@
-import java.util.List;
-
 import objects.Grid;
-import objects.Tile;
 
 /**
  * @author Jim
- * 
+ * Main storage of all things city related, including the grid.
  */
 public class City {
 	
-	List<Tile> tileList;
+	/**
+	 * Constructor for city.
+	 * @param xSize x-axis size
+	 * @param ySize y-axis size 
+	 */
 	public City(int xSize, int ySize) {
 		grid = new Grid(xSize, ySize);
 	}
 
 	private Grid grid;
 	
+	/**
+	 * Gets the grid of the city
+	 * @return grid
+	 */
 	public Grid getGrid() {
 		return grid;
 	}
 
-	public void setGrid(Grid grid) {
-		this.grid = grid;
-	}
-
+	/**
+	 * Tick for everything in the city. This will call grid.tick()
+	 */
 	public void tick() {
 		grid.tick();
 	}

@@ -6,9 +6,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+/**
+ * Used to set up event triggers
+ */
 public class EventController {
 	/** EventControlling Method for GameGrid Tile events
-	 * @param pnGameGrid the Pane that is clicked
 	 * @param txtType the Stats being displayed
 	 * @param cursor 
 	 * @param tile

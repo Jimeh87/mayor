@@ -10,15 +10,10 @@ import objects.Tile;
 
 public class Main extends Application {
 
-	private static boolean running = true;
 	private static City city = new City(45, 28);
 	private TimeLineHandler timeLineHandler = new TimeLineHandler();
 
 	public static void main(String[] args) {
-		initializeGame(args);
-	}
-
-	private static void initializeGame(String[] args) {
 		launchApplication(args);
 	}
 	
@@ -40,6 +35,10 @@ public class Main extends Application {
 	
 	}
 	
+	/**
+	 * Launches the main application
+	 * @param args
+	 */
 	public static void launchApplication(String[] args) {
 		Application.launch(args);
 	}

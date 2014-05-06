@@ -3,6 +3,10 @@ package objects;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Used to track tiles
+ * @author Jim
+ */
 public class Grid {
 	public Grid(int xSize, int ySize) {
 		this.xSize = xSize;
@@ -15,12 +19,17 @@ public class Grid {
 	
 	Tile[][] tileArray;
 	
+
+	/**
+	 * initializes the grid
+	 * @return
+	 */
 	private Tile[][] initializeGrid() {
 		tileArray = new Tile[xSize][ySize];
 		
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
-				tileArray[x][y] = new Tile(x, y, TileType.EMPTY);
+				tileArray[x][y] = new Tile(x, y);
 			}
 		}
 		
@@ -30,11 +39,12 @@ public class Grid {
 	public Tile getTile(int xLocation, int yLocation) {
 		return tileArray[xLocation][yLocation];
 	}
-
-	public void setTile(int xLocation, int yLocation, Tile tile) {
-		tileArray[xLocation][yLocation] = tile;
-	}
 	
+	/**
+	 * Turns the 2-D tileArray into a 1-D tileArray
+	 * TODO: This needs to be rethought...
+	 * @return tileArray
+	 */
 	public List<Tile> getTileList() {
 		List<Tile> tileList = new ArrayList<Tile>();
 		
