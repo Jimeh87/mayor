@@ -26,7 +26,8 @@ public class Main extends Application {
 			Scene scene = new Scene(sceneBuilder.generateGridPane(city), 1920, 1080);
 			scene.getStylesheets().add("/resources/graphics/gameGridStyle.css");
 			primaryStage.setScene(scene);
-			primaryStage.setFullScreen(true);
+			primaryStage.setFullScreen(false);
+			primaryStage.setMaximized(true);
 			primaryStage.show();
 			timeLineHandler.startCityTimeLine(city);
 		} catch(Exception e) {

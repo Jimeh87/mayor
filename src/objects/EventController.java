@@ -26,7 +26,7 @@ public class EventController {
 								&& tile.isBuildingExists()) {
 							
 							buildingId = tile.getTileType().getBuildingIdMainType(); //show zone for current building
-						} else if (tile.getTileType() != TileType.EMPTY
+						} else if (tile.getTileType() == TileType.EMPTY
 								|| cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
 							
 							buildingId = cursor.getCursorType().getTileType().getBuildingIdMainType();
