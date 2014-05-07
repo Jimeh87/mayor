@@ -1,12 +1,6 @@
-import java.util.List;
-
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import objects.Tile;
-
-
 
 public class Main extends Application {
 
@@ -19,7 +13,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		try {  
+		try {
 			
 			//Main Scene Build
 			SceneBuilder sceneBuilder = new SceneBuilder();
