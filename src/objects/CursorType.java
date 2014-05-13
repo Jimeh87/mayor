@@ -12,7 +12,7 @@ public enum CursorType {
 	ZONE_RESIDENTIAL (ZoneType.RESIDENTIAL, null,                        CursorIndicator.RESIDENTIAL),
 	ZONE_COMMERCIAL  (ZoneType.COMMERCIAL,  null,                        CursorIndicator.COMMERCIAL),
 	ZONE_INDUSTRIAL  (ZoneType.INDUSTRIAL,  null,                        CursorIndicator.INDUSTRIAL),
-	POLICE_STATION   (null,                 BuildingType.POLICE_STATION, null),
+	POLICE_STATION   (null,                 BuildingType.POLICE_STATION, CursorIndicator.POLICE_STATION),
 	ZONE_BULLDOZE    (null,                 null,                        CursorIndicator.BULLDOZE);
 	
 	ZoneType zoneType;

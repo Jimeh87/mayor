@@ -30,6 +30,11 @@
 	-fx-border-color: black;
 	-fx-background-color: yellow;
 }
+#policeTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: aquamarine;
+}
 #bulldozeTopRight{
 	-fx-border-style: solid;
 	-fx-border-color: black;
@@ -40,7 +45,6 @@
 	-fx-border-color: black;
 	-fx-background-color: aliceblue;
 }
-
 
 #E{
 	-fx-background-image: url(emptyTile.jpg); 
@@ -85,7 +89,11 @@
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
-
+#P1{
+	-fx-background-image: url(police.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
 #emptyButton{
 	-fx-font-size: 14;
 	-fx-alignment: baseline-center;
@@ -104,6 +112,11 @@
 	-fx-text-fill: black;
 }
 #indsButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+#policeButton{
 	-fx-font-size: 14;
 	-fx-alignment: baseline-center;
 	-fx-text-fill: black;
