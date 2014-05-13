@@ -1,37 +1,45 @@
 package objects;
 
+import property.specification.ZoneType;
+import property.BuildingType;
+
 /**
  * Used to indicate the current cursor in use.
  * @author Josh
  */
 public enum CursorType {
-	ZONE_EMPTY(null, CursorIndicator.EMPTY),
-	ZONE_RESIDENTIAL(TileType.RESIDENTIAL, CursorIndicator.RESIDENTIAL),
-	ZONE_COMMERCIAL(TileType.COMMERCIAL, CursorIndicator.COMMERCIAL),
-	ZONE_INDUSTRIAL(TileType.INDUSTRIAL, CursorIndicator.INDUSTRIAL),
-	ZONE_BULLDOZE(TileType.EMPTY, CursorIndicator.BULLDOZE);
+	ZONE_EMPTY       (ZoneType.EMPTY,       null,                        CursorIndicator.EMPTY),
+	ZONE_RESIDENTIAL (ZoneType.RESIDENTIAL, null,                        CursorIndicator.RESIDENTIAL),
+	ZONE_COMMERCIAL  (ZoneType.COMMERCIAL,  null,                        CursorIndicator.COMMERCIAL),
+	ZONE_INDUSTRIAL  (ZoneType.INDUSTRIAL,  null,                        CursorIndicator.INDUSTRIAL),
+	POLICE_STATION   (null,                 BuildingType.POLICE_STATION, null),
+	ZONE_BULLDOZE    (null,                 null,                        CursorIndicator.BULLDOZE);
 	
-	TileType tileType;
+	ZoneType zoneType;
+	BuildingType buildingType;
 	CursorIndicator cursorIndicator;
-	CursorType(TileType tileType, CursorIndicator cursorIndicator) {
-		this.tileType = tileType;
+	CursorType(ZoneType zoneType, BuildingType buildingType, CursorIndicator cursorIndicator) {
+		this.zoneType = zoneType;
+		this.buildingType = buildingType;
 		this.cursorIndicator = cursorIndicator;
 	}
 	
-	public TileType getTileType() {
-		return tileType;
+	public String getPaneId() {
+		if (buildingType != null) {
+			return buildingType.getPaneId();
+		}
+		return zoneType.getPaneId();
 	}
 	
-	public CursorIndicator getCursorIndicator(){
+	public CursorIndicator getCursorIndicator() {
 		return cursorIndicator;
 	}
-	
-	/**
-	 * Indicates if the tile type exists. This is generally used to tell if the cursor is "Empty Hand".
-	 * If the tile type does not exist, then we are using "Empty Hand". 
-	 * @return boolean
-	 */
-	public boolean isTileTypeExists() {
-		return tileType != null ? true : false;
+
+	public ZoneType getZoneType() {
+		return zoneType;
+	}
+
+	public BuildingType getBuildingType() {
+		return buildingType;
 	}
 }  

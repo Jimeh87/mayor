@@ -3,10 +3,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import objects.City;
 import objects.Cursor;
 import objects.CursorType;
 import objects.EventController;
 import objects.Tile;
+import property.Property;
+import property.specification.PropertySpecificationType;
+import property.specification.TileSpecification;
 
 
 public class SceneBuilder {
@@ -14,9 +18,8 @@ public class SceneBuilder {
 	// Returns GridPane to main scene Uses City for ini info
 	// Style info set by gameGridStyle.css in resources.graphics
 	// Event Handler for UI interaction
-		Parent generateGridPane(City city) {
+		Parent generateGridPane(City city, Cursor cursor) {
 			
-			final Cursor cursor = new Cursor(CursorType.ZONE_EMPTY);
 			GridPane gridPane = new GridPane();
 			gridPane.setHgap(1);gridPane.setVgap(1);
 			
@@ -48,12 +51,15 @@ public class SceneBuilder {
 			GridPane gpGameGrid = new GridPane();
 			for (int gridY = 0; gridY < 28; gridY++) {
 				for (int gridX = 0; gridX < 45; gridX++) {
-					final Tile tile = city.getGrid().getTile(gridX, gridY);
-					tile.refreshPane();
-					//Event Controller Call
-					EventController.setTileEvents(txtType, cursor, tile);
+					final Property property = city.getGrid().getProperty(gridX, gridY);
+					property.addSpecification(EventController.makeMouseMovedTileEvent(cursor, property));
+					property.addSpecification(EventController.makeMouseExitedTileEvent(property));
+					property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property));
+					property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property));
+					property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property));
+					Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
 					//Add Pane to GameGrid
-					gpGameGrid.add(tile.getPane(), gridX, gridY);
+					gpGameGrid.add(pane, gridX, gridY);
 				}
 				 
 			}

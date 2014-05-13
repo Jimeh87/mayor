@@ -1,6 +1,15 @@
 package objects;
 
+import property.BuildingType;
+import property.Property;
+import property.specification.BuildingSpecification;
+import property.specification.PropertySpecificationType;
+import property.specification.TileSpecification;
+import property.specification.ZoneSpecification;
+import property.specification.ZoneType;
+import property.specification.MouseEventSpecification;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -10,59 +19,126 @@ import javafx.scene.text.Text;
  * Used to set up event triggers
  */
 public class EventController {
-	/** EventControlling Method for GameGrid Tile events
-	 * @param txtType the Stats being displayed
-	 * @param cursor 
-	 * @param tile
-	 */
-	public static void setTileEvents(final Text txtType, final Cursor cursor, final Tile tile) {
-		//Mouse Over Events For GameGrid Display Data In TopLeft GridPane
-		tile.getPane().addEventHandler(MouseEvent.MOUSE_MOVED,
-				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e) {
-						String buildingId = null;
-						if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE
-								&& tile.getTileType().isZone()
-								&& tile.isBuildingExists()) {
-							
-							buildingId = tile.getTileType().getBuildingIdMainType(); //show zone for current building
-						} else if (tile.getTileType() == TileType.EMPTY
-								|| cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
-							
-							buildingId = cursor.getCursorType().getTileType().getBuildingIdMainType();
-						}
+	
+	public static MouseEventSpecification makeMouseMovedTileEvent(final Cursor cursor, final Property property) {
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				TileSpecification tileSpec = (TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE);
+				ZoneSpecification zoneSpec = (ZoneSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.ZONE);
+				BuildingSpecification buildingSpec = (BuildingSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.BUILDING);
+
+				String paneId;
+				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
+					paneId = getBuildingIdForBulldoze(zoneSpec, buildingSpec);
+					//TODO: Need to add logic to remove zone/building specs
+				} else if (zoneSpec != null || buildingSpec != null) {
+					paneId = null;
+				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
+					paneId = null;
+				} else {
+					paneId = cursor.getCursorType().getPaneId();
+				}
 						
-						if (buildingId != null) {
-							tile.getPane().setId(buildingId);
-						}
-						txtType.setText(tile.getPopUpDetails());
+				if (paneId != null) {
+					tileSpec.getTile().getPane().setId(paneId);
+				}
+			}
+		};
+
+		Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_MOVED;
+		pane.addEventHandler(mouseEvent, eventHandler);
+		return new MouseEventSpecification(mouseEvent, eventHandler);	
+	}
+	
+	public static MouseEventSpecification makeMouseExitedTileEvent(final Property property) {
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				TileSpecification tileSpec = (TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE);
+				tileSpec.getTile().refreshPane();					
+			}
+		};
+
+		Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_EXITED;
+		pane.addEventHandler(mouseEvent, eventHandler);
+		return new MouseEventSpecification(mouseEvent, eventHandler);
+	}
+	
+	public static MouseEventSpecification makeMousePressedTileEvent(final Cursor cursor, final Property property) {	
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				TileSpecification tileSpec = (TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE);
+				ZoneSpecification zoneSpec = (ZoneSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.ZONE);
+				BuildingSpecification buildingSpec = (BuildingSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.BUILDING);
+
+				String paneId;
+				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
+					paneId = getBuildingIdForBulldoze(zoneSpec, buildingSpec);
+				} else if (zoneSpec != null || buildingSpec != null) {
+					paneId = null;
+				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
+					paneId = null;
+				} else {
+					paneId = cursor.getCursorType().getPaneId();
+					if (cursor.getCursorType().getZoneType() != null) {
+						property.addSpecification(new ZoneSpecification(cursor.getCursorType().getZoneType()));
+					} else if (cursor.getCursorType().getBuildingType() != null) {
+						property.addSpecification(new BuildingSpecification(cursor.getCursorType().getBuildingType(), 0));
 					}
-		});
-		tile.getPane().addEventHandler(MouseEvent.MOUSE_EXITED,
-				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e) {
-						tile.refreshPane(); //Sets Pane with current Tile values
-					}
-		});
-		//Mouse Click Events For GameGrid Filtered by Current Cursor Type
-		tile.getPane().addEventHandler(MouseEvent.MOUSE_PRESSED, 
-				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent e) {
-						if (cursor.getCursorType().isTileTypeExists()) {
-							if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE //BULLDOZE LOGIC
-									&& tile.getTileType().isZone()
-									&& tile.isBuildingExists()) {
-								
-								tile.setBuildingIdSubType(null); //just remove building, not zone
-							} else if (tile.getTileType() == TileType.EMPTY
-									|| cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
-								
-								tile.setTileType(cursor.getCursorType().getTileType());
-							}
-							tile.refreshPane();
-							txtType.setText(tile.getPopUpDetails());
-						}
-					}});
+				}
+				
+				if (paneId != null) {
+					tileSpec.getTile().setPaneId(paneId);
+					tileSpec.getTile().refreshPane();
+				}
+			}
+		};
+		
+		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_PRESSED;
+		Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+		pane.addEventHandler(mouseEvent, eventHandler);
+		return new MouseEventSpecification(mouseEvent, eventHandler);
+	}
+	
+	private static String getBuildingIdForBulldoze(ZoneSpecification zoneSpec, BuildingSpecification buildingSpec) {
+		String buildingId;
+		if (zoneSpec != null && buildingSpec != null) {
+			buildingId = zoneSpec.getZoneType().getPaneId();
+		} else if (zoneSpec == null || buildingSpec == null) {
+			buildingId = ZoneType.EMPTY.getPaneId();
+		} else {
+			throw new IllegalStateException("Should never get here. Logic error.");
+		}
+		return buildingId;
+	}
+	
+	public static MouseEventSpecification makeMouseMovedTileTextEvent(final Text txtStatusBox, final Property property) {
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				TileSpecification tileSpec = (TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE);
+				txtStatusBox.setText(tileSpec.getTile().getPopUpDetails());
+			}
+		};
+
+		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_MOVED;
+		Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+		pane.addEventHandler(mouseEvent, eventHandler);
+		return new MouseEventSpecification(mouseEvent, eventHandler);
+	}
+	
+	public static MouseEventSpecification makeMousePressedTileTextEvent(final Text txtStatusBox, final Property property) {		
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				TileSpecification tileSpec = (TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE);
+				txtStatusBox.setText(tileSpec.getTile().getPopUpDetails());
+			}
+		};
+		
+		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_PRESSED;
+		Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+		pane.addEventHandler(mouseEvent, eventHandler);
+		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
 	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final CursorType newCursorType) {

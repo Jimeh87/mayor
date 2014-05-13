@@ -9,7 +9,8 @@ public enum CursorIndicator {
 	RESIDENTIAL ("resTopRight"),
 	COMMERCIAL ("commTopRight"),
 	INDUSTRIAL ("indsTopRight"),
-	BULLDOZE ("bulldozeTopRight");
+	BULLDOZE ("bulldozeTopRight"),
+	POLICE_STATION ("policeStationTopRight");
 	
 	String zone;
 	private CursorIndicator(String zone) {

@@ -1,9 +1,13 @@
+import objects.City;
+import objects.Cursor;
+import objects.CursorType;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	final Cursor cursor = new Cursor(CursorType.ZONE_EMPTY);
 	private static City city = new City(45, 28);
 	private TimeLineHandler timeLineHandler = new TimeLineHandler();
 
@@ -17,7 +21,7 @@ public class Main extends Application {
 			
 			//Main Scene Build
 			SceneBuilder sceneBuilder = new SceneBuilder();
-			Scene scene = new Scene(sceneBuilder.generateGridPane(city), 1920, 1080);
+			Scene scene = new Scene(sceneBuilder.generateGridPane(city, cursor), 1920, 1080);
 			scene.getStylesheets().add("/resources/graphics/gameGridStyle.css");
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreen(false);
