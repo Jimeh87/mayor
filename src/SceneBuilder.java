@@ -114,6 +114,16 @@ public class SceneBuilder {
 			//Add Button to Control Grid
 			gpControlGrid.add(indsBtn, 0, 3);
 			
+			//Zone Industrial Button Setup and Event handle
+			Button policeStationBtn = new Button();
+			policeStationBtn.setId("policeButton");
+			policeStationBtn.setMinSize(235,30);
+			policeStationBtn.setMaxSize(235,30);
+			policeStationBtn.setText("Police Station");
+			EventController.setButtonEvents(policeStationBtn, pnTopRightGap, cursor, CursorType.POLICE_STATION);
+			//Add Button to Control Grid
+			gpControlGrid.add(policeStationBtn, 0, 4);
+			
 			//Bulldoze Button Setup and Event handle
 			Button bulldozeBtn = new Button();
 			bulldozeBtn.setId("bulldozeButton");
@@ -123,7 +133,7 @@ public class SceneBuilder {
 			//Event Controller Call Zone Bulldoze
 			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, CursorType.ZONE_BULLDOZE);
 			//Add Button To Control Grid
-			gpControlGrid.add(bulldozeBtn, 0, 4);
+			gpControlGrid.add(bulldozeBtn, 0, 5);
 			return gridPane;
 		}
 }
