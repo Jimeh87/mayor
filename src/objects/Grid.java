@@ -3,6 +3,9 @@ package objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import property.Property;
+import property.specification.TileSpecification;
+
 /**
  * Used to track tiles
  * @author Jim
@@ -11,49 +14,35 @@ public class Grid {
 	public Grid(int xSize, int ySize) {
 		this.xSize = xSize;
 		this.ySize = ySize;
-		this.tileArray = initializeGrid();
+		this.propertyArray = initializeGrid();
 	}
 	
 	int xSize;
 	int ySize;
 	
-	Tile[][] tileArray;
+	Property[][] propertyArray;
 	
 
 	/**
 	 * initializes the grid
 	 * @return
 	 */
-	private Tile[][] initializeGrid() {
-		tileArray = new Tile[xSize][ySize];
+	private Property[][] initializeGrid() {
+		propertyArray = new Property[xSize][ySize];
 		
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
-				tileArray[x][y] = new Tile(x, y);
+				Property property = new Property();
+				property.addSpecification(new TileSpecification(new Tile(x, y)));
+				propertyArray[x][y] = property;
 			}
 		}
 		
-		return tileArray;
+		return propertyArray;
 	}
 	
-	public Tile getTile(int xLocation, int yLocation) {
-		return tileArray[xLocation][yLocation];
-	}
-	
-	/**
-	 * Turns the 2-D tileArray into a 1-D tileArray
-	 * TODO: This needs to be rethought...
-	 * @return tileArray
-	 */
-	public List<Tile> getTileList() {
-		List<Tile> tileList = new ArrayList<Tile>();
-		
-		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
-				tileList.add(tileArray[x][y]);
-			}
-		}
-		return tileList;
+	public Property getProperty(int xLocation, int yLocation) {
+		return propertyArray[xLocation][yLocation];
 	}
 
 	public int getXSize() {
@@ -70,19 +59,6 @@ public class Grid {
 
 	public void setYSize(int ySize) {
 		this.ySize = ySize;
-	}
-	
-	/**
-	 * Just test code here for now
-	 */
-	public void tick() {
-		List<Tile> tileList = getTileList();
-		for (Tile tile : tileList) {
-			if (tile.getTileType() != TileType.EMPTY) {
-				tile.setBuildingIdSubType(0);
-				tile.refreshPane();
-			}
-		}
 	}
 
 }

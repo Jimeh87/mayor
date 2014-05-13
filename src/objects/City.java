@@ -1,5 +1,4 @@
-import objects.Grid;
-
+package objects;
 /**
  * @author Jim
  * Main storage of all things city related, including the grid.
@@ -29,6 +28,6 @@ public class City {
 	 * Tick for everything in the city. This will call grid.tick()
 	 */
 	public void tick() {
-		grid.tick();
+		
 	}
 }
