@@ -1,13 +1,16 @@
 package property;
 
+import property.specification.ZoneType;
+
 public enum BuildingType {
-	RES_SMALL("R1", 4),
-	COM_SMALL("B1", 4),
-	IND_SMALL("I1", 6),
+	RES_SMALL("R0", 4),
+	COM_SMALL("C0", 4),
+	IND_SMALL("I0", 6),
 	POLICE_STATION("P1", 6);
 
 	private BuildingType(String paneId, Integer maxOccupancy) {
 		this.paneId = paneId;
+		this.maxOccupancy = maxOccupancy;
 	}
 	
 	private String paneId;

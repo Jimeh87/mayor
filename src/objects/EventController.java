@@ -30,7 +30,6 @@ public class EventController {
 				String paneId;
 				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
 					paneId = getBuildingIdForBulldoze(zoneSpec, buildingSpec);
-					//TODO: Need to add logic to remove zone/building specs
 				} else if (zoneSpec != null || buildingSpec != null) {
 					paneId = null;
 				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
@@ -75,6 +74,11 @@ public class EventController {
 				String paneId;
 				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
 					paneId = getBuildingIdForBulldoze(zoneSpec, buildingSpec);
+					if (buildingSpec != null) {
+						property.removeSpecification(buildingSpec);
+					} else if (zoneSpec != null) {
+						property.removeSpecification(zoneSpec);
+					}
 				} else if (zoneSpec != null || buildingSpec != null) {
 					paneId = null;
 				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
@@ -85,6 +89,8 @@ public class EventController {
 						property.addSpecification(new ZoneSpecification(cursor.getCursorType().getZoneType()));
 					} else if (cursor.getCursorType().getBuildingType() != null) {
 						property.addSpecification(new BuildingSpecification(cursor.getCursorType().getBuildingType(), 0));
+					} else {
+						throw new IllegalStateException("Should never get here. Logic error.");
 					}
 				}
 				
