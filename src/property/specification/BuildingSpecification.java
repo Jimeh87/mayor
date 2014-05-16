@@ -3,12 +3,12 @@ package property.specification;
 import property.BuildingType;
 
 public class BuildingSpecification extends PropertySpecification {
-	public BuildingSpecification(BuildingType buildingType, Integer currentOccupancy) {
+	public BuildingSpecification(BuildingType buildingType, int currentOccupancy) {
 		setBuildingType(buildingType);
 		setCurrentOccupancy(currentOccupancy);
 	}
 	private BuildingType buildingType;
-	private Integer currentOccupancy;
+	private int currentOccupancy;
 	
 	public BuildingType getBuildingType() {
 		return buildingType;

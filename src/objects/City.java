@@ -28,6 +28,6 @@ public class City {
 	 * Tick for everything in the city. This will call grid.tick()
 	 */
 	public void tick() {
-		
+		grid.tick();
 	}
 }

@@ -60,5 +60,13 @@ public class Grid {
 	public void setYSize(int ySize) {
 		this.ySize = ySize;
 	}
+	
+	public void tick() {
+		for (int x = 0; x < xSize; x++) {
+			for (int y = 0; y < ySize; y++) {
+				propertyArray[x][y].tick();
+			}
+		}
+	}
 
 }
