@@ -1,6 +1,5 @@
 package property;
 
-import property.specification.ZoneType;
 
 public enum BuildingType {
 	RES_SMALL("R0", 4),

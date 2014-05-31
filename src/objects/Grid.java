@@ -1,8 +1,5 @@
 package objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import property.Property;
 import property.specification.TileSpecification;
 
