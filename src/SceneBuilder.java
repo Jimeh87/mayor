@@ -7,7 +7,6 @@ import objects.City;
 import objects.Cursor;
 import objects.CursorType;
 import objects.EventController;
-import objects.Tile;
 import property.Property;
 import property.specification.PropertySpecificationType;
 import property.specification.TileSpecification;
@@ -57,7 +56,7 @@ public class SceneBuilder {
 					property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property));
 					property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property));
 					property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property));
-					Pane pane = ((TileSpecification) property.getPropertySpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+					Pane pane = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
 					//Add Pane to GameGrid
 					gpGameGrid.add(pane, gridX, gridY);
 				}

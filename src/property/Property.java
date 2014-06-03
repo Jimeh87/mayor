@@ -1,8 +1,6 @@
 package property;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import objects.SpecificationEntity;
 import property.specification.BuildingSpecification;
 import property.specification.PropertySpecification;
 import property.specification.PropertySpecificationType;
@@ -10,64 +8,15 @@ import property.specification.TileSpecification;
 import property.specification.ZoneSpecification;
 import property.specification.ZoneType;
 
-public class Property {
+public class Property extends SpecificationEntity<PropertySpecification, PropertySpecification> {
 	
 	public Property() {
 	}
-	
-	private final List<PropertySpecification> specificationList = new ArrayList<PropertySpecification>();
-	
-	public List<PropertySpecification> getSpecificationList() {
-		return specificationList;
-	}
-
-	public void addSpecification(PropertySpecification specification) {
-		getSpecificationList().add(specification);
-	}
-	
-	public void removeSpecification(PropertySpecification specification) {
-		boolean removeSuccessful = getSpecificationList().remove(specification);
 		
-		if (!removeSuccessful) {
-			throw new IllegalStateException("Could not remove Specification");
-		}
-	}
-	
-	public List<PropertySpecification> getPropertySpecificationListOfType(PropertySpecificationType propertySpecificationType) {
-		
-		List<PropertySpecification> specificationList = new ArrayList<PropertySpecification>();
-		for (PropertySpecification specification : getSpecificationList()) {
-			
-			if (propertySpecificationType.getSpecificationClass().isInstance(specification)) {
-				specificationList.add(specification);
-			}
-			
-		}
-		
-		return specificationList;
-	}
-	
-	public PropertySpecification getPropertySpecificationOfType(PropertySpecificationType propertySpecificationType) {
-		
-		PropertySpecification matchingSpecification = null;
-		for (PropertySpecification specification : getSpecificationList()) {
-			
-			if (propertySpecificationType.getSpecificationClass().isInstance(specification)) {
-				if (matchingSpecification != null) {//we already found one. There are multiple which means this method should not be used.
-					throw new IllegalStateException("There are multiple specifications of this type in this Property. Should use getPropertySpecificationListOfType() instead.");
-				}
-				matchingSpecification = specification;
-			}
-			
-		}
-		
-		return matchingSpecification;
-	}
-	
 	public void tick() {
-		TileSpecification tileSpec = (TileSpecification) getPropertySpecificationOfType(PropertySpecificationType.TILE);
-		ZoneSpecification zoneSpec = (ZoneSpecification) getPropertySpecificationOfType(PropertySpecificationType.ZONE);
-		BuildingSpecification buildingSpec = (BuildingSpecification) getPropertySpecificationOfType(PropertySpecificationType.BUILDING);
+		TileSpecification tileSpec = (TileSpecification) getSpecificationOfType(PropertySpecificationType.TILE);
+		ZoneSpecification zoneSpec = (ZoneSpecification) getSpecificationOfType(PropertySpecificationType.ZONE);
+		BuildingSpecification buildingSpec = (BuildingSpecification) getSpecificationOfType(PropertySpecificationType.BUILDING);
 		
 		if (zoneSpec != null && buildingSpec == null) {
 			BuildingType buildingType;
