@@ -1,6 +1,8 @@
 package property.specification;
 
-public abstract class PropertySpecification {
+import objects.Specification;
+
+public abstract class PropertySpecification extends Specification {
 	public abstract void remove();
 	public abstract void tick();
 }

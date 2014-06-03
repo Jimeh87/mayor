@@ -19,17 +19,17 @@ public class BuildingSpecification extends PropertySpecification {
 		}
 		this.buildingType = buildingType;
 	}
-	public Integer getCurrentOccupancy() {
+	public int getCurrentOccupancy() {
 		return currentOccupancy;
 	}
-	public void setCurrentOccupancy(Integer currentOccupancy) {
+	public void setCurrentOccupancy(int currentOccupancy) {
 		if (currentOccupancy > getBuildingType().getMaxOccupancy()) {
 			throw new IllegalStateException("The current occupancy can not excede the max occupancy");
 		}
 		this.currentOccupancy = currentOccupancy;
 	}
-	public void getMaxOccupancy() {
-		getBuildingType().getMaxOccupancy();
+	public int getMaxOccupancy() {
+		return getBuildingType().getMaxOccupancy();
 	}
 	@Override
 	public void remove() {

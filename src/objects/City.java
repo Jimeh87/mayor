@@ -15,7 +15,7 @@ public class City {
 	}
 
 	private Grid grid;
-	
+	Economy economy = new Economy();
 	/**
 	 * Gets the grid of the city
 	 * @return grid

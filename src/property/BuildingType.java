@@ -7,13 +7,13 @@ public enum BuildingType {
 	IND_SMALL("I0", 6),
 	POLICE_STATION("P1", 6);
 
-	private BuildingType(String paneId, Integer maxOccupancy) {
+	private BuildingType(String paneId, int maxOccupancy) {
 		this.paneId = paneId;
 		this.maxOccupancy = maxOccupancy;
 	}
 	
 	private String paneId;
-	private Integer maxOccupancy;
+	private int maxOccupancy;
 
 	public String getPaneId() {
 		return paneId;
@@ -23,11 +23,11 @@ public enum BuildingType {
 		this.paneId = paneId;
 	}
 
-	public Integer getMaxOccupancy() {
+	public int getMaxOccupancy() {
 		return maxOccupancy;
 	}
 
-	public void setMaxOccupancy(Integer maxOccupancy) {
+	public void setMaxOccupancy(int maxOccupancy) {
 		this.maxOccupancy = maxOccupancy;
 	}
 }
