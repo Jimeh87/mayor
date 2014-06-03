@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import property.Property;
+import property.PropertySpecificationType;
 import property.specification.BuildingSpecification;
-import property.specification.PropertySpecificationType;
 import property.specification.ZoneSpecification;
 
 public class Economy {

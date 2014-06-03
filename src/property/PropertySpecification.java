@@ -1,4 +1,4 @@
-package property.specification;
+package property;
 
 import objects.Specification;
 

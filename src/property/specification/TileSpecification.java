@@ -1,6 +1,7 @@
 package property.specification;
 
 import objects.Tile;
+import property.PropertySpecification;
 
 public class TileSpecification extends PropertySpecification {
 	

@@ -1,6 +1,7 @@
 package property.specification;
 
 import property.BuildingType;
+import property.PropertySpecification;
 
 public class BuildingSpecification extends PropertySpecification {
 	public BuildingSpecification(BuildingType buildingType, int currentOccupancy) {

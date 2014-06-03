@@ -1,5 +1,6 @@
 package property.specification;
 
+import property.PropertySpecification;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;

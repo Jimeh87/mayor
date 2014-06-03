@@ -2,8 +2,6 @@ package property;
 
 import objects.SpecificationEntity;
 import property.specification.BuildingSpecification;
-import property.specification.PropertySpecification;
-import property.specification.PropertySpecificationType;
 import property.specification.TileSpecification;
 import property.specification.ZoneSpecification;
 import property.specification.ZoneType;
