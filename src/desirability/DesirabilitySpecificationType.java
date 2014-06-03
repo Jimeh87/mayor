@@ -1,14 +1,12 @@
-package property.specification;
+package desirability;
 
 import objects.SpecificationType;
+import desirability.specification.PowerSpecification;
 
-
-public enum PropertySpecificationType implements SpecificationType {
-	TILE(TileSpecification.class),
-	ZONE(ZoneSpecification.class),
-	BUILDING(BuildingSpecification.class);
+public enum DesirabilitySpecificationType implements SpecificationType {
+	TILE(PowerSpecification.class);
 	
-	private PropertySpecificationType(Class<?> specificationClass) {
+	private DesirabilitySpecificationType(Class<?> specificationClass) {
 		setSpecificationClass(specificationClass);
 	}
 	

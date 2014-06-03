@@ -1,5 +1,7 @@
 package property.specification;
 
+import property.PropertySpecification;
+
 
 public class ZoneSpecification extends PropertySpecification {
 	public ZoneSpecification(ZoneType zoneType) {

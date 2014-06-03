@@ -8,7 +8,7 @@ import objects.Cursor;
 import objects.CursorType;
 import objects.EventController;
 import property.Property;
-import property.specification.PropertySpecificationType;
+import property.PropertySpecificationType;
 import property.specification.TileSpecification;
 
 
