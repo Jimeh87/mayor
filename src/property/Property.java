@@ -6,7 +6,7 @@ import property.specification.TileSpecification;
 import property.specification.ZoneSpecification;
 import property.specification.ZoneType;
 
-public class Property extends SpecificationEntity<PropertySpecification, PropertySpecification> {
+public class Property extends SpecificationEntity<PropertySpecification> {
 	
 	public Property() {
 	}

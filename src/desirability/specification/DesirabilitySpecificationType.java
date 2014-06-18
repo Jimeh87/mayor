@@ -1,10 +1,10 @@
-package desirability;
+package desirability.specification;
 
 import objects.SpecificationType;
-import desirability.specification.PowerSpecification;
 
 public enum DesirabilitySpecificationType implements SpecificationType {
-	TILE(PowerSpecification.class);
+	POWER(PowerSpecification.class),
+	POLICE(PoliceSpecification.class);
 	
 	private DesirabilitySpecificationType(Class<?> specificationClass) {
 		setSpecificationClass(specificationClass);

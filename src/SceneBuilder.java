@@ -7,7 +7,11 @@ import objects.City;
 import objects.Cursor;
 import objects.CursorType;
 import objects.EventController;
+import objects.GridIterator;
+import objects.SpecificationEntity;
+import objects.Tile;
 import property.Property;
+import property.PropertySpecification;
 import property.PropertySpecificationType;
 import property.specification.TileSpecification;
 
@@ -48,19 +52,18 @@ public class SceneBuilder {
 			
 			//Main Game GridPane set from City Event Controls for changing tile type
 			GridPane gpGameGrid = new GridPane();
-			for (int gridY = 0; gridY < 28; gridY++) {
-				for (int gridX = 0; gridX < 45; gridX++) {
-					final Property property = city.getGrid().getProperty(gridX, gridY);
-					property.addSpecification(EventController.makeMouseMovedTileEvent(cursor, property));
-					property.addSpecification(EventController.makeMouseExitedTileEvent(property));
-					property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property));
-					property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property));
-					property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property));
-					Pane pane = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
-					//Add Pane to GameGrid
-					gpGameGrid.add(pane, gridX, gridY);
-				}
-				 
+			GridIterator<PropertySpecification> gridIterator = city.getGrid().iterator();
+			while (gridIterator.hasNext()) {
+				final SpecificationEntity<PropertySpecification> property = gridIterator.next();
+				property.addSpecification(new TileSpecification(new Tile(gridIterator.getX(), gridIterator.getY())));
+				property.addSpecification(EventController.makeMouseMovedTileEvent(cursor, property));
+				property.addSpecification(EventController.makeMouseExitedTileEvent(property));
+				property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property));
+				property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property));
+				property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property));
+				Pane pane = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+				//Add Pane to GameGrid
+				gpGameGrid.add(pane, gridIterator.getX(), gridIterator.getY());	 
 			}
 			gridPane.add(gpGameGrid, 1, 1);
 			
