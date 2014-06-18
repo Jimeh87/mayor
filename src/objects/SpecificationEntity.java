@@ -5,7 +5,11 @@ import java.util.List;
 
 import property.PropertySpecificationType;
 
-public abstract class SpecificationEntity<T extends Specification, E> {
+public class SpecificationEntity<T extends Specification> {
+	
+	public SpecificationEntity() {
+		
+	}
 	
 	private final List<T> specificationList = new ArrayList<T>();
 	

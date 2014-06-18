@@ -1,31 +1,43 @@
 package objects;
 
-import property.Property;
-import property.specification.TileSpecification;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Used to track tiles
- * @author Jim
  */
-public class Grid {
+public class Grid<T extends Specification> {
 	public Grid(int xSize, int ySize) {
 		this.xSize = xSize;
 		this.ySize = ySize;
-		this.propertyArray = initializeGrid();
+		this.specificationEntityList = initializeGrid();
 	}
 	
 	int xSize;
 	int ySize;
 	
-	Property[][] propertyArray;
-	
+	final List<ArrayList<SpecificationEntity<T>>> specificationEntityList;	
 
-	/**
-	 * initializes the grid
-	 * @return
-	 */
-	private Property[][] initializeGrid() {
-		propertyArray = new Property[xSize][ySize];
+	private List<ArrayList<SpecificationEntity<T>>> initializeGrid() {
+		final List<ArrayList<SpecificationEntity<T>>> specificationEntityList = new ArrayList<ArrayList<SpecificationEntity<T>>>();
+		for (int x = 0; x < xSize; x++) {
+			specificationEntityList.add(new ArrayList<SpecificationEntity<T>>());
+			for (int y = 0; y < ySize; y++) {
+				specificationEntityList.get(x).add(new SpecificationEntity<T>());
+			}
+		}
+		
+		return specificationEntityList;
+	}
+	
+	public GridIterator<T> iterator() {
+		return new GridIterator<T>(this);
+	}
+	
+	/*
+	private SpecificationEntity<T>[][] initializeGrid() {
+		@SuppressWarnings("unchecked")
+		propertyArray = Array.newInstance(SpecificationEntity.class, xSize, ySize);
 		
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
@@ -36,10 +48,10 @@ public class Grid {
 		}
 		
 		return propertyArray;
-	}
+	}*/
 	
-	public Property getProperty(int xLocation, int yLocation) {
-		return propertyArray[xLocation][yLocation];
+	public SpecificationEntity<T> getSpecificationEntity(int xLocation, int yLocation) {
+		return specificationEntityList.get(xLocation).get(yLocation);
 	}
 
 	public int getXSize() {
@@ -57,13 +69,4 @@ public class Grid {
 	public void setYSize(int ySize) {
 		this.ySize = ySize;
 	}
-	
-	public void tick() {
-		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
-				propertyArray[x][y].tick();
-			}
-		}
-	}
-
 }

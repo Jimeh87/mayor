@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import property.Property;
+import property.PropertySpecification;
 import property.PropertySpecificationType;
 import property.specification.BuildingSpecification;
 import property.specification.MouseEventSpecification;
@@ -19,7 +19,7 @@ import property.specification.ZoneType;
  */
 public class EventController {
 	
-	public static MouseEventSpecification makeMouseMovedTileEvent(final Cursor cursor, final Property property) {
+	public static MouseEventSpecification makeMouseMovedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
@@ -28,7 +28,7 @@ public class EventController {
 
 				String paneId;
 				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
-					paneId = getBuildingIdForBulldoze(zoneSpec, buildingSpec);
+					paneId = getNewBuildingIdForBulldoze(zoneSpec, buildingSpec);
 				} else if (zoneSpec != null || buildingSpec != null) {
 					paneId = null;
 				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
@@ -49,7 +49,7 @@ public class EventController {
 		return new MouseEventSpecification(mouseEvent, eventHandler);	
 	}
 	
-	public static MouseEventSpecification makeMouseExitedTileEvent(final Property property) {
+	public static MouseEventSpecification makeMouseExitedTileEvent(final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
@@ -63,7 +63,7 @@ public class EventController {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	public static MouseEventSpecification makeMousePressedTileEvent(final Cursor cursor, final Property property) {	
+	public static MouseEventSpecification makeMousePressedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property) {	
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
@@ -72,7 +72,7 @@ public class EventController {
 
 				String paneId;
 				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
-					paneId = getBuildingIdForBulldoze(zoneSpec, buildingSpec);
+					paneId = getNewBuildingIdForBulldoze(zoneSpec, buildingSpec);
 					if (buildingSpec != null) {
 						property.removeSpecification(buildingSpec);
 					} else if (zoneSpec != null) {
@@ -106,7 +106,7 @@ public class EventController {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	private static String getBuildingIdForBulldoze(ZoneSpecification zoneSpec, BuildingSpecification buildingSpec) {
+	private static String getNewBuildingIdForBulldoze(ZoneSpecification zoneSpec, BuildingSpecification buildingSpec) {
 		String buildingId;
 		if (zoneSpec != null && buildingSpec != null) {
 			buildingId = zoneSpec.getZoneType().getPaneId();
@@ -118,7 +118,7 @@ public class EventController {
 		return buildingId;
 	}
 	
-	public static MouseEventSpecification makeMouseMovedTileTextEvent(final Text txtStatusBox, final Property property) {
+	public static MouseEventSpecification makeMouseMovedTileTextEvent(final Text txtStatusBox, final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
@@ -132,7 +132,7 @@ public class EventController {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	public static MouseEventSpecification makeMousePressedTileTextEvent(final Text txtStatusBox, final Property property) {		
+	public static MouseEventSpecification makeMousePressedTileTextEvent(final Text txtStatusBox, final SpecificationEntity<PropertySpecification> property) {		
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
