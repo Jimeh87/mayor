@@ -3,15 +3,16 @@ package desirability.specification;
 
 public class PoliceSpecification extends DesirabilitySpecification {
 
-	public PoliceSpecification(int unmodifiedDesirability) {
-		super(unmodifiedDesirability);
+	public PoliceSpecification() {
+		super(5, 6);
 	}
 	
 	@Override
-	public int getDesirability(int year) {
+	public int getDesirability() {
 		//y = x^2
 		//x = sqrt(y)
-		return getUnmodifiedDesirability() - (int)Math.sqrt((double)year);
+		//return getUnmodifiedDesirability() - (int)Math.sqrt((double)year);
+		return getUnmodifiedDesirability();
 	}
 
 	@Override

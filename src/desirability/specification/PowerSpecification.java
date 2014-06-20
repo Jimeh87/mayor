@@ -4,7 +4,7 @@ package desirability.specification;
 public class PowerSpecification extends DesirabilitySpecification {
 
 	public PowerSpecification(int unmodifiedDesirability) {
-		super(unmodifiedDesirability);
+		super(unmodifiedDesirability, unmodifiedDesirability);
 	}
 
 	@Override
@@ -14,7 +14,7 @@ public class PowerSpecification extends DesirabilitySpecification {
 	}
 
 	@Override
-	public int getDesirability(int year) {
+	public int getDesirability() {
 		return 0;
 		// TODO Auto-generated method stub
 		

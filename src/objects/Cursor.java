@@ -1,5 +1,8 @@
 package objects;
 
+import property.PropertySpecification;
+
+
 
 public class Cursor{
 	
@@ -7,6 +10,7 @@ public class Cursor{
 	private CursorType cursorType;
 	private Integer xLocation;
 	private Integer yLocation;
+	private PropertySpecification defaultSpecification;
 	
 	//Construct
 	public Cursor(CursorType cursorType) {
@@ -31,6 +35,14 @@ public class Cursor{
 	}
 	public void setYLocation(Integer yLocation){
 		this.yLocation = yLocation;
+	}
+
+	public void setDefaultSpecification(PropertySpecification defaultSpecification) {
+		this.defaultSpecification = defaultSpecification;
+	}
+	
+	public PropertySpecification getDefaultSpecification() {
+		return defaultSpecification;
 	}
 
 

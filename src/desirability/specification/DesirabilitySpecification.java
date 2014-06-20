@@ -4,8 +4,10 @@ import objects.Specification;
 
 public abstract class DesirabilitySpecification extends Specification {
 	private int unmodifiedDesirability = 0;
-	public DesirabilitySpecification(int unmodifiedDesirability) {
+	private int splashRadius = 0;
+	public DesirabilitySpecification(int unmodifiedDesirability, int splashRadius) {
 		this.unmodifiedDesirability = unmodifiedDesirability;
+		this.splashRadius = splashRadius;
 	}
 	public int getUnmodifiedDesirability() {
 		return unmodifiedDesirability;
@@ -14,6 +16,13 @@ public abstract class DesirabilitySpecification extends Specification {
 		this.unmodifiedDesirability = unmodifiedDesirability;
 	}
 	
-	public abstract int getDesirability(int year);
+	public int getSplashRadius() {
+		return splashRadius;
+	}
+	protected void setSplashRadius(int splashRadius) {
+		this.splashRadius = splashRadius;
+	}
+	
+	public abstract int getDesirability();
 	public abstract void remove();
 }
