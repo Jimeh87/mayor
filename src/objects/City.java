@@ -1,5 +1,6 @@
 package objects;
 
+import desirability.specification.DesirabilitySpecification;
 import economy.Economy;
 import property.PropertySpecification;
 
@@ -16,16 +17,21 @@ public class City {
 	 */
 	public City(int xSize, int ySize) {
 		this.grid = new Grid<PropertySpecification>(xSize, ySize);
+		economy = new Economy();
+		economy.setDesirabilityGrid(new Grid<DesirabilitySpecification>(xSize, ySize));
 	}
 
 	private Grid<PropertySpecification> grid;
-	Economy economy = new Economy();
+	Economy economy;
 	/**
 	 * Gets the grid of the city
 	 * @return grid
 	 */
 	public Grid<PropertySpecification> getGrid() {
 		return grid;
+	}
+	public Economy getEconomy() {
+		return economy;
 	}
 
 	/**

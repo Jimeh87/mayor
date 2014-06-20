@@ -1,3 +1,4 @@
+import desirability.specification.DesirabilitySpecification;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -7,12 +8,14 @@ import objects.City;
 import objects.Cursor;
 import objects.CursorType;
 import objects.EventController;
+import objects.Grid;
 import objects.GridIterator;
 import objects.SpecificationEntity;
 import objects.Tile;
 import property.Property;
 import property.PropertySpecification;
 import property.PropertySpecificationType;
+import property.specification.PoliceStationSpecification;
 import property.specification.TileSpecification;
 
 
@@ -34,15 +37,16 @@ public class SceneBuilder {
 			pnLeftGap.setId("topLeftBar");
 			gridPane.add(pnLeftGap, 0, 0);
 			
-			final Text txtType = new Text();
-			txtType.setText("Tile Type: ");
-			pnLeftGap.add(txtType, 0, 0);
-			
-			Pane pnTopGap = new Pane();
+			GridPane pnTopGap = new GridPane();
 			pnTopGap.setMinSize(1440, 135);
 			pnTopGap.setMaxSize(1440, 135);
 			pnTopGap.setId("topBar");
+			
 			gridPane.add(pnTopGap, 1, 0);
+			final Text txtType = new Text();
+			txtType.setText("Tile Type: ");
+			pnTopGap.add(txtType, 0, 0);
+			
 			
 			final Pane pnTopRightGap = new Pane();
 			pnTopRightGap.setMinSize(240, 135);
@@ -51,6 +55,7 @@ public class SceneBuilder {
 			gridPane.add(pnTopRightGap, 2, 0);
 			
 			//Main Game GridPane set from City Event Controls for changing tile type
+			Grid<DesirabilitySpecification> dGrid = city.getEconomy().getDesirabilityGrid();
 			GridPane gpGameGrid = new GridPane();
 			GridIterator<PropertySpecification> gridIterator = city.getGrid().iterator();
 			while (gridIterator.hasNext()) {
@@ -58,9 +63,9 @@ public class SceneBuilder {
 				property.addSpecification(new TileSpecification(new Tile(gridIterator.getX(), gridIterator.getY())));
 				property.addSpecification(EventController.makeMouseMovedTileEvent(cursor, property));
 				property.addSpecification(EventController.makeMouseExitedTileEvent(property));
-				property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property));
-				property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property));
-				property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property));
+				property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property, dGrid, city.getGrid()));
+				property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
+				property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
 				Pane pane = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
 				//Add Pane to GameGrid
 				gpGameGrid.add(pane, gridIterator.getX(), gridIterator.getY());	 
@@ -81,7 +86,7 @@ public class SceneBuilder {
 			emptyBtn.setMaxSize(235,30);
 			emptyBtn.setText("Empty Hand");
 			//Event Controller Call Zone Empty
-			EventController.setButtonEvents(emptyBtn, pnTopRightGap, cursor, CursorType.ZONE_EMPTY);
+			EventController.setButtonEvents(emptyBtn, pnTopRightGap, cursor, CursorType.ZONE_EMPTY, null);
 			//Add Button To Control Grid
 			gpControlGrid.add(emptyBtn, 0,0);
 			
@@ -92,7 +97,7 @@ public class SceneBuilder {
 			resBtn.setMaxSize(235,30);
 			resBtn.setText("Zone Residential");
 			//Event Controller Call Zone Residential
-			EventController.setButtonEvents(resBtn, pnTopRightGap, cursor, CursorType.ZONE_RESIDENTIAL);
+			EventController.setButtonEvents(resBtn, pnTopRightGap, cursor, CursorType.ZONE_RESIDENTIAL, null);
 			//Add Button to Control Grid
 			gpControlGrid.add(resBtn, 0,1);
 			
@@ -102,7 +107,7 @@ public class SceneBuilder {
 			commBtn.setMinSize(235,30);
 			commBtn.setMaxSize(235,30);
 			commBtn.setText("Zone Commercial");
-			EventController.setButtonEvents(commBtn, pnTopRightGap, cursor, CursorType.ZONE_COMMERCIAL);
+			EventController.setButtonEvents(commBtn, pnTopRightGap, cursor, CursorType.ZONE_COMMERCIAL, null);
 			//Add Button to Control Grid
 			gpControlGrid.add(commBtn, 0, 2);
 			
@@ -112,7 +117,7 @@ public class SceneBuilder {
 			indsBtn.setMinSize(235,30);
 			indsBtn.setMaxSize(235,30);
 			indsBtn.setText("Zone Industrial");
-			EventController.setButtonEvents(indsBtn, pnTopRightGap, cursor, CursorType.ZONE_INDUSTRIAL);
+			EventController.setButtonEvents(indsBtn, pnTopRightGap, cursor, CursorType.ZONE_INDUSTRIAL, null);
 			//Add Button to Control Grid
 			gpControlGrid.add(indsBtn, 0, 3);
 			
@@ -122,7 +127,7 @@ public class SceneBuilder {
 			policeStationBtn.setMinSize(235,30);
 			policeStationBtn.setMaxSize(235,30);
 			policeStationBtn.setText("Police Station");
-			EventController.setButtonEvents(policeStationBtn, pnTopRightGap, cursor, CursorType.POLICE_STATION);
+			EventController.setButtonEvents(policeStationBtn, pnTopRightGap, cursor, CursorType.POLICE_STATION, PoliceStationSpecification.class);
 			//Add Button to Control Grid
 			gpControlGrid.add(policeStationBtn, 0, 4);
 			
@@ -133,7 +138,7 @@ public class SceneBuilder {
 			bulldozeBtn.setMaxSize(235,30);
 			bulldozeBtn.setText("Bulldoze Zone");
 			//Event Controller Call Zone Bulldoze
-			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, CursorType.ZONE_BULLDOZE);
+			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, CursorType.ZONE_BULLDOZE, null);
 			//Add Button To Control Grid
 			gpControlGrid.add(bulldozeBtn, 0, 5);
 			return gridPane;

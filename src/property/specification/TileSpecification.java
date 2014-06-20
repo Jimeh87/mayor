@@ -1,9 +1,13 @@
 package property.specification;
 
+import objects.SpecificationEntity;
 import objects.Tile;
 import property.PropertySpecification;
+import desirability.specification.DesirabilitySpecification;
 
 public class TileSpecification extends PropertySpecification {
+	
+	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity = new SpecificationEntity<DesirabilitySpecification>();
 	
 	public TileSpecification(Tile tile) {
 		setTile(tile);
@@ -22,6 +26,14 @@ public class TileSpecification extends PropertySpecification {
 		this.tile = tile;
 	}
 
+	public SpecificationEntity<DesirabilitySpecification> getDesirabilitySpecificationEntity() {
+		return desirabilitySpecificationEntity;
+	}
+	public void setDesirabilitySpecificationEntity(
+			SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity) {
+		this.desirabilitySpecificationEntity = desirabilitySpecificationEntity;
+	}
+	
 	@Override
 	public void remove() {
 		// TODO Auto-generated method stub

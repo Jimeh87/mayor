@@ -27,8 +27,8 @@ public class Property extends SpecificationEntity<PropertySpecification> {
 			} else {
 				throw new IllegalStateException("Logic error.");
 			}
-			buildingSpec = new BuildingSpecification(buildingType, 0);
-			addSpecification(buildingSpec);
+			//buildingSpec = new BuildingSpecification(buildingType, 0);
+			//addSpecification(buildingSpec);
 		}
 		
 		if (buildingSpec != null) {

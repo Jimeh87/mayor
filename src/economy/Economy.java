@@ -3,16 +3,15 @@ package economy;
 import java.util.ArrayList;
 import java.util.List;
 
+import objects.Grid;
 import objects.MayorUtil;
 import objects.Person;
 import objects.PersonType;
-import property.Property;
-import property.PropertySpecificationType;
-import property.specification.BuildingSpecification;
-import property.specification.ZoneSpecification;
+import desirability.specification.DesirabilitySpecification;
 
 public class Economy {
 	
+	Grid<DesirabilitySpecification> desirabilityGrid;
 	public Economy() {
 		
 	}
@@ -27,9 +26,17 @@ public class Economy {
 		return personPoolList;
 	}
 	
-	public void migrationHandler2() {
+	public void migrationHandler() {
 		
 		
+	}
+
+	public Grid<DesirabilitySpecification> getDesirabilityGrid() {
+		return desirabilityGrid;
+	}
+
+	public void setDesirabilityGrid(Grid<DesirabilitySpecification> desirabilityGrid) {
+		this.desirabilityGrid = desirabilityGrid;
 	}
 	
 	//private addPersonToCity(person);

@@ -61,12 +61,19 @@ public class Tile {
 	 * @return
 	 */
 	public String getPopUpDetails() {
-		return ("Tile Type: " + getPaneId());
+		return ("Tile Type: " + getPaneId() + "\n X: " + getXLocation() + " Y: " + getYLocation());
 	}
 	public String getPaneId() {
 		return paneId;
 	}
 	public void setPaneId(String paneId) {
-		this.paneId = paneId;
+		if (!lock) {
+			this.paneId = paneId;
+		}
+	}
+	
+	boolean lock = false;
+	public void lock() {
+		lock = true;
 	}
 }
