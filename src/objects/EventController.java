@@ -154,8 +154,13 @@ public class EventController<T extends PropertySpecification> {
 	private static String getPopupDetails(TileSpecification tileSpec, SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(tileSpec.getTile().getPopUpDetails() + "\n");
+		int i = 0;
+		sb.append("Mods: \n");
 		for (DesirabilitySpecification desirabilitySpec : desirabilitySpecEntity.getSpecificationList()) {
-			sb.append("MOD: " + desirabilitySpec.toString());
+			sb.append(desirabilitySpec.toString() + " ,  ");
+			if (++i % 4 == 0) {
+				sb.append("\n");
+			}
 		}
 		return sb.toString();
 	}
@@ -188,7 +193,7 @@ public class EventController<T extends PropertySpecification> {
 						} catch (IllegalAccessException e1) {
 							e1.printStackTrace();
 						} catch (NullPointerException e1) {
-							//TODO: This is lazy... lol
+							//TODO: This is lazy... lol. Keep until not needed
 						}
 					}
 				});	
