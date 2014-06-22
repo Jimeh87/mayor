@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author Jim
- *
- */
-package economy;
