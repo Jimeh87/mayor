@@ -1,7 +1,6 @@
 package property.specification;
 
 import objects.Grid;
-import objects.SpecificationEntity;
 import objects.Tile;
 
 import org.junit.Before;
@@ -9,6 +8,7 @@ import org.junit.Test;
 
 import property.PropertySpecification;
 import property.PropertySpecificationType;
+import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 
 public class BuildingSpecificationTest {

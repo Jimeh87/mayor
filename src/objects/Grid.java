@@ -3,6 +3,9 @@ package objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import specification.Specification;
+import specification.SpecificationEntity;
+
 /**
  * Used to track tiles
  */

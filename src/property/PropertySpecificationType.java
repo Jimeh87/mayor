@@ -1,9 +1,9 @@
 package property;
 
-import objects.SpecificationType;
 import property.specification.BuildingSpecification;
 import property.specification.TileSpecification;
 import property.specification.ZoneSpecification;
+import specification.SpecificationType;
 
 
 public enum PropertySpecificationType implements SpecificationType {

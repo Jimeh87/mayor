@@ -1,4 +1,4 @@
-package objects;
+package specification;
 
 public abstract class Specification {
 

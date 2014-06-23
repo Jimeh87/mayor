@@ -1,6 +1,6 @@
 package desirability.specification;
 
-import objects.SpecificationType;
+import specification.SpecificationType;
 
 public enum DesirabilitySpecificationType implements SpecificationType {
 	POWER(PowerSpecification.class),
