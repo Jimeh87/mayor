@@ -4,6 +4,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
+import specification.Specification;
+import specification.SpecificationEntity;
+
 public class GridIterator<T extends Specification> implements Iterator<SpecificationEntity<T>> {
 	  
 	private int index = 0;

@@ -1,6 +1,6 @@
 package desirability.specification;
 
-import objects.Specification;
+import specification.Specification;
 
 public abstract class DesirabilitySpecification extends Specification {
 	private int unmodifiedDesirability = 0;

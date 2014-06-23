@@ -1,10 +1,10 @@
 package property;
 
-import objects.SpecificationEntity;
 import property.specification.BuildingSpecification;
 import property.specification.TileSpecification;
 import property.specification.ZoneSpecification;
 import property.specification.ZoneType;
+import specification.SpecificationEntity;
 
 public class Property extends SpecificationEntity<PropertySpecification> {
 	

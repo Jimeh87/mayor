@@ -10,13 +10,13 @@ import objects.CursorType;
 import objects.EventController;
 import objects.Grid;
 import objects.GridIterator;
-import objects.SpecificationEntity;
 import objects.Tile;
 import property.Property;
 import property.PropertySpecification;
 import property.PropertySpecificationType;
 import property.specification.PoliceStationSpecification;
 import property.specification.TileSpecification;
+import specification.SpecificationEntity;
 
 
 public class SceneBuilder {

@@ -1,8 +1,8 @@
 package property.specification;
 
-import objects.SpecificationEntity;
 import objects.Tile;
 import property.PropertySpecification;
+import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 
 public class TileSpecification extends PropertySpecification {

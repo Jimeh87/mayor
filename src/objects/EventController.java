@@ -16,6 +16,7 @@ import property.specification.MouseEventSpecification;
 import property.specification.TileSpecification;
 import property.specification.ZoneSpecification;
 import property.specification.ZoneType;
+import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 import desirability.specification.DesirabilitySpecificationType;
 

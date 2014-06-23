@@ -1,4 +1,4 @@
-package objects;
+package specification;
 
 public interface SpecificationType {
 	public Class<?> getSpecificationClass();

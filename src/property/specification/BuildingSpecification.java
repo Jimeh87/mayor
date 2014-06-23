@@ -3,11 +3,11 @@ package property.specification;
 import java.util.List;
 
 import objects.Grid;
-import objects.SpecificationEntity;
 import objects.Tile;
 import property.BuildingType;
 import property.PropertySpecification;
 import property.PropertySpecificationType;
+import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 
 public abstract class BuildingSpecification extends PropertySpecification {
