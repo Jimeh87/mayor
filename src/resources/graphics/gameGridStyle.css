@@ -1,0 +1,128 @@
+#topLeftBar{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-font-size: 20;
+}
+
+#topBar{
+	-fx-background-color: white;
+}
+
+#emptyTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: white;
+}
+#resTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: green;
+}
+
+#commTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: blue;
+}
+
+#indsTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: yellow;
+}
+#policeTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: aquamarine;
+}
+#bulldozeTopRight{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: red;
+}
+#controlGrid{
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-background-color: aliceblue;
+}
+
+#E{
+	-fx-background-image: url(emptyTile.jpg); 
+	-fx-opacity: .2;
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#R{
+	-fx-background-image:url(residentialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#C{
+	-fx-background-image:url(commercialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#I{
+	-fx-background-image:url(industrialTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#R0{
+	-fx-background-image:url(ResHouse1.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#C0{
+	-fx-background-image:url(OfficeBuilding.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+
+#I0{
+	-fx-background-image:url(factory.png);
+	-fx-background-color:rgb(128,128,0);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+#P1{
+	-fx-background-image: url(police.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+#emptyButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+
+#resButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+
+#commButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+#indsButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+#policeButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
+#bulldozeButton{
+	-fx-font-size: 14;
+	-fx-alignment: baseline-center;
+	-fx-text-fill: black;
+}
