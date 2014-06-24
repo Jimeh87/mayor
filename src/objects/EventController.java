@@ -1,5 +1,8 @@
 package objects;
 
+import grid.Grid;
+import grid.GridIterator;
+
 import java.util.List;
 
 import javafx.event.EventHandler;
@@ -9,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import specification.SpecificationEntity;
+import specification.desirability.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecificationType;
 import specification.property.BuildingSpecification;
 import specification.property.BuildingType;
 import specification.property.MouseEventSpecification;
@@ -17,8 +22,6 @@ import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 import specification.property.ZoneSpecification;
 import specification.property.ZoneType;
-import desirability.specification.DesirabilitySpecification;
-import desirability.specification.DesirabilitySpecificationType;
 
 /**
  * Used to set up event triggers

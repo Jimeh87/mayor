@@ -1,13 +1,14 @@
 package economy;
 
+import grid.Grid;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import objects.Grid;
 import objects.MayorUtil;
 import objects.Person;
 import objects.PersonType;
-import desirability.specification.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecification;
 
 public class Economy {
 	

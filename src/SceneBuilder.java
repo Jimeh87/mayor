@@ -1,4 +1,5 @@
-import desirability.specification.DesirabilitySpecification;
+import grid.Grid;
+import grid.GridIterator;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -8,10 +9,9 @@ import objects.City;
 import objects.Cursor;
 import objects.CursorType;
 import objects.EventController;
-import objects.Grid;
-import objects.GridIterator;
 import objects.Tile;
 import specification.SpecificationEntity;
+import specification.desirability.DesirabilitySpecification;
 import specification.property.PoliceStationSpecification;
 import specification.property.Property;
 import specification.property.PropertySpecification;

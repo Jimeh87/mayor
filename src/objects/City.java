@@ -1,7 +1,8 @@
 package objects;
 
-import desirability.specification.DesirabilitySpecification;
 import economy.Economy;
+import grid.Grid;
+import specification.desirability.DesirabilitySpecification;
 import specification.property.PropertySpecification;
 
 /**

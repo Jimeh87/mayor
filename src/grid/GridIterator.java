@@ -1,4 +1,4 @@
-package objects;
+package grid;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
