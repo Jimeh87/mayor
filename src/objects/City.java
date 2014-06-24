@@ -2,7 +2,7 @@ package objects;
 
 import desirability.specification.DesirabilitySpecification;
 import economy.Economy;
-import property.PropertySpecification;
+import specification.property.PropertySpecification;
 
 /**
  * @author Jim

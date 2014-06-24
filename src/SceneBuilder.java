@@ -11,12 +11,12 @@ import objects.EventController;
 import objects.Grid;
 import objects.GridIterator;
 import objects.Tile;
-import property.Property;
-import property.PropertySpecification;
-import property.PropertySpecificationType;
-import property.specification.PoliceStationSpecification;
-import property.specification.TileSpecification;
 import specification.SpecificationEntity;
+import specification.property.PoliceStationSpecification;
+import specification.property.Property;
+import specification.property.PropertySpecification;
+import specification.property.PropertySpecificationType;
+import specification.property.TileSpecification;
 
 
 public class SceneBuilder {

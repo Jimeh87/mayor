@@ -1,7 +1,6 @@
-package property.specification;
+package specification.property;
 
 import objects.Tile;
-import property.PropertySpecification;
 import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 

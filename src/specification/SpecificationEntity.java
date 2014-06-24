@@ -3,7 +3,7 @@ package specification;
 import java.util.ArrayList;
 import java.util.List;
 
-import property.PropertySpecificationType;
+import specification.property.PropertySpecificationType;
 
 public class SpecificationEntity<T extends Specification> {
 	

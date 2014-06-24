@@ -1,4 +1,4 @@
-package property.specification;
+package specification.property;
 
 public enum ZoneType {
 	EMPTY("E"), //SHOULD NOT BE USED IN ZoneSpecification

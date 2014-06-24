@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import property.PropertySpecification;
+import specification.property.PropertySpecification;
 
 public class GridTest {
 
