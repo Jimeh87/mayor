@@ -1,7 +1,6 @@
-package property.specification;
+package specification.property;
 
 import desirability.specification.PoliceSpecification;
-import property.BuildingType;
 
 public class PoliceStationSpecification extends BuildingSpecification {
 

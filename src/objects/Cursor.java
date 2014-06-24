@@ -1,6 +1,6 @@
 package objects;
 
-import property.PropertySpecification;
+import specification.property.PropertySpecification;
 
 
 

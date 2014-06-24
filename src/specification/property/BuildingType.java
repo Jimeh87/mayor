@@ -1,4 +1,4 @@
-package property;
+package specification.property;
 
 
 public enum BuildingType {

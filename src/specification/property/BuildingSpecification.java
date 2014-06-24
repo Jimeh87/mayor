@@ -1,12 +1,9 @@
-package property.specification;
+package specification.property;
 
 import java.util.List;
 
 import objects.Grid;
 import objects.Tile;
-import property.BuildingType;
-import property.PropertySpecification;
-import property.PropertySpecificationType;
 import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 

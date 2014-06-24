@@ -1,6 +1,5 @@
-package property.specification;
+package specification.property;
 
-import property.PropertySpecification;
 
 
 public class ZoneSpecification extends PropertySpecification {

@@ -1,7 +1,7 @@
 package objects;
 
-import property.specification.ZoneType;
-import property.BuildingType;
+import specification.property.BuildingType;
+import specification.property.ZoneType;
 
 /**
  * Used to indicate the current cursor in use.

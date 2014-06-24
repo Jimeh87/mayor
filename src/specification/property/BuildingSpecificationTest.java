@@ -1,4 +1,4 @@
-package property.specification;
+package specification.property;
 
 import objects.Grid;
 import objects.Tile;
@@ -6,8 +6,6 @@ import objects.Tile;
 import org.junit.Before;
 import org.junit.Test;
 
-import property.PropertySpecification;
-import property.PropertySpecificationType;
 import specification.SpecificationEntity;
 import desirability.specification.DesirabilitySpecification;
 

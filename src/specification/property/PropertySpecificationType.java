@@ -1,8 +1,5 @@
-package property;
+package specification.property;
 
-import property.specification.BuildingSpecification;
-import property.specification.TileSpecification;
-import property.specification.ZoneSpecification;
 import specification.SpecificationType;
 
 
