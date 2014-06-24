@@ -1,4 +1,4 @@
-package desirability.specification;
+package specification.desirability;
 
 import specification.SpecificationType;
 

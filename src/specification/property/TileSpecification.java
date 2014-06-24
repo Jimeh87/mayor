@@ -2,7 +2,7 @@ package specification.property;
 
 import objects.Tile;
 import specification.SpecificationEntity;
-import desirability.specification.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecification;
 
 public class TileSpecification extends PropertySpecification {
 	

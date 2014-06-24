@@ -1,6 +1,6 @@
 package specification.property;
 
-import desirability.specification.PoliceSpecification;
+import specification.desirability.PoliceSpecification;
 
 public class PoliceStationSpecification extends BuildingSpecification {
 

@@ -1,11 +1,12 @@
 package specification.property;
 
+import grid.Grid;
+
 import java.util.List;
 
-import objects.Grid;
 import objects.Tile;
 import specification.SpecificationEntity;
-import desirability.specification.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecification;
 
 public abstract class BuildingSpecification extends PropertySpecification {
 	public BuildingSpecification(BuildingType buildingType, int currentOccupancy) {

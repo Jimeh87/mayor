@@ -1,13 +1,13 @@
 package specification.property;
 
-import objects.Grid;
+import grid.Grid;
 import objects.Tile;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import specification.SpecificationEntity;
-import desirability.specification.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecification;
 
 public class BuildingSpecificationTest {
 

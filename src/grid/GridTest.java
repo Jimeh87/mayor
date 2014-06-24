@@ -1,4 +1,4 @@
-package objects;
+package grid;
 
 import static org.junit.Assert.*;
 
