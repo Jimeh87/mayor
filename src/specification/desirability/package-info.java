@@ -5,4 +5,4 @@
  * @author Jim
  *
  */
-package desirability;
+package specification.desirability;
