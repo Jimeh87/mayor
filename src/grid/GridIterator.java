@@ -59,7 +59,7 @@ public class GridIterator<T extends Specification> implements Iterator<Specifica
 		throw new UnsupportedOperationException();
 	}
 
-	public void forEachRemaining(Consumer action) {
+	public void forEachRemaining(Consumer<? super SpecificationEntity<T>> action) {
 		throw new UnsupportedOperationException();
 	}
 }
