@@ -7,6 +7,7 @@ import java.util.List;
 import objects.Tile;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
+import specification.property.zone.ZoneType;
 
 public abstract class BuildingSpecification extends PropertySpecification {
 	public BuildingSpecification(BuildingType buildingType, ZoneType zoneType) {

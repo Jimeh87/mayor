@@ -20,8 +20,8 @@ import specification.property.MouseEventSpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
-import specification.property.ZoneSpecification;
-import specification.property.ZoneType;
+import specification.property.zone.ZoneSpecification;
+import specification.property.zone.ZoneType;
 
 /**
  * Used to set up event triggers
