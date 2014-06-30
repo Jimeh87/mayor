@@ -2,10 +2,10 @@ package specification.property;
 
 import specification.desirability.PoliceSpecification;
 
-public class PoliceStationSpecification extends BuildingSpecification {
+public class FarmSpecification extends BuildingSpecification {
 
-	public PoliceStationSpecification() {
-		super(BuildingType.POLICE_STATION, ZoneType.URBAN_SERVICE);
+	public FarmSpecification() {
+		super(BuildingType.FARM, ZoneType.URBAN_SERVICE);
 		getDesirabilitySpecificationEntity().addSpecification(new PoliceSpecification());
 	}
 	

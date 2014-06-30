@@ -94,6 +94,11 @@
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
+#TODO{
+	-fx-background-image: url(missingtexture.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
 #emptyButton{
 	-fx-font-size: 14;
 	-fx-alignment: baseline-center;

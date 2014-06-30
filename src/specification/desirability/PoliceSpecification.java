@@ -4,7 +4,7 @@ package specification.desirability;
 public class PoliceSpecification extends DesirabilitySpecification {
 
 	public PoliceSpecification() {
-		super(5, 6);
+		super(5, 7);
 	}
 	
 	@Override
