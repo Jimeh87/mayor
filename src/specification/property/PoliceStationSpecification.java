@@ -1,6 +1,7 @@
 package specification.property;
 
 import specification.desirability.PoliceSpecification;
+import specification.property.zone.ZoneType;
 
 public class PoliceStationSpecification extends BuildingSpecification {
 

@@ -1,6 +1,6 @@
 package objects;
 
-import specification.property.ZoneType;
+import specification.property.zone.ZoneType;
 import javafx.scene.layout.Pane;
 
 /**

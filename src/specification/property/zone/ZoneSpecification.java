@@ -1,8 +1,9 @@
-package specification.property;
+package specification.property.zone;
 
 import grid.Grid;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
+import specification.property.PropertySpecification;
 
 
 
