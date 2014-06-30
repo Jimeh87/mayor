@@ -1,4 +1,4 @@
-package specification.property;
+package specification.property.building;
 
 import grid.Grid;
 import objects.Tile;
@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
+import specification.property.PropertySpecification;
+import specification.property.PropertySpecificationType;
+import specification.property.TileSpecification;
 
 public class BuildingSpecificationTest {
 

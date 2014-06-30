@@ -1,4 +1,4 @@
-package specification.property;
+package specification.property.building;
 
 import specification.desirability.PoliceSpecification;
 import specification.property.zone.ZoneType;
