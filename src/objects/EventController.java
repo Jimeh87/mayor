@@ -31,23 +31,21 @@ public class EventController<T extends PropertySpecification> {
 	public static MouseEventSpecification makeMouseMovedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
+				
+				//not needed right now, will be when bulldoze is readded
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				ZoneSpecification zoneSpec = (ZoneSpecification) property.getSpecificationOfType(PropertySpecificationType.ZONE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
 
-				String paneId;
-				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
-					paneId = getNewBuildingIdForBulldoze(zoneSpec, buildingSpec);
-				} else if (zoneSpec != null || buildingSpec != null) {
-					paneId = null;
-				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
-					paneId = null;
-				} else {
-					paneId = cursor.getCursorType().getPaneId();
-				}
-						
-				if (paneId != null) {
-					tileSpec.getTile().getPane().setId(paneId);
+				try {
+					if (buildingSpec == null && zoneSpec == null) {
+						tileSpec.getTile().getPane().setId(cursor.getPropertySpecification().getPaneId());
+					}
+				} catch (NullPointerException e1) {
+					//swallow
+				} catch (IllegalAccessException e1) {
+					//This should never happen
+					e1.printStackTrace();
 				}
 			}
 		};
@@ -79,66 +77,38 @@ public class EventController<T extends PropertySpecification> {
 				ZoneSpecification zoneSpec = (ZoneSpecification) property.getSpecificationOfType(PropertySpecificationType.ZONE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
 
-				String paneId;
-				if (cursor.getCursorType() == CursorType.ZONE_BULLDOZE) {
-					paneId = getNewBuildingIdForBulldoze(zoneSpec, buildingSpec);
-					if (buildingSpec != null) {
-						property.removeSpecification(buildingSpec);
-					} else if (zoneSpec != null) {
-						property.removeSpecification(zoneSpec);
+				try {
+					if (zoneSpec == null && buildingSpec == null) {
+						property.addSpecification(cursor.getPropertySpecification());
+						tileSpec.getTile().setPaneId(cursor.getPropertySpecification().getPaneId());
+						tileSpec.getTile().refreshPane();
+						cursor.getPropertySpecification().applySplash(dGrid, property);
 					}
-				} else if (zoneSpec != null || buildingSpec != null) {
-					paneId = null;
-				} else if (cursor.getCursorType() == CursorType.ZONE_EMPTY) {
-					paneId = null;
-				} else {
-					paneId = cursor.getCursorType().getPaneId();
-					if (cursor.getCursorType().getZoneType() != null) {
-						property.addSpecification(new ZoneSpecification(cursor.getCursorType().getZoneType()));
-					} else if (cursor.getCursorType().getBuildingType() != null) {
-						buildingSpec = (BuildingSpecification) cursor.getDefaultSpecification();
-						property.addSpecification(buildingSpec);
-						buildingSpec.applySplash(dGrid, property);
-						//test stuff
-						GridIterator<DesirabilitySpecification> gIterator = dGrid.iterator();
-						while (gIterator.hasNext()) {
-							SpecificationEntity<DesirabilitySpecification> dEntity = gIterator.next();
-							List<DesirabilitySpecification> policeSpecList = dEntity.getSpecificationListOfType(DesirabilitySpecificationType.POLICE);
-							if (!policeSpecList.isEmpty()) {
-								TileSpecification tileSpec2 = (TileSpecification) pGrid.getSpecificationEntity(gIterator.getX(), gIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
-								tileSpec2.getTile().setPaneId(BuildingType.COM_SMALL.getPaneId());
-								tileSpec2.getTile().refreshPane();
-								tileSpec2.getTile().lock();
-							}
-						}
-					} else {
-						throw new IllegalStateException("Should never get here. Logic error.");
-					}
-				}
-				
-				if (paneId != null) {
-					tileSpec.getTile().setPaneId(paneId);
-					tileSpec.getTile().refreshPane();
+				} catch (NullPointerException e1) {
+					//swallow
+				} catch (IllegalAccessException e1) {
+					e1.printStackTrace();
 				}
 			}
+			
+			/*	//test stuff
+			GridIterator<DesirabilitySpecification> gIterator = dGrid.iterator();
+			while (gIterator.hasNext()) {
+				SpecificationEntity<DesirabilitySpecification> dEntity = gIterator.next();
+				List<DesirabilitySpecification> policeSpecList = dEntity.getSpecificationListOfType(DesirabilitySpecificationType.POLICE);
+				if (!policeSpecList.isEmpty()) {
+					TileSpecification tileSpec2 = (TileSpecification) pGrid.getSpecificationEntity(gIterator.getX(), gIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
+					tileSpec2.getTile().setPaneId(BuildingType.COM_SMALL.getPaneId());
+					tileSpec2.getTile().refreshPane();
+					tileSpec2.getTile().lock();
+				}
+			} */
 		};
 		
 		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_PRESSED;
 		Pane pane = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
 		pane.addEventHandler(mouseEvent, eventHandler);
 		return new MouseEventSpecification(mouseEvent, eventHandler);
-	}
-	
-	private static String getNewBuildingIdForBulldoze(ZoneSpecification zoneSpec, BuildingSpecification buildingSpec) {
-		String buildingId;
-		if (zoneSpec != null && buildingSpec != null) {
-			buildingId = zoneSpec.getZoneType().getPaneId();
-		} else if (zoneSpec == null || buildingSpec == null) {
-			buildingId = ZoneType.EMPTY.getPaneId();
-		} else {
-			throw new IllegalStateException("Should never get here. Logic error.");
-		}
-		return buildingId;
 	}
 	
 	public static MouseEventSpecification makeMouseMovedTileTextEvent(final Text txtStatusBox, final SpecificationEntity<PropertySpecification> property, final SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {
@@ -183,24 +153,21 @@ public class EventController<T extends PropertySpecification> {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final CursorType newCursorType, final Class<? extends PropertySpecification> clazz) {
+	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final Class<? extends PropertySpecification> clazz) {
 		//Mouse Click Event sets Cursor to Zoning Tool
 		Btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
-						cursor.setCursorType(newCursorType);
-						pnTopRightGap.setId(cursor.getCursorType().getCursorIndicator().getZone());
 						try {
-							cursor.setDefaultSpecification(clazz.newInstance());
+							cursor.setPropertySpecification(clazz.newInstance());
+							pnTopRightGap.setId(cursor.getPropertySpecification().getPaneId());
 						} catch (InstantiationException e1) {
 							e1.printStackTrace();
 						} catch (IllegalAccessException e1) {
 							e1.printStackTrace();
 						} catch (NullPointerException e1) {
-							//TODO: This is lazy... lol. Keep until not needed
+							pnTopRightGap.setId("emptyTopRight"); //TODO, lazy... will currently be triggered for bulldoze and empty hand
 						}
 					}
 				});	
-		
 	}}
-	

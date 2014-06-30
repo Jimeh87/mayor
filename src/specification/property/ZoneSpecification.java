@@ -1,8 +1,12 @@
 package specification.property;
 
+import grid.Grid;
+import specification.SpecificationEntity;
+import specification.desirability.DesirabilitySpecification;
 
 
-public class ZoneSpecification extends PropertySpecification {
+
+public abstract class ZoneSpecification extends PropertySpecification {
 	public ZoneSpecification(ZoneType zoneType) {
 		setZoneType(zoneType);
 	}
@@ -30,6 +34,17 @@ public class ZoneSpecification extends PropertySpecification {
 
 	@Override
 	public void tick() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getPaneId() {
+		return zoneType.getPaneId();
+	}
+
+	@Override
+	public void applySplash(Grid<DesirabilitySpecification> dGrid, SpecificationEntity<PropertySpecification> parentEntity) {
 		// TODO Auto-generated method stub
 		
 	}

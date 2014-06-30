@@ -9,13 +9,14 @@ import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
 
 public abstract class BuildingSpecification extends PropertySpecification {
-	public BuildingSpecification(BuildingType buildingType, int currentOccupancy) {
+	public BuildingSpecification(BuildingType buildingType, ZoneType zoneType) {
 		setBuildingType(buildingType);
-		setCurrentOccupancy(currentOccupancy);
+		setZoneType(zoneType);
 		desirabilitySpecificationEntity = new SpecificationEntity<DesirabilitySpecification>();
 	}
 	private BuildingType buildingType;
-	private int currentOccupancy;
+	private ZoneType zoneType;
+	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
 	
 	public BuildingType getBuildingType() {
@@ -27,9 +28,16 @@ public abstract class BuildingSpecification extends PropertySpecification {
 		}
 		this.buildingType = buildingType;
 	}
+	public ZoneType getZoneType() {
+		return zoneType;
+	}
+	public void setZoneType(ZoneType zoneType) {
+		this.zoneType = zoneType;
+	}
 	public int getCurrentOccupancy() {
 		return currentOccupancy;
 	}
+	/*
 	public void setCurrentOccupancy(int currentOccupancy) {
 		if (currentOccupancy > getBuildingType().getMaxOccupancy()) {
 			throw new IllegalStateException("The current occupancy can not excede the max occupancy");
@@ -38,7 +46,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	}
 	public int getMaxOccupancy() {
 		return getBuildingType().getMaxOccupancy();
-	}
+	}*/
 	
 	public SpecificationEntity<DesirabilitySpecification> getDesirabilitySpecificationEntity() {
 		return desirabilitySpecificationEntity;
@@ -48,6 +56,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 		this.desirabilitySpecificationEntity = desirabilitySpecificationEntity;
 	}
 	
+	@Override
 	public void applySplash(Grid<DesirabilitySpecification> dGrid, SpecificationEntity<PropertySpecification> parentEntity) {
 		TileSpecification tileSpec = (TileSpecification) parentEntity.getSpecificationOfType(PropertySpecificationType.TILE);
 		Tile tile = tileSpec.getTile();
@@ -58,12 +67,11 @@ public abstract class BuildingSpecification extends PropertySpecification {
 			int splashRadius = desirabilitySpec.getSplashRadius();
 			for (int x = 0; x < splashRadius; x++) {
 				//r^2 = x^2*y^2
-				int yMax = (int) Math.ceil(Math.sqrt((double) ( (splashRadius * splashRadius) - (x * x) )) );
+				int yMax = (int) Math.ceil((Math.sqrt((double) ( (splashRadius * splashRadius) - (x * x) )) ));
 				for (int y = 0; y < yMax; y++) {
-					
+					//topRight +x, +y
+					addSpecToEntityOnGrid(dGrid, tile.getXLocation() + x, tile.getYLocation() + y, desirabilitySpec);
 					if (x != 0 || y != 0) {
-						//topRight +x, +y
-						addSpecToEntityOnGrid(dGrid, tile.getXLocation() + x, tile.getYLocation() + y, desirabilitySpec);
 						//bottomLeft -x, -y
 						addSpecToEntityOnGrid(dGrid, tile.getXLocation() - x, tile.getYLocation() - y, desirabilitySpec);
 					}
@@ -94,6 +102,11 @@ public abstract class BuildingSpecification extends PropertySpecification {
 
 	}
 	
+	@Override
+	public String getPaneId() {
+		return buildingType.getPaneId();
+	}
+
 	@Override
 	public void remove() {
 		// TODO Auto-generated method stub

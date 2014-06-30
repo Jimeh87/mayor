@@ -7,16 +7,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import objects.City;
 import objects.Cursor;
-import objects.CursorType;
 import objects.EventController;
 import objects.Tile;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
 import specification.property.PoliceStationSpecification;
-import specification.property.Property;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
+import specification.property.zone.CommercialZoneSpecification;
+import specification.property.zone.IndustrialZoneSpecification;
+import specification.property.zone.ResidentialZoneSpecification;
 
 
 public class SceneBuilder {
@@ -86,7 +87,7 @@ public class SceneBuilder {
 			emptyBtn.setMaxSize(235,30);
 			emptyBtn.setText("Empty Hand");
 			//Event Controller Call Zone Empty
-			EventController.setButtonEvents(emptyBtn, pnTopRightGap, cursor, CursorType.ZONE_EMPTY, null);
+			EventController.setButtonEvents(emptyBtn, pnTopRightGap, cursor, null);
 			//Add Button To Control Grid
 			gpControlGrid.add(emptyBtn, 0,0);
 			
@@ -97,7 +98,7 @@ public class SceneBuilder {
 			resBtn.setMaxSize(235,30);
 			resBtn.setText("Zone Residential");
 			//Event Controller Call Zone Residential
-			EventController.setButtonEvents(resBtn, pnTopRightGap, cursor, CursorType.ZONE_RESIDENTIAL, null);
+			EventController.setButtonEvents(resBtn, pnTopRightGap, cursor, ResidentialZoneSpecification.class);
 			//Add Button to Control Grid
 			gpControlGrid.add(resBtn, 0,1);
 			
@@ -107,7 +108,7 @@ public class SceneBuilder {
 			commBtn.setMinSize(235,30);
 			commBtn.setMaxSize(235,30);
 			commBtn.setText("Zone Commercial");
-			EventController.setButtonEvents(commBtn, pnTopRightGap, cursor, CursorType.ZONE_COMMERCIAL, null);
+			EventController.setButtonEvents(commBtn, pnTopRightGap, cursor, CommercialZoneSpecification.class);
 			//Add Button to Control Grid
 			gpControlGrid.add(commBtn, 0, 2);
 			
@@ -117,20 +118,22 @@ public class SceneBuilder {
 			indsBtn.setMinSize(235,30);
 			indsBtn.setMaxSize(235,30);
 			indsBtn.setText("Zone Industrial");
-			EventController.setButtonEvents(indsBtn, pnTopRightGap, cursor, CursorType.ZONE_INDUSTRIAL, null);
+			EventController.setButtonEvents(indsBtn, pnTopRightGap, cursor, IndustrialZoneSpecification.class);
 			//Add Button to Control Grid
 			gpControlGrid.add(indsBtn, 0, 3);
 			
-			//Zone Industrial Button Setup and Event handle
+			//Police Button Setup and Event handle
 			Button policeStationBtn = new Button();
 			policeStationBtn.setId("policeButton");
 			policeStationBtn.setMinSize(235,30);
 			policeStationBtn.setMaxSize(235,30);
 			policeStationBtn.setText("Police Station");
-			EventController.setButtonEvents(policeStationBtn, pnTopRightGap, cursor, CursorType.POLICE_STATION, PoliceStationSpecification.class);
+			EventController.setButtonEvents(policeStationBtn, pnTopRightGap, cursor, PoliceStationSpecification.class);
 			//Add Button to Control Grid
 			gpControlGrid.add(policeStationBtn, 0, 4);
 			
+			
+			//TODO: passing in null like empty hand, this is because the way it works needs to be re-thought
 			//Bulldoze Button Setup and Event handle
 			Button bulldozeBtn = new Button();
 			bulldozeBtn.setId("bulldozeButton");
@@ -138,7 +141,7 @@ public class SceneBuilder {
 			bulldozeBtn.setMaxSize(235,30);
 			bulldozeBtn.setText("Bulldoze Zone");
 			//Event Controller Call Zone Bulldoze
-			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, CursorType.ZONE_BULLDOZE, null);
+			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, null);
 			//Add Button To Control Grid
 			gpControlGrid.add(bulldozeBtn, 0, 5);
 			return gridPane;

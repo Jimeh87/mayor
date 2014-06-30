@@ -1,13 +1,12 @@
-import objects.City;
-import objects.Cursor;
-import objects.CursorType;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import objects.City;
+import objects.Cursor;
 
 public class Main extends Application {
 
-	final Cursor cursor = new Cursor(CursorType.ZONE_EMPTY);
+	final Cursor cursor = new Cursor();
 	private static City city = new City(45, 28);
 	private TimeLineHandler timeLineHandler = new TimeLineHandler();
 

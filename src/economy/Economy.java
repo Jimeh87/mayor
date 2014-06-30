@@ -14,8 +14,12 @@ public class Economy {
 	
 	Grid<DesirabilitySpecification> desirabilityGrid;
 	public Economy() {
-		
+		for (int i = 0; i < 20; i++) {
+			personMigrationPool.add(new Person(null));
+		}
 	}
+	
+	List<Person> personMigrationPool = new ArrayList<Person>();
 	
 	private List<Person> generatePersonPool() {
 		

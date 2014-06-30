@@ -1,5 +1,6 @@
 package specification.property;
 
+import grid.Grid;
 import objects.Tile;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
@@ -41,6 +42,17 @@ public class TileSpecification extends PropertySpecification {
 
 	@Override
 	public void tick() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getPaneId() {
+		return tile.getPaneId();
+	}
+
+	@Override
+	public void applySplash(Grid<DesirabilitySpecification> dGrid, SpecificationEntity<PropertySpecification> parentEntity) {
 		// TODO Auto-generated method stub
 		
 	}
