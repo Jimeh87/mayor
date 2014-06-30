@@ -1,6 +1,7 @@
 package specification.property;
 
 import specification.SpecificationType;
+import specification.property.building.BuildingSpecification;
 import specification.property.zone.ZoneSpecification;
 
 

@@ -1,4 +1,4 @@
-package specification.property;
+package specification.property.building;
 
 import grid.Grid;
 
@@ -7,6 +7,9 @@ import java.util.List;
 import objects.Tile;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
+import specification.property.PropertySpecification;
+import specification.property.PropertySpecificationType;
+import specification.property.TileSpecification;
 import specification.property.zone.ZoneType;
 
 public abstract class BuildingSpecification extends PropertySpecification {

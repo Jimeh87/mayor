@@ -14,12 +14,12 @@ import javafx.scene.text.Text;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
 import specification.desirability.DesirabilitySpecificationType;
-import specification.property.BuildingSpecification;
-import specification.property.BuildingType;
 import specification.property.MouseEventSpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
+import specification.property.building.BuildingSpecification;
+import specification.property.building.BuildingType;
 import specification.property.zone.ZoneSpecification;
 import specification.property.zone.ZoneType;
 
