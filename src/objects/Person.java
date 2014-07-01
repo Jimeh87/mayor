@@ -1,18 +1,20 @@
 package objects;
 
+import specification.SpecificationEntity;
+import specification.property.PropertySpecification;
+
 public class Person {
 	
-	public Person(PersonType personType) {
-		this.personType = personType;
+	public Person() {
 	}
 	
-	PersonType personType;
+	SpecificationEntity<PropertySpecification> homeEntity = null;
 
-	public PersonType getPersonType() {
-		return personType;
+	public SpecificationEntity<PropertySpecification> getHomeEntity() {
+		return homeEntity;
 	}
 
-	public void setPersonType(PersonType personType) {
-		this.personType = personType;
+	public void setHomeEntity(SpecificationEntity<PropertySpecification> homeEntity) {
+		this.homeEntity = homeEntity;
 	}
 }

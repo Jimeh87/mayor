@@ -69,9 +69,7 @@ public class Tile {
 		return paneId;
 	}
 	public void setPaneId(String paneId) {
-		if (!lock) {
-			this.paneId = paneId;
-		}
+		this.paneId = paneId;
 	}
 	
 	public void setTempPaneId(String paneId) {

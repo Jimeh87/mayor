@@ -7,6 +7,7 @@ import specification.desirability.DesirabilitySpecification;
 
 public class TileSpecification extends PropertySpecification {
 	
+	//not used, may get used in future but I doubt it.
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity = new SpecificationEntity<DesirabilitySpecification>();
 	
 	public TileSpecification(Tile tile) {

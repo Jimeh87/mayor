@@ -4,6 +4,7 @@ import grid.Grid;
 
 import java.util.List;
 
+import objects.Person;
 import objects.Tile;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
@@ -20,6 +21,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	}
 	private BuildingType buildingType;
 	private ZoneType zoneType;
+	private Person person;
 	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
 	
@@ -106,6 +108,12 @@ public abstract class BuildingSpecification extends PropertySpecification {
 
 	}
 	
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 	@Override
 	public String getPaneId() {
 		return buildingType.getPaneId();

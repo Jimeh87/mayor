@@ -6,8 +6,7 @@ import specification.property.zone.ZoneType;
 public class FarmSpecification extends BuildingSpecification {
 
 	public FarmSpecification() {
-		super(BuildingType.FARM, ZoneType.URBAN_SERVICE);
-		getDesirabilitySpecificationEntity().addSpecification(new PoliceSpecification());
+		super(BuildingType.FARM, ZoneType.AGRICULTURAL);
 	}
 	
 
