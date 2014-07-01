@@ -18,8 +18,7 @@ public class City {
 	 */
 	public City(int xSize, int ySize) {
 		this.grid = new Grid<PropertySpecification>(xSize, ySize);
-		economy = new Economy();
-		economy.setDesirabilityGrid(new Grid<DesirabilitySpecification>(xSize, ySize));
+		economy = new Economy(new Grid<DesirabilitySpecification>(xSize, ySize));
 	}
 
 	private Grid<PropertySpecification> grid;
