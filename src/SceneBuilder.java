@@ -8,13 +8,16 @@ import javafx.scene.text.Text;
 import objects.City;
 import objects.Cursor;
 import objects.EventController;
+import objects.OverlayHandler;
 import objects.Tile;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecificationType;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 import specification.property.building.PoliceStationSpecification;
+import specification.property.zone.AgriculturalZoneSpecification;
 import specification.property.zone.CommercialZoneSpecification;
 import specification.property.zone.IndustrialZoneSpecification;
 import specification.property.zone.ResidentialZoneSpecification;
@@ -91,6 +94,7 @@ public class SceneBuilder {
 			//Add Button To Control Grid
 			gpControlGrid.add(emptyBtn, 0,0);
 			
+			//TODO: change class parms to enums
 			//Zone Residential Button Setup and Event handle
 			Button resBtn = new Button();
 			resBtn.setId("resButton");
@@ -122,6 +126,16 @@ public class SceneBuilder {
 			//Add Button to Control Grid
 			gpControlGrid.add(indsBtn, 0, 3);
 			
+			//Zone Farm Button Setup and Event handle
+			Button agriculturalBtn = new Button();
+			agriculturalBtn.setId("agButton");
+			agriculturalBtn.setMinSize(235,30);
+			agriculturalBtn.setMaxSize(235,30);
+			agriculturalBtn.setText("Zone Agricultural");
+			EventController.setButtonEvents(agriculturalBtn, pnTopRightGap, cursor, AgriculturalZoneSpecification.class);
+			//Add Button to Control Grid
+			gpControlGrid.add(agriculturalBtn, 0, 4);
+			
 			//Police Button Setup and Event handle
 			Button policeStationBtn = new Button();
 			policeStationBtn.setId("policeButton");
@@ -130,8 +144,7 @@ public class SceneBuilder {
 			policeStationBtn.setText("Police Station");
 			EventController.setButtonEvents(policeStationBtn, pnTopRightGap, cursor, PoliceStationSpecification.class);
 			//Add Button to Control Grid
-			gpControlGrid.add(policeStationBtn, 0, 4);
-			
+			gpControlGrid.add(policeStationBtn, 0, 5);
 			
 			//TODO: passing in null like empty hand, this is because the way it works needs to be re-thought
 			//Bulldoze Button Setup and Event handle
@@ -143,7 +156,19 @@ public class SceneBuilder {
 			//Event Controller Call Zone Bulldoze
 			EventController.setButtonEvents(bulldozeBtn, pnTopRightGap, cursor, null);
 			//Add Button To Control Grid
-			gpControlGrid.add(bulldozeBtn, 0, 5);
+			gpControlGrid.add(bulldozeBtn, 0, 6);
+			
+			//overlays
+			OverlayHandler overlayHandler = new OverlayHandler(city.getGrid(), city.getEconomy().getDesirabilityGrid());
+			
+			Button policeCoverageBtn = new Button();
+			policeCoverageBtn.setId("PoliceCoverageButton");
+			policeCoverageBtn.setMinSize(235,30);
+			policeCoverageBtn.setMaxSize(235,30);
+			policeCoverageBtn.setText("Police coverage overlay");
+			EventController.setOverlayButtonEvents(policeCoverageBtn, pnTopRightGap, cursor, overlayHandler, DesirabilitySpecificationType.POLICE);
+			gpControlGrid.add(policeCoverageBtn, 0, 7);
+			
 			return gridPane;
 		}
 }

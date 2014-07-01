@@ -41,7 +41,6 @@ public class GridIterator<T extends Specification> implements Iterator<Specifica
 		}
 		
 		int y = (index - 1) / grid.getXSize();
-		System.out.println("  Y: " + y);
 		return y;
 	}
 	
@@ -51,7 +50,6 @@ public class GridIterator<T extends Specification> implements Iterator<Specifica
 		}
 		
 		int x = (index - 1) % grid.getXSize();
-		System.out.println("  X: " + x);
 		return x;
 	}
 

@@ -12,8 +12,9 @@ import specification.desirability.DesirabilitySpecification;
 
 public class Economy {
 	
-	Grid<DesirabilitySpecification> desirabilityGrid;
-	public Economy() {
+	Grid<DesirabilitySpecification> dGrid;
+	public Economy(Grid<DesirabilitySpecification> desirabilityGrid) {
+		this.dGrid = desirabilityGrid;
 		for (int i = 0; i < 20; i++) {
 			personMigrationPool.add(new Person(null));
 		}
@@ -37,11 +38,11 @@ public class Economy {
 	}
 
 	public Grid<DesirabilitySpecification> getDesirabilityGrid() {
-		return desirabilityGrid;
+		return dGrid;
 	}
 
 	public void setDesirabilityGrid(Grid<DesirabilitySpecification> desirabilityGrid) {
-		this.desirabilityGrid = desirabilityGrid;
+		this.dGrid = desirabilityGrid;
 	}
 	
 	//private addPersonToCity(person);

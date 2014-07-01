@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
+import specification.desirability.DesirabilitySpecificationType;
 import specification.property.MouseEventSpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
@@ -83,19 +84,7 @@ public class EventController<T extends PropertySpecification> {
 					e1.printStackTrace();
 				}
 			}
-			
-			/*	//test stuff
-			GridIterator<DesirabilitySpecification> gIterator = dGrid.iterator();
-			while (gIterator.hasNext()) {
-				SpecificationEntity<DesirabilitySpecification> dEntity = gIterator.next();
-				List<DesirabilitySpecification> policeSpecList = dEntity.getSpecificationListOfType(DesirabilitySpecificationType.POLICE);
-				if (!policeSpecList.isEmpty()) {
-					TileSpecification tileSpec2 = (TileSpecification) pGrid.getSpecificationEntity(gIterator.getX(), gIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
-					tileSpec2.getTile().setPaneId(BuildingType.COM_SMALL.getPaneId());
-					tileSpec2.getTile().refreshPane();
-					tileSpec2.getTile().lock();
-				}
-			} */
+
 		};
 		
 		EventType<MouseEvent> mouseEvent = MouseEvent.MOUSE_PRESSED;
@@ -146,9 +135,9 @@ public class EventController<T extends PropertySpecification> {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	public static void setButtonEvents(final Button Btn, final Pane pnTopRightGap, final Cursor cursor, final Class<? extends PropertySpecification> clazz) {
+	public static void setButtonEvents(final Button btn, final Pane pnTopRightGap, final Cursor cursor, final Class<? extends PropertySpecification> clazz) {
 		//Mouse Click Event sets Cursor to Zoning Tool
-		Btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
+		btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						try {
@@ -163,4 +152,16 @@ public class EventController<T extends PropertySpecification> {
 						}
 					}
 				});	
-	}}
+	}
+
+	public static void setOverlayButtonEvents(Button btn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, final DesirabilitySpecificationType desirabilitySpecificationType) {
+		btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
+				new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent e) {
+						pnTopRightGap.setId("emptyTopRight");
+						cursor.setPropertySpecification(null);
+						overlayHandler.displayOverlay(desirabilitySpecificationType);
+					}
+				});	
+	}
+}
