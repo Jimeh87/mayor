@@ -53,7 +53,9 @@ public class Tile {
 	 * refreshes the pane associated with the tile with current Tile data.
 	 */
 	public void refreshPane() {
-		pane.setId(getPaneId());
+		if (!lock) {
+			pane.setId(getPaneId());
+		}
 	}
 	
 	/**
@@ -72,8 +74,17 @@ public class Tile {
 		}
 	}
 	
+	public void setTempPaneId(String paneId) {
+		if (!lock) {
+			pane.setId(paneId);
+		}
+	}
+	
 	boolean lock = false;
 	public void lock() {
 		lock = true;
+	}
+	public void unLock() {
+		lock = false;
 	}
 }

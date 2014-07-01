@@ -33,8 +33,10 @@ public class OverlayHandler {
 			if (!policeSpecList.isEmpty()) {
 				TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gIterator.getX(), gIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
 				if (addOverlay) {
-					tileSpec.getTile().getPane().setId("TODO"); //set overlay
+					tileSpec.getTile().setTempPaneId("TODO"); //set overlay
+					tileSpec.getTile().lock();
 				} else {
+					tileSpec.getTile().unLock();
 					tileSpec.getTile().refreshPane();
 				}
 			}

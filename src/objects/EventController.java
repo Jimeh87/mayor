@@ -33,7 +33,7 @@ public class EventController<T extends PropertySpecification> {
 
 				try {
 					if (buildingSpec == null && zoneSpec == null) {
-						tileSpec.getTile().getPane().setId(cursor.getPropertySpecification().getPaneId());
+						tileSpec.getTile().setTempPaneId(cursor.getPropertySpecification().getPaneId());
 					}
 				} catch (NullPointerException e1) {
 					//swallow
