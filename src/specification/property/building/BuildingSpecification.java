@@ -1,9 +1,12 @@
 package specification.property.building;
 
+import economy.Product;
 import grid.Grid;
 
+import java.util.HashMap;
 import java.util.List;
 
+import objects.MayorUtil;
 import objects.Person;
 import objects.Tile;
 import specification.SpecificationEntity;
@@ -24,7 +27,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	private Person person;
 	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
-	
+	protected  HashMap<Product, Integer> productForSaleMap = new HashMap<Product, Integer>();
 	public BuildingType getBuildingType() {
 		return buildingType;
 	}
@@ -73,7 +76,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 			int splashRadius = desirabilitySpec.getSplashRadius();
 			for (int x = 0; x < splashRadius; x++) {
 				//r^2 = x^2*y^2
-				int yMax = (int) Math.ceil((Math.sqrt((double) ( (splashRadius * splashRadius) - (x * x) )) ));
+				int yMax = (int) Math.ceil(MayorUtil.pythagorean((double) x, null, (double) splashRadius));
 				for (int y = 0; y < yMax; y++) {
 					//topRight +x, +y
 					addSpecToEntityOnGrid(dGrid, tile.getXLocation() + x, tile.getYLocation() + y, desirabilitySpec);
@@ -119,6 +122,9 @@ public abstract class BuildingSpecification extends PropertySpecification {
 		return buildingType.getPaneId();
 	}
 
+	public HashMap<Product, Integer> getProductForSale() {
+		return productForSaleMap;
+	}
 	@Override
 	public void remove() {
 		// TODO Auto-generated method stub
