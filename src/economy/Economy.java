@@ -55,6 +55,11 @@ public class Economy {
 		}
 	}
 
+	/**
+	 * TODO: Need to rethink how this will work. Not a big fan of adding person to house and house to person.
+	 * @param person
+	 * @param propertyEntity
+	 */
 	private void addPersonAsCitizen(Person person, SpecificationEntity<PropertySpecification> propertyEntity) {
 		personMigrationPool.remove(person);
 		citizenList.add(person);
@@ -96,22 +101,22 @@ class ResidentialPriorityComparator implements Comparator<SpecificationEntity<Pr
 	private Grid<DesirabilitySpecification> dGrid;
 	
 	@Override
-	public int compare(SpecificationEntity<PropertySpecification> specEntityA, SpecificationEntity<PropertySpecification> specEntityB) {
+	public int compare(SpecificationEntity<PropertySpecification> p1, SpecificationEntity<PropertySpecification> p2) {
 		
-		Tile tileA = ((TileSpecification) specEntityA.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
-		Tile tileB = ((TileSpecification) specEntityB.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
+		Tile tile1 = ((TileSpecification) p1.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
+		Tile tile2 = ((TileSpecification) p2.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
 		
 		//will be used when buildings can hold more than one person
-		BuildingSpecification buildingSpecA = (BuildingSpecification) specEntityA.getSpecificationOfType(PropertySpecificationType.BUILDING);
-		BuildingSpecification buildingSpecB = (BuildingSpecification) specEntityB.getSpecificationOfType(PropertySpecificationType.BUILDING);
+		BuildingSpecification buildingSpec1 = (BuildingSpecification) p1.getSpecificationOfType(PropertySpecificationType.BUILDING);
+		BuildingSpecification buildingSpec2 = (BuildingSpecification) p2.getSpecificationOfType(PropertySpecificationType.BUILDING);
 		
-		if (buildingSpecA == null && buildingSpecB == null) {
-			SpecificationEntity<DesirabilitySpecification> desireabilitySpecEntityA = dGrid.getSpecificationEntity(tileA.getXLocation(), tileA.getYLocation());
-			SpecificationEntity<DesirabilitySpecification> desireabilitySpecEntityB = dGrid.getSpecificationEntity(tileB.getXLocation(), tileB.getYLocation());
-			return desireabilitySpecEntityB.getSpecificationList().size() - desireabilitySpecEntityA.getSpecificationList().size(); //TODO, this is wrong. I should be comparing desirability. Will figure out later
-		} else if (buildingSpecA == null && buildingSpecB != null) {
+		if (buildingSpec1 == null && buildingSpec2 == null) {
+			SpecificationEntity<DesirabilitySpecification> desireabilitySpecEntity1 = dGrid.getSpecificationEntity(tile1.getXLocation(), tile1.getYLocation());
+			SpecificationEntity<DesirabilitySpecification> desireabilitySpecEntity2 = dGrid.getSpecificationEntity(tile2.getXLocation(), tile2.getYLocation());
+			return desireabilitySpecEntity2.getSpecificationList().size() - desireabilitySpecEntity1.getSpecificationList().size(); //TODO, this is wrong. I should be comparing desirability. Will figure out later
+		} else if (buildingSpec1 != null && buildingSpec2 == null) {
 			return -1;
-		} else if (buildingSpecA != null && buildingSpecB == null) {
+		} else if (buildingSpec1 == null && buildingSpec2 != null) {
 			return 1;
 		}
 		
