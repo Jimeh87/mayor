@@ -9,6 +9,12 @@ public class PoliceStationSpecification extends BuildingSpecification {
 		super(BuildingType.POLICE_STATION, ZoneType.URBAN_SERVICE);
 		getDesirabilitySpecificationEntity().addSpecification(new PoliceSpecification());
 	}
-	
 
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

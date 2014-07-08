@@ -28,6 +28,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
 	protected  HashMap<Product, Integer> productForSaleMap = new HashMap<Product, Integer>();
+	private HashMap<Product, Integer> productDemand = new HashMap<Product, Integer>();
 	public BuildingType getBuildingType() {
 		return buildingType;
 	}
@@ -111,6 +112,26 @@ public abstract class BuildingSpecification extends PropertySpecification {
 
 	}
 	
+	public HashMap<Product, Integer> getProductForSaleMap() {
+		return productForSaleMap;
+	}
+	public void setProductForSaleMap(HashMap<Product, Integer> productForSaleMap) {
+		this.productForSaleMap = productForSaleMap;
+	}
+	public HashMap<Product, Integer> getProductDemand() {
+		return productDemand;
+	}
+	public void setProductDemand(HashMap<Product, Integer> productDemand) {
+		this.productDemand = productDemand;
+	}
+	
+	public void incrementProductDemand(Product product, Integer demand) {
+		if (productDemand.containsKey(product)) {
+			productDemand.put(product, productDemand.get(product) + demand);
+		} else {
+			productDemand.put(product, demand);
+		}
+	}
 	public Person getPerson() {
 		return person;
 	}
@@ -122,16 +143,8 @@ public abstract class BuildingSpecification extends PropertySpecification {
 		return buildingType.getPaneId();
 	}
 
-	public HashMap<Product, Integer> getProductForSale() {
-		return productForSaleMap;
-	}
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void tick() {
 		// TODO Auto-generated method stub
 		
 	}

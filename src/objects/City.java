@@ -2,6 +2,11 @@ package objects;
 
 import economy.Economy;
 import grid.Grid;
+
+import java.util.Iterator;
+import java.util.List;
+
+import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
 import specification.property.PropertySpecification;
 
@@ -18,7 +23,7 @@ public class City {
 	 */
 	public City(int xSize, int ySize) {
 		this.grid = new Grid<PropertySpecification>(xSize, ySize);
-		economy = new Economy(new Grid<DesirabilitySpecification>(xSize, ySize));
+		economy = new Economy(grid, new Grid<DesirabilitySpecification>(xSize, ySize));
 	}
 
 	private Grid<PropertySpecification> grid;
@@ -38,6 +43,14 @@ public class City {
 	 * Tick for everything in the city. This will call grid.tick()
 	 */
 	public void tick() {
-		economy.migrationHandler(grid);
+		for (Iterator<SpecificationEntity<PropertySpecification>> i = grid.iterator();
+				i.hasNext();) {
+			List<PropertySpecification> propertySpecificationList = i.next().getSpecificationList();
+			for (PropertySpecification propertySpecification : propertySpecificationList) {
+				propertySpecification.tick();
+			}
+		}
+		
+		economy.tick();
 	}
 }

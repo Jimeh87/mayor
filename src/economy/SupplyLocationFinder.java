@@ -19,24 +19,31 @@ import specification.property.building.BuildingSpecification;
 import specification.property.zone.ZoneSpecification;
 import specification.property.zone.ZoneType;
 
-public class SupplyRequestHandler {
+/**
+ * @author Jim
+ * TODO: currently this handles the DemandHandler... this isn't correct. Should be the object that calls this object.
+ */
+public class SupplyLocationFinder {
 
-	public SupplyRequestHandler(Grid<PropertySpecification> pGrid) {
+	public SupplyLocationFinder(Grid<PropertySpecification> pGrid, DemandHandler demandHandler) {
 		this.pGrid = pGrid;
+		this.demandHandler = demandHandler;
 	}
 	
 	private Grid<PropertySpecification> pGrid;
+	private DemandHandler demandHandler;
 	
-	public HashMap<Product, List<SpecificationEntity<PropertySpecification>>> requestProducts(SpecificationEntity<PropertySpecification> requestPropertyEntity, HashMap<Product, Integer> productsToPurchase) {
-		
+	private Boolean allSuppliesFound = null;
+	
+	public HashMap<Product, List<SpecificationEntity<PropertySpecification>>> findProducts(SpecificationEntity<PropertySpecification> requestPropertyEntity, HashMap<Product, Integer> productsToPurchase) {
+		allSuppliesFound = true;
 		HashMap<Product, List<SpecificationEntity<PropertySpecification>>> productPropertyLocationMap = new HashMap<Product, List<SpecificationEntity<PropertySpecification>>>();
-		for (Iterator<Product> i = productsToPurchase.keySet().iterator(); 
+		for (Iterator<Product> i = productsToPurchase.keySet().iterator();
 				i.hasNext();) {
 			Product product = i.next();
 			Integer quantity = productsToPurchase.get(product);
 			
 			List<SpecificationEntity<PropertySpecification>> supplierPropertyList = getSupplierList(requestPropertyEntity, product, quantity);
-			
 			productPropertyLocationMap.put(product, supplierPropertyList);
 			
 		}
@@ -59,7 +66,7 @@ public class SupplyRequestHandler {
 			ZoneSpecification zoneSpec = (ZoneSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.ZONE);
 			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
 			if (zoneSpec != null && suppliersForRequestedZoneType.contains(zoneSpec.getZoneType())) {
-				if (buildingSpec != null && buildingSpec.getProductForSale().get(product) != null) {
+				if (buildingSpec != null && buildingSpec.getProductForSaleMap().get(product) != null) {
 					supplierPriorityQueue.add(propertyEntity);
 				}
 			}
@@ -71,29 +78,26 @@ public class SupplyRequestHandler {
 				(i.hasNext() || currentQuantity >= quantityNeeded);) {
 			SpecificationEntity<PropertySpecification> propertyEntity = i.next();
 			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
-			currentQuantity += buildingSpec.getProductForSale().get(product);
+			currentQuantity += buildingSpec.getProductForSaleMap().get(product);
 			
 			supplierPropertyList.add(propertyEntity);
 		}
-		if (quantityNeeded > currentQuantity) { //didn't meet criteria for supplies
-			supplierPropertyList = new ArrayList<SpecificationEntity<PropertySpecification>>();
+		
+		if (quantityNeeded > currentQuantity) { //didn't meet criteria for product needed
+			allSuppliesFound = false;
+			demandHandler.incrementDemandForProduct(product, quantityNeeded - currentQuantity);
 		}
 		
 		return supplierPropertyList;
 	}
 	
-	public boolean isRequestProductsSuccessful(HashMap<Product, List<SpecificationEntity<PropertySpecification>>> productPropertyLocationMap) {
-		for (Iterator<Product> i = productPropertyLocationMap.keySet().iterator(); 
-				i.hasNext();) {
-			if (productPropertyLocationMap.get(i.next()).isEmpty()) {
-				return false;
-			}
-		}
-		
-		return true;
+	public Boolean isAllSuppliesFound() {
+		return allSuppliesFound;
 	}
 	
 }
+
+
 
 class SupplierComparator implements Comparator<SpecificationEntity<PropertySpecification>> {
 
@@ -118,8 +122,8 @@ class SupplierComparator implements Comparator<SpecificationEntity<PropertySpeci
 		} else if (buildingSpec1 != null && buildingSpec2 == null) {
 			return -1;
 		} else if (buildingSpec1 != null && buildingSpec2 != null) {
-			Integer quantity1 = buildingSpec1.getProductForSale().get(product);
-			Integer quantity2 = buildingSpec2.getProductForSale().get(product);
+			Integer quantity1 = buildingSpec1.getProductForSaleMap().get(product);
+			Integer quantity2 = buildingSpec2.getProductForSaleMap().get(product);
 			Tile tile1 = ((TileSpecification) p1.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
 			Tile tile2 = ((TileSpecification) p2.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
 			
