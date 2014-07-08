@@ -7,4 +7,9 @@ public class AgriculturalZoneSpecification extends ZoneSpecification {
 		super(ZoneType.AGRICULTURAL);
 	}
 
+	@Override
+	public String getName() {
+		return "Agricultural zone";
+	}
+
 }

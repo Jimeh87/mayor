@@ -7,4 +7,9 @@ public class ResidentialZoneSpecification extends ZoneSpecification {
 		super(ZoneType.RESIDENTIAL);
 	}
 
+	@Override
+	public String getName() {
+		return "Residential zone";
+	}
+
 }

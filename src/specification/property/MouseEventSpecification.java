@@ -50,6 +50,10 @@ public class MouseEventSpecification extends PropertySpecification {
 		throw new IllegalAccessException("Pane id is not valid for MouseEventSpecification");
 	}
 
+	public String getName() {
+		return "This Specificiation should not be in propertySpecification...";
+	}
+	
 	@Override
 	public void applySplash(Grid<DesirabilitySpecification> dGrid,
 			SpecificationEntity<PropertySpecification> parentEntity) {
