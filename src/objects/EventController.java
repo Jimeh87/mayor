@@ -1,6 +1,11 @@
 package objects;
 
+import economy.Product;
 import grid.Grid;
+
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.control.Button;
@@ -97,7 +102,8 @@ public class EventController<T extends PropertySpecification> {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
-				txtStatusBox.setText(getPopupDetails(tileSpec, desirabilitySpecEntity));
+				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
+				txtStatusBox.setText(getPopupDetails(tileSpec, buildingSpec, desirabilitySpecEntity));
 			}
 		};
 
@@ -107,7 +113,7 @@ public class EventController<T extends PropertySpecification> {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	private static String getPopupDetails(TileSpecification tileSpec, SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {
+	private static String getPopupDetails(TileSpecification tileSpec, BuildingSpecification buildingSpec, SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(tileSpec.getTile().getPopUpDetails() + "\n");
 		int i = 0;
@@ -118,6 +124,32 @@ public class EventController<T extends PropertySpecification> {
 				sb.append("\n");
 			}
 		}
+		
+		if (buildingSpec != null) {
+			sb.append("\nProduct demand: \n");
+			i = 0;
+			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductDemand().entrySet().iterator();
+					it.hasNext();) {
+				Entry<Product, Integer> productDemandEntry = it.next();
+				sb.append(productDemandEntry.getKey() + ": " + productDemandEntry.getValue() + " ,  ");
+				if (++i % 4 == 0) {
+					sb.append("\n");
+				}
+			}
+			
+			sb.append("\nProduct for sale: \n");
+			i = 0;
+			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductForSaleMap().entrySet().iterator();
+					it.hasNext();) {
+				Entry<Product, Integer> productForSale = it.next();
+				sb.append(productForSale.getKey() + ": " + productForSale.getValue() + " ,  ");
+				if (++i % 4 == 0) {
+					sb.append("\n");
+				}
+			}
+			
+		}
+		
 		return sb.toString();
 	}
 	
@@ -125,7 +157,8 @@ public class EventController<T extends PropertySpecification> {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
-				txtStatusBox.setText(getPopupDetails(tileSpec, desirabilitySpecEntity));
+				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
+				txtStatusBox.setText(getPopupDetails(tileSpec, buildingSpec, desirabilitySpecEntity));
 			}
 		};
 		

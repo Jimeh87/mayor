@@ -20,7 +20,7 @@ public class TimeLineHandler {
 	 * @param city
 	 */
 	public void startCityTimeLine(final City city) {
-		cityTick = new Timeline(new KeyFrame(Duration.seconds(15), new EventHandler<ActionEvent>() {
+		cityTick = new Timeline(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
 		    public void handle(ActionEvent event) {
 		        city.tick();
 		        System.out.println("Tick");
