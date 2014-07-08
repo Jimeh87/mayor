@@ -14,4 +14,9 @@ public class FarmSpecification extends BuildingSpecification {
 	public void tick() {
 		productForSaleMap.put(Product.FOOD, productForSaleMap.get(Product.FOOD) + 1);
 	}
+
+	@Override
+	public String getName() {
+		return "Farm";
+	}
 }

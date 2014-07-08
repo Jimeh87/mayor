@@ -116,6 +116,11 @@ public class EventController<T extends PropertySpecification> {
 	private static String getPopupDetails(TileSpecification tileSpec, BuildingSpecification buildingSpec, SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(tileSpec.getTile().getPopUpDetails() + "\n");
+		
+		if (buildingSpec != null) {
+			sb.append("Building name: " + buildingSpec.getName() + "\n");
+		}
+		
 		int i = 0;
 		sb.append("Mods: \n");
 		for (DesirabilitySpecification desirabilitySpec : desirabilitySpecEntity.getSpecificationList()) {

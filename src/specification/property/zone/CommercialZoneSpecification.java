@@ -7,4 +7,9 @@ public class CommercialZoneSpecification extends ZoneSpecification {
 		super(ZoneType.COMMERCIAL);
 	}
 
+	@Override
+	public String getName() {
+		return "Commercial zone";
+	}
+
 }

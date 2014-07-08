@@ -2,12 +2,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.City;
+import objects.Constants;
 import objects.Cursor;
 
 public class Main extends Application {
 
 	final Cursor cursor = new Cursor();
-	private static City city = new City(45, 28);
+	private static City city = new City(Constants.GRID_X, Constants.GRID_Y);
 	private TimeLineHandler timeLineHandler = new TimeLineHandler();
 
 	public static void main(String[] args) {

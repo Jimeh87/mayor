@@ -12,6 +12,11 @@ public class BasicHomeSpecification extends BuildingSpecification {
 		super(BuildingType.RES_SMALL, ZoneType.RESIDENTIAL);
 	}
 	
+	@Override 
+	public String getName() {
+		return "Basic home";
+	}
+	
 	@Override
 	public void tick() {
 		if (this.getPerson() != null) {

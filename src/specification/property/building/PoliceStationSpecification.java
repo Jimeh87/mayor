@@ -15,6 +15,11 @@ public class PoliceStationSpecification extends BuildingSpecification {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getName() {
+		return "Police station";
+	}
 	
 	
 }

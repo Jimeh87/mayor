@@ -51,6 +51,11 @@ public class TileSpecification extends PropertySpecification {
 	public String getPaneId() {
 		return tile.getPaneId();
 	}
+	
+	@Override
+	public String getName() {
+		return tile.getPaneId();
+	}
 
 	@Override
 	public void applySplash(Grid<DesirabilitySpecification> dGrid, SpecificationEntity<PropertySpecification> parentEntity) {
