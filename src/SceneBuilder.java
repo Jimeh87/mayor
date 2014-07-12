@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import objects.City;
 import objects.Cursor;
 import objects.EventController;
+import objects.OverlayColor;
 import objects.OverlayHandler;
 import objects.Tile;
 import specification.Specification;
@@ -168,7 +169,7 @@ public class SceneBuilder {
 			policeCoverageBtn.setMinSize(235,30);
 			policeCoverageBtn.setMaxSize(235,30);
 			policeCoverageBtn.setText("Police coverage overlay");
-			EventController.setOverlayButtonEvents(policeCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getEconomy().getDesirabilityGrid(), DesirabilitySpecificationType.POLICE);
+			EventController.setOverlayButtonEvents(policeCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getEconomy().getDesirabilityGrid(), DesirabilitySpecificationType.POLICE, OverlayColor.POLICE);
 			gpControlGrid.add(policeCoverageBtn, 0, 7);
 			
 			Button resCoverageBtn = new Button();
@@ -176,7 +177,7 @@ public class SceneBuilder {
 			resCoverageBtn.setMinSize(235,30);
 			resCoverageBtn.setMaxSize(235,30);
 			resCoverageBtn.setText("Res coverage overlay");
-			EventController.setOverlayButtonEvents(resCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), PropertySpecificationType.RES_ZONE);
+			EventController.setOverlayButtonEvents(resCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), PropertySpecificationType.RES_ZONE, OverlayColor.RESIDENTIAL);
 			gpControlGrid.add(resCoverageBtn, 0, 8);
 			
 			return gridPane;

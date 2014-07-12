@@ -192,13 +192,13 @@ public class EventController<T extends PropertySpecification> {
 				});	
 	}
 
-	public static void setOverlayButtonEvents(Button btn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, Grid<?> grid, final SpecificationType specificationType) {
+	public static void setOverlayButtonEvents(Button btn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, Grid<?> grid, final SpecificationType specificationType, OverlayColor overlayColor) {
 		btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						pnTopRightGap.setId("emptyTopRight");
 						cursor.setPropertySpecification(null);
-						overlayHandler.displayOverlay(grid, specificationType);
+						overlayHandler.displayOverlay(grid, specificationType, overlayColor);
 					}
 				});	
 	}
