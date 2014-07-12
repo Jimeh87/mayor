@@ -27,7 +27,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreen(false);
 			primaryStage.setMaximized(true);
-			primaryStage.initStyle(StageStyle.UNDECORATED);
+			//primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
 			timeLineHandler.startCityTimeLine(city);
 		} catch(Exception e) {
