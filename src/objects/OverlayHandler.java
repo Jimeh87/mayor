@@ -6,32 +6,29 @@ import grid.GridIterator;
 import java.util.List;
 
 import specification.SpecificationEntity;
-import specification.desirability.DesirabilitySpecification;
-import specification.desirability.DesirabilitySpecificationType;
+import specification.SpecificationType;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 
 public class OverlayHandler {
 
-	public OverlayHandler(Grid<PropertySpecification> propertyGrid, Grid<DesirabilitySpecification> desirabilityGrid) {
+	public OverlayHandler(Grid<PropertySpecification> propertyGrid) {
 		this.pGrid = propertyGrid;
-		this.dGrid = desirabilityGrid;
 	}
 	
 	private Grid<PropertySpecification> pGrid;
-	private Grid<DesirabilitySpecification> dGrid;
 	private boolean addOverlay = true;
 	
-	public void displayOverlay(DesirabilitySpecificationType desirabilitySpecificationType) {
+	public void displayOverlay(Grid<?> grid, SpecificationType specificationType) {
 		
-		GridIterator<DesirabilitySpecification> gIterator = dGrid.iterator();
-		while (gIterator.hasNext()) {
-			SpecificationEntity<DesirabilitySpecification> dEntity = gIterator.next();
+		GridIterator<?> gridIterator = grid.iterator();
+		while (gridIterator.hasNext()) {
+			SpecificationEntity<?> entity = gridIterator.next();
 			
-			List<DesirabilitySpecification> policeSpecList = dEntity.getSpecificationListOfType(desirabilitySpecificationType);
-			if (!policeSpecList.isEmpty()) {
-				TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gIterator.getX(), gIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
+			List<?> specList = entity.getSpecificationListOfType(specificationType);
+			if (!specList.isEmpty()) {
+				TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
 				if (addOverlay) {
 					tileSpec.getTile().getOverlayPane().setId("POverlay");
 					tileSpec.getTile().getPane().setOpacity(.6);

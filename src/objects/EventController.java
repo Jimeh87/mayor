@@ -13,8 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import specification.SpecificationEntity;
+import specification.SpecificationType;
 import specification.desirability.DesirabilitySpecification;
-import specification.desirability.DesirabilitySpecificationType;
 import specification.property.MouseEventSpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
@@ -192,13 +192,13 @@ public class EventController<T extends PropertySpecification> {
 				});	
 	}
 
-	public static void setOverlayButtonEvents(Button btn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, final DesirabilitySpecificationType desirabilitySpecificationType) {
+	public static void setOverlayButtonEvents(Button btn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, Grid<?> grid, final SpecificationType specificationType) {
 		btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						pnTopRightGap.setId("emptyTopRight");
 						cursor.setPropertySpecification(null);
-						overlayHandler.displayOverlay(desirabilitySpecificationType);
+						overlayHandler.displayOverlay(grid, specificationType);
 					}
 				});	
 	}
