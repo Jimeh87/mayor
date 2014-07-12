@@ -18,33 +18,40 @@ public class OverlayHandler {
 	}
 	private static final double MAX_OPACITY = .19;
 	private Grid<PropertySpecification> pGrid;
-	private boolean addOverlay = true;
+	private boolean overlayActive = false;
+	private OverlayColor activeOverlayColor = null;
 	
 	public void displayOverlay(Grid<?> grid, SpecificationType specificationType, OverlayColor overlayColor) {
 		
 		GridIterator<?> gridIterator = grid.iterator();
 		while (gridIterator.hasNext()) {
 			SpecificationEntity<?> entity = gridIterator.next();
-			
+			TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
+			tileSpec.getTile().getOverlayPane().setId(null);
+			tileSpec.getTile().getPane().setOpacity(1);
+			tileSpec.getTile().refreshPane();
 			List<?> specList = entity.getSpecificationListOfType(specificationType);
 			if (!specList.isEmpty()) {
-				TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
 				System.out.println(tileSpec.getTile().getXLocation() + ", " + tileSpec.getTile().getYLocation());
-				if (addOverlay) {
+				if (activeOverlayColor != overlayColor) {
 					tileSpec.getTile().getOverlayPane().setId(overlayColor.getPaneId());
 					tileSpec.getTile().getPane().setOpacity(getOpacity(specList.size()));
-				} else {
-					tileSpec.getTile().getOverlayPane().setId(null);
-					tileSpec.getTile().getPane().setOpacity(1);
-					tileSpec.getTile().refreshPane();
-				}
+					
+				} 
 			}
-
+		}
+		if (activeOverlayColor == overlayColor) {
+			activeOverlayColor = null;
+		} else if (activeOverlayColor != overlayColor) {
+			activeOverlayColor = overlayColor;
 		}
 		
-		addOverlay = !addOverlay;
 	}
-
+	
+	private boolean isOverlayActive() {
+		return overlayActive;
+	}
+	
 	private double getOpacity(int intensitySize) {
 		double intensity = 1 - (.3*Math.exp(intensitySize*.2));
 		if (intensity < MAX_OPACITY) {

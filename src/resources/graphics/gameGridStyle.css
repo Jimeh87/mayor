@@ -99,6 +99,16 @@
 	-fx-border-color: black;
 }
 #POverlay{
+	-fx-background-color:blueviolet;
+	-fx-border-style: solid;
+	-fx-border-color:black;
+}
+#ROverlay{
+	-fx-background-color:limegreen;
+	-fx-border-style: solid;
+	-fx-border-color:black;
+}
+#COverlay{
 	-fx-background-color:blue;
 	-fx-border-style: solid;
 	-fx-border-color:black;
