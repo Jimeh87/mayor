@@ -20,12 +20,15 @@ public class Tile {
 		this.yLocation = yLocation;
 		pane.setMinSize(32, 32);
 		pane.setMaxSize(32,  32);
+		overlayPane.setMinSize(32, 32);
+		overlayPane.setMaxSize(32, 32);
 		refreshPane();
 	}
 	
 	private int xLocation;
 	private int yLocation;
-	final Pane pane = new Pane();
+	private final Pane pane = new Pane();
+	private final Pane overlayPane = new Pane();
 	private String paneId = ZoneType.EMPTY.getPaneId();
 	
 	public int getXLocation() {
@@ -49,6 +52,9 @@ public class Tile {
 		return pane;
 	}
 	
+	public Pane getOverlayPane() {
+		return overlayPane;
+	}
 	/**
 	 * refreshes the pane associated with the tile with current Tile data.
 	 */
