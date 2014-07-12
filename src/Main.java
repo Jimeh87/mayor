@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import objects.City;
 import objects.Constants;
 import objects.Cursor;
@@ -26,6 +27,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreen(false);
 			primaryStage.setMaximized(true);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
 			timeLineHandler.startCityTimeLine(city);
 		} catch(Exception e) {
