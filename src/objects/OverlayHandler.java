@@ -33,10 +33,13 @@ public class OverlayHandler {
 			if (!policeSpecList.isEmpty()) {
 				TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gIterator.getX(), gIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
 				if (addOverlay) {
-					tileSpec.getTile().setTempPaneId("TODO"); //set overlay
-					tileSpec.getTile().lock();
+					tileSpec.getTile().getOverlayPane().setId("POverlay");
+					tileSpec.getTile().getPane().setOpacity(.6);
+					//tileSpec.getTile().lock();
 				} else {
-					tileSpec.getTile().unLock();
+					//tileSpec.getTile().unLock();
+					tileSpec.getTile().getOverlayPane().setId(null);
+					tileSpec.getTile().getPane().setOpacity(1);
 					tileSpec.getTile().refreshPane();
 				}
 			}

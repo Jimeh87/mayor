@@ -48,7 +48,6 @@
 
 #E{
 	-fx-background-image: url(emptyTile.jpg); 
-	-fx-opacity: .2;
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
@@ -98,6 +97,11 @@
 	-fx-background-image: url(missingtexture.jpg);
 	-fx-border-style: solid;
 	-fx-border-color: black;
+}
+#POverlay{
+	-fx-background-color:blue;
+	-fx-border-style: solid;
+	-fx-border-color:black;
 }
 #emptyButton{
 	-fx-font-size: 14;
