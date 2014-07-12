@@ -2,13 +2,15 @@ package specification.property;
 
 import specification.SpecificationType;
 import specification.property.building.BuildingSpecification;
+import specification.property.zone.ResidentialZoneSpecification;
 import specification.property.zone.ZoneSpecification;
 
 
 public enum PropertySpecificationType implements SpecificationType {
 	TILE(TileSpecification.class),
 	ZONE(ZoneSpecification.class),
-	BUILDING(BuildingSpecification.class);
+	BUILDING(BuildingSpecification.class),
+	RES_ZONE(ResidentialZoneSpecification.class);
 	
 	private PropertySpecificationType(Class<?> specificationClass) {
 		setSpecificationClass(specificationClass);

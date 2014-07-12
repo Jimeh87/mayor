@@ -10,6 +10,7 @@ import objects.Cursor;
 import objects.EventController;
 import objects.OverlayHandler;
 import objects.Tile;
+import specification.Specification;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
 import specification.desirability.DesirabilitySpecificationType;
@@ -71,8 +72,8 @@ public class SceneBuilder {
 				property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
 				property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
 				Tile tile = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
-				//TODO: JOSH, OVERLAY HERE
 				//Add Pane to GameGrid
+				gpGameGrid.add(tile.getOverlayPane(), gridIterator.getX(), gridIterator.getY());	
 				gpGameGrid.add(tile.getPane(), gridIterator.getX(), gridIterator.getY());	 
 			}
 			gridPane.add(gpGameGrid, 1, 1);
@@ -160,15 +161,23 @@ public class SceneBuilder {
 			gpControlGrid.add(bulldozeBtn, 0, 6);
 			
 			//overlays
-			OverlayHandler overlayHandler = new OverlayHandler(city.getGrid(), city.getEconomy().getDesirabilityGrid());
+			OverlayHandler overlayHandler = new OverlayHandler(city.getGrid());
 			
 			Button policeCoverageBtn = new Button();
 			policeCoverageBtn.setId("PoliceCoverageButton");
 			policeCoverageBtn.setMinSize(235,30);
 			policeCoverageBtn.setMaxSize(235,30);
 			policeCoverageBtn.setText("Police coverage overlay");
-			EventController.setOverlayButtonEvents(policeCoverageBtn, pnTopRightGap, cursor, overlayHandler, DesirabilitySpecificationType.POLICE);
+			EventController.setOverlayButtonEvents(policeCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getEconomy().getDesirabilityGrid(), DesirabilitySpecificationType.POLICE);
 			gpControlGrid.add(policeCoverageBtn, 0, 7);
+			
+			Button resCoverageBtn = new Button();
+			resCoverageBtn.setId("ResCoverageButton");
+			resCoverageBtn.setMinSize(235,30);
+			resCoverageBtn.setMaxSize(235,30);
+			resCoverageBtn.setText("Res coverage overlay");
+			EventController.setOverlayButtonEvents(resCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), PropertySpecificationType.RES_ZONE);
+			gpControlGrid.add(resCoverageBtn, 0, 8);
 			
 			return gridPane;
 		}
