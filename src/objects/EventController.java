@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import specification.SpecificationEntity;
 import specification.SpecificationType;
 import specification.desirability.DesirabilitySpecification;
@@ -201,5 +202,21 @@ public class EventController<T extends PropertySpecification> {
 						overlayHandler.displayOverlay(grid, specificationType, overlayColor);
 					}
 				});	
+	}
+
+	public static void openOverlaysStage(Button overlaysBtn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler) {
+		overlaysBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, 
+				new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent e) {
+						pnTopRightGap.setId("emptyTopRight");
+						cursor.setPropertySpecification(null);
+						Stage overlaysStage = new Stage();
+						overlaysStage.setMaxHeight(200);
+						overlaysStage.setMaxWidth(100);
+						overlaysStage.setAlwaysOnTop(true);
+						overlaysStage.show();
+					}
+		});
+		
 	}
 }

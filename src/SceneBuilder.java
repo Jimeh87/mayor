@@ -188,6 +188,14 @@ public class SceneBuilder {
 			EventController.setOverlayButtonEvents(comCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), PropertySpecificationType.COM_ZONE, OverlayColor.COMMERCIAL);
 			gpControlGrid.add(comCoverageBtn, 0, 9);
 			
+			Button overlaysBtn = new Button();
+			overlaysBtn.setId("OverlaysButton");
+			overlaysBtn.setMinSize(235, 30);
+			overlaysBtn.setMaxSize(235, 30);
+			overlaysBtn.setText("Open Overlays");
+			EventController.openOverlaysStage(overlaysBtn, pnTopRightGap, cursor, overlayHandler);
+			gpControlGrid.add(overlaysBtn, 0, 10);
+			
 			return gridPane;
 		}
 }

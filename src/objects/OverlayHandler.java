@@ -4,7 +4,6 @@ import grid.Grid;
 import grid.GridIterator;
 
 import java.util.List;
-
 import specification.SpecificationEntity;
 import specification.SpecificationType;
 import specification.property.PropertySpecification;
@@ -47,6 +46,7 @@ public class OverlayHandler {
 		}
 		
 	}
+	
 	
 	private boolean isOverlayActive() {
 		return overlayActive;
