@@ -70,9 +70,10 @@ public class SceneBuilder {
 				property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property, dGrid, city.getGrid()));
 				property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
 				property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
-				Pane pane = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile().getPane();
+				Tile tile = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
+				//TODO: JOSH, OVERLAY HERE
 				//Add Pane to GameGrid
-				gpGameGrid.add(pane, gridIterator.getX(), gridIterator.getY());	 
+				gpGameGrid.add(tile.getPane(), gridIterator.getX(), gridIterator.getY());	 
 			}
 			gridPane.add(gpGameGrid, 1, 1);
 			

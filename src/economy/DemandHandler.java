@@ -2,28 +2,26 @@ package economy;
 
 import java.util.HashMap;
 
-import objects.Constants;
-
 public class DemandHandler {
 
-	private static double DEMAND_MODIFIER = (1 / (double)(Constants.GRID_X + Constants.GRID_Y) );
+	private static int DEMAND_MODIFIER = 1;
 	
 	public DemandHandler() {
-		productDemand = new HashMap<Product, Double>();
+		productDemand = new HashMap<Product, Integer>();
 		for (Product product : Product.values()) {
-			productDemand.put(product, (double) 0);
+			productDemand.put(product, 0);
 		}
 	}
 	
-	private HashMap<Product, Double> productDemand;
+	private HashMap<Product, Integer> productDemand;
 	
-	public Double getDemandForProduct(Product product) {
+	public Integer getDemandForProduct(Product product) {
 		return productDemand.get(product);
 	}
 	
 	//demand calculation needs some work
 	public void incrementDemandForProduct(Product product, Integer demand) {
-		productDemand.put(product, productDemand.get(product) +  DEMAND_MODIFIER);
+		productDemand.put(product, productDemand.get(product) +  (DEMAND_MODIFIER * demand));
 	}
 	
 	protected void tick() {
