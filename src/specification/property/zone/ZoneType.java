@@ -43,7 +43,7 @@ public enum ZoneType {
 	static {
 		zoneTypeSupplierPurchaseRestrictions = new HashMap<ZoneType, List<ZoneType>>();
 		//zoneTypeSupplierPurchaseRestrictions.put(ZoneType.EMPTY, new ArrayList<ZoneType>()); Should never get used, so commenting out
-		zoneTypeSupplierPurchaseRestrictions.put(ZoneType.RESIDENTIAL, Arrays.<ZoneType>asList(ZoneType.COMMERCIAL));
+		zoneTypeSupplierPurchaseRestrictions.put(ZoneType.RESIDENTIAL, Arrays.<ZoneType>asList(ZoneType.COMMERCIAL, ZoneType.AGRICULTURAL)); //TODO: remove ZoneType.AGRICULTURAL. Added for testing
 		zoneTypeSupplierPurchaseRestrictions.put(ZoneType.COMMERCIAL, Arrays.<ZoneType>asList(ZoneType.COMMERCIAL, ZoneType.INDUSTRIAL));
 		zoneTypeSupplierPurchaseRestrictions.put(ZoneType.INDUSTRIAL, Arrays.<ZoneType>asList(ZoneType.INDUSTRIAL, ZoneType.AGRICULTURAL));
 		zoneTypeSupplierPurchaseRestrictions.put(ZoneType.AGRICULTURAL, new ArrayList<ZoneType>());

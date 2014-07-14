@@ -5,7 +5,7 @@ public enum BuildingType {
 	RES_SMALL("R0"),
 	COM_SMALL("C0"),
 	IND_SMALL("I0"),
-	FARM("TODO"),
+	FARM("F0"),
 	POLICE_STATION("P1");
 
 	private BuildingType(String paneId) {

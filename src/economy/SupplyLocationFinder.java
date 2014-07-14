@@ -75,7 +75,7 @@ public class SupplyLocationFinder {
 		List<SpecificationEntity<PropertySpecification>> supplierPropertyList = new ArrayList<SpecificationEntity<PropertySpecification>>();
 		int currentQuantity = 0;
 		for  (Iterator<SpecificationEntity<PropertySpecification>> i = supplierPriorityQueue.iterator();
-				(i.hasNext() || currentQuantity >= quantityNeeded);) {
+				(i.hasNext() && currentQuantity >= quantityNeeded);) {
 			SpecificationEntity<PropertySpecification> propertyEntity = i.next();
 			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
 			currentQuantity += buildingSpec.getProductForSale().getQuantityForProduct(product);

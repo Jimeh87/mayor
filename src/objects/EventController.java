@@ -11,7 +11,6 @@ import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,7 +34,6 @@ public class EventController<T extends PropertySpecification> {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				
-				//not needed right now, will be when bulldoze is readded
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				ZoneSpecification zoneSpec = (ZoneSpecification) property.getSpecificationOfType(PropertySpecificationType.ZONE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
@@ -76,6 +74,11 @@ public class EventController<T extends PropertySpecification> {
 	public static MouseEventSpecification makeMousePressedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property, final Grid<DesirabilitySpecification> dGrid, final Grid<PropertySpecification> pGrid) {	
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
+				
+				if (cursor.getPropertySpecification() == null) {
+					return;
+				}
+				
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				ZoneSpecification zoneSpec = (ZoneSpecification) property.getSpecificationOfType(PropertySpecificationType.ZONE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
@@ -189,6 +192,7 @@ public class EventController<T extends PropertySpecification> {
 						} catch (IllegalAccessException e1) {
 							e1.printStackTrace();
 						} catch (NullPointerException e1) {
+							cursor.setPropertySpecification(null);
 							pnTopRightGap.setId("emptyTopRight"); //TODO, lazy... will currently be triggered for bulldoze and empty hand
 						}
 					}
