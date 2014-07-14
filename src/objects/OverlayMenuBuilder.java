@@ -33,6 +33,7 @@ public class OverlayMenuBuilder {
 	Parent generateGridPane() {
 		GridPane gridPane = new GridPane();
 		gridPane.setHgap(1);gridPane.setVgap(1);
+		gridPane.setMinSize(BUTTON_MAX_WIDTH, BUTTON_MAX_HEIGHT);
  
 		gridPane.add(createButton("Police Overlay", dGrid, DesirabilitySpecificationType.POLICE, OverlayColor.POLICE),0,0);
 		gridPane.add(createButton("Residential Overlay", pGrid, PropertySpecificationType.RES_ZONE, OverlayColor.RESIDENTIAL), 0, 1);

@@ -53,7 +53,6 @@ public class OverlayHandler {
 		if (intensity < MAX_OPACITY) {
 			intensity = MAX_OPACITY;
 		}
-		System.out.println("i:"+intensity);
 		return intensity;
 	}
 	

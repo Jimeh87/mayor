@@ -11,6 +11,7 @@ import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -28,6 +29,7 @@ import specification.property.zone.ZoneSpecification;
  * Used to set up event triggers
  */
 public class EventController<T extends PropertySpecification> {
+	
 	
 	public static MouseEventSpecification makeMouseMovedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -156,7 +158,6 @@ public class EventController<T extends PropertySpecification> {
 			}
 			
 		}
-		
 		return sb.toString();
 	}
 	
@@ -212,7 +213,7 @@ public class EventController<T extends PropertySpecification> {
 						pnTopRightGap.setId("emptyTopRight");
 						cursor.setPropertySpecification(null);
 						OverlayMenuBuilder overlayMenuBuilder = new OverlayMenuBuilder(pGrid, dGrid,pnTopRightGap,cursor,overlayHandler);
-						Scene scene = new Scene(overlayMenuBuilder.generateGridPane(), 500, 100);
+						Scene scene = new Scene(overlayMenuBuilder.generateGridPane(), 400, 100);
 						scene.getStylesheets().add("/resources/graphics/overlayMenuStyle.css");
 						Stage overlaysStage = new Stage();
 						overlaysStage.setScene(scene);
@@ -222,4 +223,5 @@ public class EventController<T extends PropertySpecification> {
 		});
 		
 	}
+
 }
