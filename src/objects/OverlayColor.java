@@ -3,7 +3,8 @@ package objects;
 public enum OverlayColor {
 	POLICE("POverlay"),
 	RESIDENTIAL("ROverlay"),
-	COMMERCIAL("COverlay");
+	COMMERCIAL("COverlay"),
+	INDUSTRIAL("IOverlay");
 	
 	private String paneId;
 

@@ -4,6 +4,7 @@ import grid.Grid;
 import grid.GridIterator;
 
 import java.util.List;
+
 import specification.SpecificationEntity;
 import specification.SpecificationType;
 import specification.property.PropertySpecification;
@@ -11,13 +12,12 @@ import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 
 public class OverlayHandler {
-
+	
 	public OverlayHandler(Grid<PropertySpecification> propertyGrid) {
 		this.pGrid = propertyGrid;
 	}
 	private static final double MAX_OPACITY = .19;
 	private Grid<PropertySpecification> pGrid;
-	private boolean overlayActive = false;
 	private OverlayColor activeOverlayColor = null;
 	
 	public void displayOverlay(Grid<?> grid, SpecificationType specificationType, OverlayColor overlayColor) {
@@ -48,10 +48,6 @@ public class OverlayHandler {
 	}
 	
 	
-	private boolean isOverlayActive() {
-		return overlayActive;
-	}
-	
 	private double getOpacity(int intensitySize) {
 		double intensity = 1 - (.3*Math.exp(intensitySize*.2));
 		if (intensity < MAX_OPACITY) {
@@ -60,5 +56,7 @@ public class OverlayHandler {
 		System.out.println("i:"+intensity);
 		return intensity;
 	}
+	
+	
 
 }

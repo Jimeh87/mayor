@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -204,15 +205,17 @@ public class EventController<T extends PropertySpecification> {
 				});	
 	}
 
-	public static void openOverlaysStage(Button overlaysBtn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler) {
+	public static void openOverlaysStage(Button overlaysBtn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, Grid<PropertySpecification> pGrid, Grid<DesirabilitySpecification> dGrid) {
 		overlaysBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent e) {
 						pnTopRightGap.setId("emptyTopRight");
 						cursor.setPropertySpecification(null);
+						OverlayMenuBuilder overlayMenuBuilder = new OverlayMenuBuilder(pGrid, dGrid,pnTopRightGap,cursor,overlayHandler);
+						Scene scene = new Scene(overlayMenuBuilder.generateGridPane(), 500, 100);
+						scene.getStylesheets().add("/resources/graphics/overlayMenuStyle.css");
 						Stage overlaysStage = new Stage();
-						overlaysStage.setMaxHeight(200);
-						overlaysStage.setMaxWidth(100);
+						overlaysStage.setScene(scene);
 						overlaysStage.setAlwaysOnTop(true);
 						overlaysStage.show();
 					}

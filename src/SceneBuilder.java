@@ -8,17 +8,14 @@ import javafx.scene.text.Text;
 import objects.City;
 import objects.Cursor;
 import objects.EventController;
-import objects.OverlayColor;
 import objects.OverlayHandler;
 import objects.Tile;
-import specification.Specification;
 import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
-import specification.desirability.DesirabilitySpecificationType;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
-import specification.property.building.concrete.PoliceStationSpecification;
+import specification.property.building.PoliceStationSpecification;
 import specification.property.zone.AgriculturalZoneSpecification;
 import specification.property.zone.CommercialZoneSpecification;
 import specification.property.zone.IndustrialZoneSpecification;
@@ -164,37 +161,13 @@ public class SceneBuilder {
 			//overlays
 			OverlayHandler overlayHandler = new OverlayHandler(city.getGrid());
 			
-			Button policeCoverageBtn = new Button();
-			policeCoverageBtn.setId("PoliceCoverageButton");
-			policeCoverageBtn.setMinSize(235,30);
-			policeCoverageBtn.setMaxSize(235,30);
-			policeCoverageBtn.setText("Police coverage overlay");
-			EventController.setOverlayButtonEvents(policeCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getEconomy().getDesirabilityGrid(), DesirabilitySpecificationType.POLICE, OverlayColor.POLICE);
-			gpControlGrid.add(policeCoverageBtn, 0, 7);
-			
-			Button resCoverageBtn = new Button();
-			resCoverageBtn.setId("ResCoverageButton");
-			resCoverageBtn.setMinSize(235,30);
-			resCoverageBtn.setMaxSize(235,30);
-			resCoverageBtn.setText("Res coverage overlay");
-			EventController.setOverlayButtonEvents(resCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), PropertySpecificationType.RES_ZONE, OverlayColor.RESIDENTIAL);
-			gpControlGrid.add(resCoverageBtn, 0, 8);
-			
-			Button comCoverageBtn = new Button();
-			comCoverageBtn.setId("ComCoverageButton");
-			comCoverageBtn.setMinSize(235,30);
-			comCoverageBtn.setMaxSize(235,30);
-			comCoverageBtn.setText("Com coverage overlay");
-			EventController.setOverlayButtonEvents(comCoverageBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), PropertySpecificationType.COM_ZONE, OverlayColor.COMMERCIAL);
-			gpControlGrid.add(comCoverageBtn, 0, 9);
-			
 			Button overlaysBtn = new Button();
 			overlaysBtn.setId("OverlaysButton");
 			overlaysBtn.setMinSize(235, 30);
 			overlaysBtn.setMaxSize(235, 30);
 			overlaysBtn.setText("Open Overlays");
-			EventController.openOverlaysStage(overlaysBtn, pnTopRightGap, cursor, overlayHandler);
-			gpControlGrid.add(overlaysBtn, 0, 10);
+			EventController.openOverlaysStage(overlaysBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), city.getEconomy().getDesirabilityGrid());
+			gpControlGrid.add(overlaysBtn, 0, 7);
 			
 			return gridPane;
 		}
