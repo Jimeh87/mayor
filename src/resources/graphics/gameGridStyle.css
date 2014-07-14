@@ -113,6 +113,11 @@
 	-fx-border-style: solid;
 	-fx-border-color:black;
 }
+#IOverlay{
+	-fx-background-color:yellow;
+	-fx-border-style: solid;
+	-fx-border-color:black;
+}
 #emptyButton{
 	-fx-font-size: 14;
 	-fx-alignment: baseline-center;

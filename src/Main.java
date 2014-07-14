@@ -1,7 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import objects.City;
 import objects.Constants;
 import objects.Cursor;
