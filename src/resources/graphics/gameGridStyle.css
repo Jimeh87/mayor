@@ -69,7 +69,16 @@
 	-fx-border-style: solid;
 	-fx-border-color: black;
 }
-
+#F{
+	-fx-background-image:url(farmTile.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
+#F0{
+	-fx-background-image:url(farmPlot.jpg);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+}
 #R0{
 	-fx-background-image:url(ResHouse1.jpg);
 	-fx-border-style: solid;
