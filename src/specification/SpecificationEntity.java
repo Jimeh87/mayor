@@ -3,8 +3,6 @@ package specification;
 import java.util.ArrayList;
 import java.util.List;
 
-import specification.property.PropertySpecificationType;
-
 public class SpecificationEntity<T extends Specification> {
 	
 	public SpecificationEntity() {
@@ -43,12 +41,12 @@ public class SpecificationEntity<T extends Specification> {
 		return specificationList;
 	}
 	
-	public T getSpecificationOfType(PropertySpecificationType propertySpecificationType) {
+	public T getSpecificationOfType(SpecificationType SpecificationType) {
 		
 		T matchingSpecification = null;
 		for (T specification : getSpecificationList()) {
 			
-			if (propertySpecificationType.getSpecificationClass().isInstance(specification)) {
+			if (SpecificationType.getSpecificationClass().isInstance(specification)) {
 				if (matchingSpecification != null) {//we already found one. There are multiple which means this method should not be used.
 					throw new IllegalStateException("There are multiple specifications of this type in this Property. Should use getSpecificationListOfType() instead.");
 				}

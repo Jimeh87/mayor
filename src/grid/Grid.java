@@ -37,22 +37,6 @@ public class Grid<T extends Specification> {
 		return new GridIterator<T>(this);
 	}
 	
-	/*
-	private SpecificationEntity<T>[][] initializeGrid() {
-		@SuppressWarnings("unchecked")
-		propertyArray = Array.newInstance(SpecificationEntity.class, xSize, ySize);
-		
-		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
-				Property property = new Property();
-				property.addSpecification(new TileSpecification(new Tile(x, y)));
-				propertyArray[x][y] = property;
-			}
-		}
-		
-		return propertyArray;
-	}*/
-	
 	public SpecificationEntity<T> getSpecificationEntity(int xLocation, int yLocation) {
 		return specificationEntityList.get(xLocation).get(yLocation);
 	}

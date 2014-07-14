@@ -19,8 +19,9 @@ public class Economy {
 		this.dGrid = desirabilityGrid;
 		this.pGrid = propertyGrid;
 		migrationHandler = new MigrationHandler();
-		demandHandler = new DemandHandler();
-		supplyLocationFinder = new SupplyLocationFinder(pGrid, demandHandler);
+		supplyLocationFinder = new SupplyLocationFinder(pGrid, supplyAndDemand.getDemand());
+		supplyAndDemand = new SupplyAndDemand(pGrid);
+		buildingHandler = new BuildingHandler(pGrid, supplyAndDemand);
 	}
 	
 	private Grid<DesirabilitySpecification> dGrid;
@@ -28,7 +29,8 @@ public class Economy {
 	private SupplyLocationFinder supplyLocationFinder;
 	private List<Person> citizenList = new ArrayList<Person>();
 	private MigrationHandler migrationHandler;
-	private DemandHandler demandHandler;
+	private SupplyAndDemand supplyAndDemand;
+	private BuildingHandler buildingHandler;
 
 	public Grid<DesirabilitySpecification> getDesirabilityGrid() {
 		return dGrid;
@@ -44,6 +46,5 @@ public class Economy {
 			}
 		}
 		citizenList.add(migrationHandler.addPerson(pGrid, dGrid));
-		demandHandler.tick();
 	}
 }

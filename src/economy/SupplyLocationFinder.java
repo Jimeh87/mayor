@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.PriorityQueue;
 
 import objects.MayorUtil;
@@ -25,28 +26,27 @@ import specification.property.zone.ZoneType;
  */
 public class SupplyLocationFinder {
 
-	public SupplyLocationFinder(Grid<PropertySpecification> pGrid, DemandHandler demandHandler) {
+	public SupplyLocationFinder(Grid<PropertySpecification> pGrid, ProductQuantityWrapper demand) {
 		this.pGrid = pGrid;
-		this.demandHandler = demandHandler;
+		this.demand = demand;
 	}
 	
 	private Grid<PropertySpecification> pGrid;
-	private DemandHandler demandHandler;
+	private ProductQuantityWrapper demand;
 	
 	private Boolean allSuppliesFound = null;
 	
-	public HashMap<Product, List<SpecificationEntity<PropertySpecification>>> findProducts(SpecificationEntity<PropertySpecification> requestPropertyEntity, HashMap<Product, Integer> productsToPurchase) {
+	public HashMap<Product, List<SpecificationEntity<PropertySpecification>>> findProducts(SpecificationEntity<PropertySpecification> requestPropertyEntity, ProductQuantityWrapper productsToPurchase) {
 		allSuppliesFound = true;
 		HashMap<Product, List<SpecificationEntity<PropertySpecification>>> productPropertyLocationMap = new HashMap<Product, List<SpecificationEntity<PropertySpecification>>>();
-		for (Iterator<Product> i = productsToPurchase.keySet().iterator();
-				i.hasNext();) {
-			Product product = i.next();
-			Integer quantity = productsToPurchase.get(product);
-			
-			List<SpecificationEntity<PropertySpecification>> supplierPropertyList = getSupplierList(requestPropertyEntity, product, quantity);
-			productPropertyLocationMap.put(product, supplierPropertyList);
-			
+		for (Iterator<Entry<Product, Integer>> it = productsToPurchase.iterator();
+				it.hasNext();) {
+			Entry<Product, Integer> productsToPurchaseEntry = it.next();		
+			List<SpecificationEntity<PropertySpecification>> supplierPropertyList = getSupplierList(requestPropertyEntity, productsToPurchaseEntry.getKey(), productsToPurchaseEntry.getValue());
+			productPropertyLocationMap.put(productsToPurchaseEntry.getKey(), supplierPropertyList);
 		}
+		
+		demand.incrementalMerge(productsToPurchase); //TODO: Am I doing this in the right class??
 		
 		return productPropertyLocationMap;
 		
@@ -66,7 +66,7 @@ public class SupplyLocationFinder {
 			ZoneSpecification zoneSpec = (ZoneSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.ZONE);
 			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
 			if (zoneSpec != null && suppliersForRequestedZoneType.contains(zoneSpec.getZoneType())) {
-				if (buildingSpec != null && buildingSpec.getProductForSaleMap().get(product) != null) {
+				if (buildingSpec != null && buildingSpec.getProductForSale().containsProduct(product)) {
 					supplierPriorityQueue.add(propertyEntity);
 				}
 			}
@@ -78,14 +78,13 @@ public class SupplyLocationFinder {
 				(i.hasNext() || currentQuantity >= quantityNeeded);) {
 			SpecificationEntity<PropertySpecification> propertyEntity = i.next();
 			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
-			currentQuantity += buildingSpec.getProductForSaleMap().get(product);
+			currentQuantity += buildingSpec.getProductForSale().getQuantityForProduct(product);
 			
 			supplierPropertyList.add(propertyEntity);
 		}
 		
 		if (quantityNeeded > currentQuantity) { //didn't meet criteria for product needed
 			allSuppliesFound = false;
-			demandHandler.incrementDemandForProduct(product, quantityNeeded - currentQuantity);
 		}
 		
 		return supplierPropertyList;
@@ -122,8 +121,8 @@ class SupplierComparator implements Comparator<SpecificationEntity<PropertySpeci
 		} else if (buildingSpec1 != null && buildingSpec2 == null) {
 			return -1;
 		} else if (buildingSpec1 != null && buildingSpec2 != null) {
-			Integer quantity1 = buildingSpec1.getProductForSaleMap().get(product);
-			Integer quantity2 = buildingSpec2.getProductForSaleMap().get(product);
+			Integer quantity1 = buildingSpec1.getProductForSale().getQuantityForProduct(product);
+			Integer quantity2 = buildingSpec2.getProductForSale().getQuantityForProduct(product);
 			Tile tile1 = ((TileSpecification) p1.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
 			Tile tile2 = ((TileSpecification) p2.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
 			

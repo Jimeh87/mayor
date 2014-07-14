@@ -20,10 +20,10 @@ public class BasicHomeSpecification extends BuildingSpecification {
 	@Override
 	public void tick() {
 		if (this.getPerson() != null) {
-			for (Iterator<Entry<Product, Integer>> i = getPerson().getProductDemandMap().entrySet().iterator();
+			for (Iterator<Entry<Product, Integer>> i = getPerson().getProductDemand().iterator();
 					i.hasNext();) {
 				Entry<Product, Integer> productDemandEntry = i.next();
-				this.incrementProductDemand(productDemandEntry.getKey(), productDemandEntry.getValue());
+				this.getProductDemand().setQuantityForProduct(productDemandEntry.getKey(), productDemandEntry.getValue());
 			}
 		}
 	}

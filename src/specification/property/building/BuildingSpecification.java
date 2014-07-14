@@ -1,9 +1,5 @@
 package specification.property.building;
 
-import economy.Product;
-import grid.Grid;
-
-import java.util.HashMap;
 import java.util.List;
 
 import objects.MayorUtil;
@@ -15,6 +11,8 @@ import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 import specification.property.zone.ZoneType;
+import economy.ProductQuantityWrapper;
+import grid.Grid;
 
 public abstract class BuildingSpecification extends PropertySpecification {
 	public BuildingSpecification(BuildingType buildingType, ZoneType zoneType) {
@@ -27,8 +25,8 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	private Person person;
 	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
-	protected  HashMap<Product, Integer> productForSaleMap = new HashMap<Product, Integer>();
-	private HashMap<Product, Integer> productDemand = new HashMap<Product, Integer>();
+	protected ProductQuantityWrapper productForSale = new ProductQuantityWrapper();
+	private ProductQuantityWrapper productDemand = new ProductQuantityWrapper();
 	public BuildingType getBuildingType() {
 		return buildingType;
 	}
@@ -112,25 +110,17 @@ public abstract class BuildingSpecification extends PropertySpecification {
 
 	}
 	
-	public HashMap<Product, Integer> getProductForSaleMap() {
-		return productForSaleMap;
+	public ProductQuantityWrapper getProductForSale() {
+		return productForSale;
 	}
-	public void setProductForSaleMap(HashMap<Product, Integer> productForSaleMap) {
-		this.productForSaleMap = productForSaleMap;
+	public void setProductForSale(ProductQuantityWrapper productForSale) {
+		this.productForSale = productForSale;
 	}
-	public HashMap<Product, Integer> getProductDemand() {
+	public ProductQuantityWrapper getProductDemand() {
 		return productDemand;
 	}
-	public void setProductDemand(HashMap<Product, Integer> productDemand) {
+	public void setProductDemand(ProductQuantityWrapper productDemand) {
 		this.productDemand = productDemand;
-	}
-	
-	public void incrementProductDemand(Product product, Integer demand) {
-		if (productDemand.containsKey(product)) {
-			productDemand.put(product, productDemand.get(product) + demand);
-		} else {
-			productDemand.put(product, demand);
-		}
 	}
 	public Person getPerson() {
 		return person;
