@@ -18,7 +18,7 @@ import specification.desirability.DesirabilitySpecificationType;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
-import specification.property.building.PoliceStationSpecification;
+import specification.property.building.concrete.PoliceStationSpecification;
 import specification.property.zone.AgriculturalZoneSpecification;
 import specification.property.zone.CommercialZoneSpecification;
 import specification.property.zone.IndustrialZoneSpecification;

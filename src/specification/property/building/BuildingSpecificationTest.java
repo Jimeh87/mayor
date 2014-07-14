@@ -11,6 +11,7 @@ import specification.desirability.DesirabilitySpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
+import specification.property.building.concrete.PoliceStationSpecification;
 
 public class BuildingSpecificationTest {
 
