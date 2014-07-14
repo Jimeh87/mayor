@@ -9,6 +9,7 @@ public class FarmSpecification extends BuildingSpecification {
 
 	public FarmSpecification() {
 		super(BuildingType.FARM, ZoneType.AGRICULTURAL);
+		productForSale.setMaxQuantityForProduct(Product.FOOD, 10);
 		productForSale.setQuantityForProduct(Product.FOOD, 0);
 	}
 

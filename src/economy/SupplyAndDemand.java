@@ -35,7 +35,7 @@ public class SupplyAndDemand {
 			SpecificationEntity<PropertySpecification> propertyEntity = it.next();
 			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
 			if (buildingSpec != null) {
-				maxSupply.incrementalMerge(buildingSpec.getProductForSale());
+				maxSupply.incrementalMergeForMaxProduct(buildingSpec.getProductForSale());
 			}
 		}
 	}

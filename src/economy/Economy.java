@@ -46,5 +46,6 @@ public class Economy {
 			}
 		}
 		citizenList.add(migrationHandler.addPerson(pGrid, dGrid));
+		buildingHandler.generateBuilding();
 	}
 }

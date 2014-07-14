@@ -10,7 +10,7 @@ public class ProductQuantityWrapper {
 		productQuantity = new HashMap<Product, Integer>();
 	}
 	
-	private HashMap<Product, Integer> productQuantity;
+	protected HashMap<Product, Integer> productQuantity;
 	
 	public boolean containsProduct(Product product) {
 		return productQuantity.containsKey(product);
@@ -39,6 +39,18 @@ public class ProductQuantityWrapper {
 				it.hasNext();) {
 			Entry<Product, Integer> productQuantityEntry = it.next();
 			incrementQuantityForProduct(productQuantityEntry.getKey(), productQuantityEntry.getValue());
+		}
+	}
+	
+	/**
+	 * This should only be used in rare cases where (this) is tracking the max storage. 99% of the time you should be using incrementalMerge()
+	 * @param productQuantityMaxStorage
+	 */
+	public void incrementalMergeForMaxProduct(ProductQuantityMaxStorageWrapper productQuantityMaxStorage) {
+		for (Iterator<Entry<Product, Integer>> it = productQuantityMaxStorage.iterator();
+				it.hasNext();) {
+			Entry<Product, Integer> productQuantityEntry = it.next();
+			incrementQuantityForProduct(productQuantityEntry.getKey(), productQuantityMaxStorage.getMaxQuantityForProduct(productQuantityEntry.getKey()));
 		}
 	}
 	

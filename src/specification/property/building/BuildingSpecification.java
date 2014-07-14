@@ -11,6 +11,7 @@ import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 import specification.property.zone.ZoneType;
+import economy.ProductQuantityMaxStorageWrapper;
 import economy.ProductQuantityWrapper;
 import grid.Grid;
 
@@ -25,7 +26,7 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	private Person person;
 	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
-	protected ProductQuantityWrapper productForSale = new ProductQuantityWrapper();
+	protected ProductQuantityMaxStorageWrapper productForSale = new ProductQuantityMaxStorageWrapper();
 	private ProductQuantityWrapper productDemand = new ProductQuantityWrapper();
 	public BuildingType getBuildingType() {
 		return buildingType;
@@ -110,10 +111,10 @@ public abstract class BuildingSpecification extends PropertySpecification {
 
 	}
 	
-	public ProductQuantityWrapper getProductForSale() {
+	public ProductQuantityMaxStorageWrapper getProductForSale() {
 		return productForSale;
 	}
-	public void setProductForSale(ProductQuantityWrapper productForSale) {
+	public void setProductForSale(ProductQuantityMaxStorageWrapper productForSale) {
 		this.productForSale = productForSale;
 	}
 	public ProductQuantityWrapper getProductDemand() {
