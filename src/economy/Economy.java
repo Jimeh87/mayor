@@ -19,8 +19,8 @@ public class Economy {
 		this.dGrid = desirabilityGrid;
 		this.pGrid = propertyGrid;
 		migrationHandler = new MigrationHandler();
-		supplyLocationFinder = new SupplyLocationFinder(pGrid, supplyAndDemand.getDemand());
 		supplyAndDemand = new SupplyAndDemand(pGrid);
+		supplyLocationFinder = new SupplyLocationFinder(pGrid, supplyAndDemand.getDemand());
 		buildingHandler = new BuildingHandler(pGrid, supplyAndDemand);
 	}
 	
