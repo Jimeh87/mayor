@@ -1,6 +1,8 @@
-package specification.property.building;
+package specification.property.building.concrete;
 
 import specification.desirability.PoliceSpecification;
+import specification.property.building.BuildingSpecification;
+import specification.property.building.BuildingType;
 import specification.property.zone.ZoneType;
 
 public class PoliceStationSpecification extends BuildingSpecification {

@@ -1,5 +1,7 @@
-package specification.property.building;
+package specification.property.building.concrete;
 
+import specification.property.building.BuildingSpecification;
+import specification.property.building.BuildingType;
 import specification.property.zone.ZoneType;
 import economy.Product;
 
