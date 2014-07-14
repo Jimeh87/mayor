@@ -134,7 +134,7 @@ public class EventController<T extends PropertySpecification> {
 		if (buildingSpec != null) {
 			sb.append("\nProduct demand: \n");
 			i = 0;
-			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductDemand().entrySet().iterator();
+			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductDemand().iterator();
 					it.hasNext();) {
 				Entry<Product, Integer> productDemandEntry = it.next();
 				sb.append(productDemandEntry.getKey() + ": " + productDemandEntry.getValue() + " ,  ");
@@ -145,7 +145,7 @@ public class EventController<T extends PropertySpecification> {
 			
 			sb.append("\nProduct for sale: \n");
 			i = 0;
-			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductForSaleMap().entrySet().iterator();
+			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductForSale().iterator();
 					it.hasNext();) {
 				Entry<Product, Integer> productForSale = it.next();
 				sb.append(productForSale.getKey() + ": " + productForSale.getValue() + " ,  ");
