@@ -10,7 +10,7 @@ public enum ZoneType {
 	RESIDENTIAL("R", false),
 	COMMERCIAL("C", false),
 	INDUSTRIAL("I", false),
-	AGRICULTURAL("TODO", false), //A
+	AGRICULTURAL("F", false), //A
 	URBAN_SERVICE("TODO", true), //U
 	;
 	//NOTE: remember to add new ZoneType's to zoneTypeRestrictions
