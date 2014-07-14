@@ -1,5 +1,7 @@
 package economy;
 
 public enum Product {
-	FOOD;
+	FOOD,
+	PROCESSED_FOOD,
+	UNPROCESSED_FOOD;
 }

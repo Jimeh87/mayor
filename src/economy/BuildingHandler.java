@@ -51,7 +51,7 @@ public class BuildingHandler {
 		}
 		SpecificationType specType = productBuilding.get(product);
 		if (specType == null) {
-			throw new IllegalStateException("No building types exist to produce: " + product);
+			throw new IllegalStateException("No building types exist to produce: " + product + "... Most likely class didn't get added to BuildingSpecificationType");
 		}
 		
 		try {
