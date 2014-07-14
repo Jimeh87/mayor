@@ -1,3 +1,6 @@
+import java.awt.MouseInfo;
+import java.awt.Point;
+
 import grid.Grid;
 import grid.GridIterator;
 import javafx.scene.Parent;
@@ -15,7 +18,7 @@ import specification.desirability.DesirabilitySpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
-import specification.property.building.PoliceStationSpecification;
+import specification.property.building.concrete.PoliceStationSpecification;
 import specification.property.zone.AgriculturalZoneSpecification;
 import specification.property.zone.CommercialZoneSpecification;
 import specification.property.zone.IndustrialZoneSpecification;
@@ -32,19 +35,22 @@ public class SceneBuilder {
 			GridPane gridPane = new GridPane();
 			gridPane.setHgap(1);gridPane.setVgap(1);
 			
+			
 			//Top Gap Spacers 
 			//Top Left GridPane used for MouseOver info
 			GridPane pnLeftGap = new GridPane();
 			pnLeftGap.setMinSize(240, 135);
 			pnLeftGap.setMaxSize(240, 135);
 			pnLeftGap.setId("topLeftBar");
+			Point p = MouseInfo.getPointerInfo().getLocation();
+			Text topLeftCornerText = new Text("Cursor: " + p);
+			pnLeftGap.add(topLeftCornerText, 0, 0);
 			gridPane.add(pnLeftGap, 0, 0);
 			
 			GridPane pnTopGap = new GridPane();
 			pnTopGap.setMinSize(1440, 135);
 			pnTopGap.setMaxSize(1440, 135);
 			pnTopGap.setId("topBar");
-			
 			gridPane.add(pnTopGap, 1, 0);
 			final Text txtType = new Text();
 			txtType.setText("Tile Type: ");
