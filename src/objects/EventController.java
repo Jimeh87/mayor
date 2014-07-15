@@ -264,7 +264,7 @@ public class EventController<T extends PropertySpecification> {
 
 				            @Override
 				            public void handle(WindowEvent t) {
-				            	OverlayHandler.clearOverlay(pGrid);
+				            	overlayHandler.clearOverlay();
 				                overlaysStage.close();
 				            }
 
@@ -298,7 +298,7 @@ public class EventController<T extends PropertySpecification> {
 
 			            @Override
 			            public void handle(WindowEvent t) {
-			            	OverlayHandler.clearOverlay(pGrid);
+			            	overlayHandler.clearOverlay();
 			                overlaysStage.close();
 			            }
 

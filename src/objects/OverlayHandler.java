@@ -3,6 +3,7 @@ package objects;
 import grid.Grid;
 import grid.GridIterator;
 
+import java.util.Iterator;
 import java.util.List;
 
 import specification.SpecificationEntity;
@@ -26,9 +27,7 @@ public class OverlayHandler {
 		while (gridIterator.hasNext()) {
 			SpecificationEntity<?> entity = gridIterator.next();
 			TileSpecification tileSpec = (TileSpecification) pGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
-			tileSpec.getTile().getOverlayPane().setId(null);
-			tileSpec.getTile().getPane().setOpacity(1);
-			tileSpec.getTile().refreshPane();
+			clearTile(tileSpec.getTile());
 			List<?> specList = entity.getSpecificationListOfType(specificationType);
 			if (!specList.isEmpty()) {
 				System.out.println(tileSpec.getTile().getXLocation() + ", " + tileSpec.getTile().getYLocation());
@@ -56,15 +55,19 @@ public class OverlayHandler {
 	}
 
 
-	public static void clearOverlay(Grid<PropertySpecification> pGrid2) {
-		GridIterator<?> gridIterator = pGrid2.iterator();
+	public void clearOverlay() {
+		Iterator<SpecificationEntity<PropertySpecification>> gridIterator = pGrid.iterator();
 		while (gridIterator.hasNext()) {
-			SpecificationEntity<?> entity = gridIterator.next();
-			TileSpecification tileSpec = (TileSpecification) pGrid2.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
-			tileSpec.getTile().getOverlayPane().setId(null);
-			tileSpec.getTile().getPane().setOpacity(1);
-			tileSpec.getTile().refreshPane();
+			TileSpecification tileSpec = (TileSpecification) gridIterator.next().getSpecificationOfType(PropertySpecificationType.TILE);
+			clearTile(tileSpec.getTile());
 		}
+		activeOverlayColor = null;
+	}
+	
+	private void clearTile(Tile tile) {
+		tile.getOverlayPane().setId(null);
+		tile.getPane().setOpacity(1);
+		tile.refreshPane();
 	}
 	
 	
