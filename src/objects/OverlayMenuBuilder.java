@@ -12,7 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class OverlayMenuBuilder {
-	private static final double BUTTON_MAX_WIDTH = 200;
+	//Define
+	private static final double BUTTON_MAX_WIDTH = 150;
 	private static final double BUTTON_MAX_HEIGHT = 50;
 	private Grid<DesirabilitySpecification> dGrid;
 	private Grid<PropertySpecification> pGrid;
@@ -20,7 +21,7 @@ public class OverlayMenuBuilder {
 	private Cursor cursor;
 	private OverlayHandler overlayHandler;
 	
-	//Constructor
+	//Construct
 	public OverlayMenuBuilder(Grid<PropertySpecification> pGrid, Grid<DesirabilitySpecification> dGrid, 
 			Pane pnTopRightGap, Cursor cursor, OverlayHandler overlayHandler) {
 		this.pGrid = pGrid;
@@ -35,12 +36,13 @@ public class OverlayMenuBuilder {
 		gridPane.setHgap(1);gridPane.setVgap(1);
 		gridPane.setMinSize(BUTTON_MAX_WIDTH, BUTTON_MAX_HEIGHT);
  
-		gridPane.add(createButton("Police Overlay", dGrid, DesirabilitySpecificationType.POLICE, OverlayColor.POLICE),0,0);
-		gridPane.add(createButton("Residential Overlay", pGrid, PropertySpecificationType.RES_ZONE, OverlayColor.RESIDENTIAL), 0, 1);
-		gridPane.add(createButton("Commmercial Overlay", pGrid, PropertySpecificationType.COM_ZONE, OverlayColor.COMMERCIAL),1,0);
-		gridPane.add(createButton("Industrial Overlay", pGrid, PropertySpecificationType.IND_ZONE, OverlayColor.INDUSTRIAL), 1, 1);
+		gridPane.add(createButton("Police", dGrid, DesirabilitySpecificationType.POLICE, OverlayColor.POLICE),0,0);
+		gridPane.add(createButton("Residential", pGrid, PropertySpecificationType.RES_ZONE, OverlayColor.RESIDENTIAL), 0, 1);
+		gridPane.add(createButton("Commmercial", pGrid, PropertySpecificationType.COM_ZONE, OverlayColor.COMMERCIAL),1,0);
+		gridPane.add(createButton("Industrial", pGrid, PropertySpecificationType.IND_ZONE, OverlayColor.INDUSTRIAL), 1, 1);
+		gridPane.add(createButton("Farming", pGrid, PropertySpecificationType.FARM_ZONE,OverlayColor.FARM), 0, 2);
 		
-
+		//Return Node as Built Scene
 		return gridPane;
 		
 	}

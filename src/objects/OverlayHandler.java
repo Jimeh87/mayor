@@ -35,7 +35,6 @@ public class OverlayHandler {
 				if (activeOverlayColor != overlayColor) {
 					tileSpec.getTile().getOverlayPane().setId(overlayColor.getPaneId());
 					tileSpec.getTile().getPane().setOpacity(getOpacity(specList.size()));
-					
 				} 
 			}
 		}
@@ -54,6 +53,18 @@ public class OverlayHandler {
 			intensity = MAX_OPACITY;
 		}
 		return intensity;
+	}
+
+
+	public static void clearOverlay(Grid<PropertySpecification> pGrid2) {
+		GridIterator<?> gridIterator = pGrid2.iterator();
+		while (gridIterator.hasNext()) {
+			SpecificationEntity<?> entity = gridIterator.next();
+			TileSpecification tileSpec = (TileSpecification) pGrid2.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()).getSpecificationOfType(PropertySpecificationType.TILE);
+			tileSpec.getTile().getOverlayPane().setId(null);
+			tileSpec.getTile().getPane().setOpacity(1);
+			tileSpec.getTile().refreshPane();
+		}
 	}
 	
 	

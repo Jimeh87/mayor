@@ -2,6 +2,7 @@ package specification.property;
 
 import specification.SpecificationType;
 import specification.property.building.BuildingSpecification;
+import specification.property.zone.AgriculturalZoneSpecification;
 import specification.property.zone.CommercialZoneSpecification;
 import specification.property.zone.IndustrialZoneSpecification;
 import specification.property.zone.ResidentialZoneSpecification;
@@ -14,7 +15,8 @@ public enum PropertySpecificationType implements SpecificationType {
 	BUILDING(BuildingSpecification.class),
 	RES_ZONE(ResidentialZoneSpecification.class),
 	COM_ZONE(CommercialZoneSpecification.class), 
-	IND_ZONE(IndustrialZoneSpecification.class);
+	IND_ZONE(IndustrialZoneSpecification.class), 
+	FARM_ZONE(AgriculturalZoneSpecification.class);
 	
 	private PropertySpecificationType(Class<?> specificationClass) {
 		setSpecificationClass(specificationClass);

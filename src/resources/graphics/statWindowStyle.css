@@ -1,0 +1,6 @@
+#MainWindow{
+	-fx-background-color: rgb(192,192,192);
+	-fx-border-style: solid;
+	-fx-border-color: black;
+	-fx-border-width: 5;
+}

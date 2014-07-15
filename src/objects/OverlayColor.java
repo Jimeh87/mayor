@@ -4,7 +4,8 @@ public enum OverlayColor {
 	POLICE("POverlay"),
 	RESIDENTIAL("ROverlay"),
 	COMMERCIAL("COverlay"),
-	INDUSTRIAL("IOverlay");
+	INDUSTRIAL("IOverlay"), 
+	FARM("FOverlay");
 	
 	private String paneId;
 
