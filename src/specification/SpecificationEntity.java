@@ -41,7 +41,7 @@ public class SpecificationEntity<T extends Specification> {
 		return specificationList;
 	}
 	
-	public T getSpecificationOfType(SpecificationType SpecificationType) {
+	public <U extends T> T getSpecificationOfType(SpecificationType SpecificationType) {
 		
 		T matchingSpecification = null;
 		for (T specification : getSpecificationList()) {
