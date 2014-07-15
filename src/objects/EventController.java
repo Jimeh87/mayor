@@ -6,14 +6,21 @@ import grid.Grid;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import specification.SpecificationEntity;
 import specification.SpecificationType;
 import specification.desirability.DesirabilitySpecification;
@@ -32,6 +39,7 @@ public class EventController<T extends PropertySpecification> {
 	
 	public static MouseEventSpecification makeMouseMovedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			@Override
 			public void handle(MouseEvent e) {
 				
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
@@ -59,6 +67,7 @@ public class EventController<T extends PropertySpecification> {
 	
 	public static MouseEventSpecification makeMouseExitedTileEvent(final SpecificationEntity<PropertySpecification> property) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			@Override
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				tileSpec.getTile().refreshPane();					
@@ -71,18 +80,39 @@ public class EventController<T extends PropertySpecification> {
 		return new MouseEventSpecification(mouseEvent, eventHandler);
 	}
 	
-	public static MouseEventSpecification makeMousePressedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property, final Grid<DesirabilitySpecification> dGrid, final Grid<PropertySpecification> pGrid) {	
+	public static MouseEventSpecification makeMousePressedTileEvent(final Cursor cursor, final SpecificationEntity<PropertySpecification> property, final Grid<DesirabilitySpecification> dGrid, final Grid<PropertySpecification> pGrid, final SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity, GridPane gpGameGrid, int x, int y) {	
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			@Override
 			public void handle(MouseEvent e) {
-				
-				if (cursor.getPropertySpecification() == null) {
-					return;
-				}
-				
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				ZoneSpecification zoneSpec = (ZoneSpecification) property.getSpecificationOfType(PropertySpecificationType.ZONE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
-
+				if (cursor.getPropertySpecification() == null) {
+					Stage statWindowStage = new Stage(StageStyle.UNDECORATED);
+					StatWindowSceneBuilder statWindowSceneBuilder = new StatWindowSceneBuilder(getPopupDetails(tileSpec,buildingSpec,desirabilitySpecEntity),statWindowStage);
+					Scene statWindowScene = new Scene(statWindowSceneBuilder.generateStatWindow(),300,300);
+					statWindowScene.getStylesheets().add("resources/graphics/statWindowStyle.css");
+					statWindowStage.setScene(statWindowScene);
+					statWindowStage.centerOnScreen();
+					statWindowStage.setResizable(true);
+					statWindowStage.setIconified(false);
+					statWindowStage.show();
+					statWindowStage.focusedProperty().addListener(new ChangeListener<Boolean>()
+							{
+						
+						@Override
+						public void changed(ObservableValue<? extends Boolean>source, Boolean wasFocused, Boolean isFocused)
+						{
+							if (isFocused)
+							{
+								
+							}
+							else
+								statWindowStage.close();
+						}
+					});
+					return;
+				}
 				try {
 					if (zoneSpec == null && buildingSpec == null) {
 						property.addSpecification(cursor.getPropertySpecification());
@@ -107,6 +137,7 @@ public class EventController<T extends PropertySpecification> {
 	
 	public static MouseEventSpecification makeMouseMovedTileTextEvent(final Text txtStatusBox, final SpecificationEntity<PropertySpecification> property, final SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			@Override
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
@@ -166,6 +197,7 @@ public class EventController<T extends PropertySpecification> {
 	
 	public static MouseEventSpecification makeMousePressedTileTextEvent(final Text txtStatusBox, final SpecificationEntity<PropertySpecification> property, final SpecificationEntity<DesirabilitySpecification> desirabilitySpecEntity) {		
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			@Override
 			public void handle(MouseEvent e) {
 				TileSpecification tileSpec = (TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE);
 				BuildingSpecification buildingSpec = (BuildingSpecification) property.getSpecificationOfType(PropertySpecificationType.BUILDING);
@@ -183,6 +215,7 @@ public class EventController<T extends PropertySpecification> {
 		//Mouse Click Event sets Cursor to Zoning Tool
 		btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
+					@Override
 					public void handle(MouseEvent e) {
 						try {
 							cursor.setPropertySpecification(clazz.newInstance());
@@ -202,30 +235,78 @@ public class EventController<T extends PropertySpecification> {
 	public static void setOverlayButtonEvents(Button btn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, Grid<?> grid, final SpecificationType specificationType, OverlayColor overlayColor) {
 		btn.addEventHandler(MouseEvent.MOUSE_CLICKED,
 				new EventHandler<MouseEvent>() {
+					@Override
 					public void handle(MouseEvent e) {
 						pnTopRightGap.setId("emptyTopRight");
 						cursor.setPropertySpecification(null);
 						overlayHandler.displayOverlay(grid, specificationType, overlayColor);
 					}
-				});	
+				});
 	}
 
 	public static void openOverlaysStage(Button overlaysBtn, final Pane pnTopRightGap, final Cursor cursor, final OverlayHandler overlayHandler, Grid<PropertySpecification> pGrid, Grid<DesirabilitySpecification> dGrid) {
 		overlaysBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 				new EventHandler<MouseEvent>() {
+					@Override
 					public void handle(MouseEvent e) {
 						pnTopRightGap.setId("emptyTopRight");
 						cursor.setPropertySpecification(null);
 						OverlayMenuBuilder overlayMenuBuilder = new OverlayMenuBuilder(pGrid, dGrid,pnTopRightGap,cursor,overlayHandler);
-						Scene scene = new Scene(overlayMenuBuilder.generateGridPane(), 400, 100);
+						Scene scene = new Scene(overlayMenuBuilder.generateGridPane(), 300, 200);
 						scene.getStylesheets().add("/resources/graphics/overlayMenuStyle.css");
 						Stage overlaysStage = new Stage();
 						overlaysStage.setScene(scene);
 						overlaysStage.setAlwaysOnTop(true);
+						overlaysStage.setX(1200);
+						overlaysStage.setY(20);
 						overlaysStage.show();
+						overlaysStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+				            @Override
+				            public void handle(WindowEvent t) {
+				            	OverlayHandler.clearOverlay(pGrid);
+				                overlaysStage.close();
+				            }
+
+				        });
 					}
 		});
 		
+	}
+
+	public static void openOverlaysStageKeyPress(GridPane gridPane,
+			Pane pnTopRightGap, Cursor cursor, OverlayHandler overlayHandler,
+			Grid<PropertySpecification> pGrid,
+			Grid<DesirabilitySpecification> dGrid) {
+		// TODO Auto-generated method stub Overlay Open Key Press
+		gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent ke) {
+				if (ke.getCode()==KeyCode.O){
+					pnTopRightGap.setId("emptyTopRight");
+					cursor.setPropertySpecification(null);
+					OverlayMenuBuilder overlayMenuBuilder = new OverlayMenuBuilder(pGrid, dGrid,pnTopRightGap,cursor,overlayHandler);
+					Scene scene = new Scene(overlayMenuBuilder.generateGridPane(), 300, 200);
+					scene.getStylesheets().add("/resources/graphics/overlayMenuStyle.css");
+					Stage overlaysStage = new Stage();
+					overlaysStage.setScene(scene);
+					overlaysStage.setAlwaysOnTop(true);
+					overlaysStage.setX(1200);
+					overlaysStage.setY(20);
+					overlaysStage.show();
+					overlaysStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			            @Override
+			            public void handle(WindowEvent t) {
+			            	OverlayHandler.clearOverlay(pGrid);
+			                overlaysStage.close();
+			            }
+
+			        });
+					System.out.println(ke);
+				}
+			}
+		});
 	}
 
 }

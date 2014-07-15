@@ -1,6 +1,3 @@
-import java.awt.MouseInfo;
-import java.awt.Point;
-
 import grid.Grid;
 import grid.GridIterator;
 import javafx.scene.Parent;
@@ -42,9 +39,6 @@ public class SceneBuilder {
 			pnLeftGap.setMinSize(240, 135);
 			pnLeftGap.setMaxSize(240, 135);
 			pnLeftGap.setId("topLeftBar");
-			Point p = MouseInfo.getPointerInfo().getLocation();
-			Text topLeftCornerText = new Text("Cursor: " + p);
-			pnLeftGap.add(topLeftCornerText, 0, 0);
 			gridPane.add(pnLeftGap, 0, 0);
 			
 			GridPane pnTopGap = new GridPane();
@@ -72,7 +66,7 @@ public class SceneBuilder {
 				property.addSpecification(new TileSpecification(new Tile(gridIterator.getX(), gridIterator.getY())));
 				property.addSpecification(EventController.makeMouseMovedTileEvent(cursor, property));
 				property.addSpecification(EventController.makeMouseExitedTileEvent(property));
-				property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property, dGrid, city.getGrid()));
+				property.addSpecification(EventController.makeMousePressedTileEvent(cursor, property, dGrid, city.getGrid(), dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY()),gpGameGrid,gridIterator.getX(),gridIterator.getY()));
 				property.addSpecification(EventController.makeMouseMovedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
 				property.addSpecification(EventController.makeMousePressedTileTextEvent(txtType, property, dGrid.getSpecificationEntity(gridIterator.getX(), gridIterator.getY())));
 				Tile tile = ((TileSpecification) property.getSpecificationOfType(PropertySpecificationType.TILE)).getTile();
@@ -81,8 +75,7 @@ public class SceneBuilder {
 				gpGameGrid.add(tile.getPane(), gridIterator.getX(), gridIterator.getY());	 
 			}
 			gridPane.add(gpGameGrid, 1, 1);
-			
-			 
+
 			//Control GridPane 
 			GridPane gpControlGrid = new GridPane();
 			gpControlGrid.setId("controlGrid");
@@ -174,6 +167,8 @@ public class SceneBuilder {
 			overlaysBtn.setText("Open Overlays");
 			EventController.openOverlaysStage(overlaysBtn, pnTopRightGap, cursor, overlayHandler, city.getGrid(), city.getEconomy().getDesirabilityGrid());
 			gpControlGrid.add(overlaysBtn, 0, 7);
+			
+			EventController.openOverlaysStageKeyPress(gridPane, pnTopRightGap, cursor, overlayHandler, city.getGrid(), city.getEconomy().getDesirabilityGrid());
 			
 			return gridPane;
 		}

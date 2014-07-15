@@ -113,7 +113,7 @@
 	-fx-border-color:black;
 }
 #ROverlay{
-	-fx-background-color:limegreen;
+	-fx-background-color:red;
 	-fx-border-style: solid;
 	-fx-border-color:black;
 }
@@ -124,6 +124,11 @@
 }
 #IOverlay{
 	-fx-background-color:yellow;
+	-fx-border-style: solid;
+	-fx-border-color:black;
+}
+#FOverlay{
+	-fx-background-color:goldenrod;
 	-fx-border-style: solid;
 	-fx-border-color:black;
 }

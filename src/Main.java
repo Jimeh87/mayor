@@ -1,6 +1,8 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import objects.City;
 import objects.Constants;
 import objects.Cursor;
@@ -28,6 +30,15 @@ public class Main extends Application {
 			primaryStage.setMaximized(true);
 			//primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
+			//setOnClose to kill all stages open ie overlays or stats window
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+	            @Override
+	            public void handle(WindowEvent t) {
+	            	javafx.application.Platform.exit();
+	            }
+
+	        });
 			timeLineHandler.startCityTimeLine(city);
 		} catch(Exception e) {
 			e.printStackTrace(); //Error Exception Catch
