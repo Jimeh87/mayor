@@ -1,4 +1,4 @@
-package specification.property.building.concrete;
+package specification.property.building;
 
 import economy.ProductQuantityMaxStorageWrapper;
 
