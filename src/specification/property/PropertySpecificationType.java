@@ -2,6 +2,8 @@ package specification.property;
 
 import specification.SpecificationType;
 import specification.property.building.BuildingSpecification;
+import specification.property.building.GeneratedBuildingSpecification;
+import specification.property.building.SupplyAndDemandBuilding;
 import specification.property.zone.AgriculturalZoneSpecification;
 import specification.property.zone.CommercialZoneSpecification;
 import specification.property.zone.IndustrialZoneSpecification;
@@ -13,6 +15,8 @@ public enum PropertySpecificationType implements SpecificationType {
 	TILE(TileSpecification.class),
 	ZONE(ZoneSpecification.class),
 	BUILDING(BuildingSpecification.class),
+	GENERATED_BUILDING(GeneratedBuildingSpecification.class),
+	SUPPLY_AND_DEMAND_BUILDING(SupplyAndDemandBuilding.class),
 	RES_ZONE(ResidentialZoneSpecification.class),
 	COM_ZONE(CommercialZoneSpecification.class), 
 	IND_ZONE(IndustrialZoneSpecification.class), 

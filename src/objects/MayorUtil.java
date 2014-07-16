@@ -1,7 +1,15 @@
 package objects;
 
+import java.lang.reflect.Modifier;
 import java.security.SecureRandom;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Random;
+import java.util.Set;
+
+import org.reflections.Reflections;
+
+import specification.property.building.SupplyAndDemandBuilding;
 
 /**
  * @author Jim
@@ -46,5 +54,20 @@ public class MayorUtil {
     	double a = Math.abs(tile1.getXLocation() - tile2.getXLocation());
     	double b = Math.abs(tile1.getYLocation() - tile2.getYLocation());
     	return pythagorean(a, b, null);
+    }
+    
+    public static <T> Set<Class<? extends T>> getAllNonAbstractClassesThatImplementOrExtend(Class<T> clazz) {
+		Set<Class<? extends T>> supplyAndDemandClassSetWithAbstract = new Reflections().getSubTypesOf(clazz);
+		Set<Class<? extends T>> supplyAndDemandClassSet = new LinkedHashSet<Class<? extends T>>();
+		for (Iterator<Class<? extends T>> it = supplyAndDemandClassSetWithAbstract.iterator();
+				it.hasNext();) {
+			Class<? extends T> supplyAndDemandClass = it.next();
+			if (!Modifier.isAbstract(supplyAndDemandClass.getModifiers())) {
+				supplyAndDemandClassSet.add(supplyAndDemandClass);
+			}
+		}
+		
+		return supplyAndDemandClassSet;
+    	
     }
 }

@@ -26,8 +26,6 @@ public abstract class BuildingSpecification extends PropertySpecification {
 	private Person person;
 	private int currentOccupancy; //not used yet
 	private SpecificationEntity<DesirabilitySpecification> desirabilitySpecificationEntity;
-	protected ProductQuantityMaxStorageWrapper productForSale = new ProductQuantityMaxStorageWrapper();
-	private ProductQuantityWrapper productDemand = new ProductQuantityWrapper();
 	public BuildingType getBuildingType() {
 		return buildingType;
 	}
@@ -109,19 +107,6 @@ public abstract class BuildingSpecification extends PropertySpecification {
 
 		dGrid.getSpecificationEntity(x, y).addSpecification(desirabilitySpec);
 
-	}
-	
-	public ProductQuantityMaxStorageWrapper getProductForSale() {
-		return productForSale;
-	}
-	public void setProductForSale(ProductQuantityMaxStorageWrapper productForSale) {
-		this.productForSale = productForSale;
-	}
-	public ProductQuantityWrapper getProductDemand() {
-		return productDemand;
-	}
-	public void setProductDemand(ProductQuantityWrapper productDemand) {
-		this.productDemand = productDemand;
 	}
 	public Person getPerson() {
 		return person;

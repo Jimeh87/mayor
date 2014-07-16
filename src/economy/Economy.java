@@ -11,7 +11,7 @@ import specification.SpecificationEntity;
 import specification.desirability.DesirabilitySpecification;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
-import specification.property.building.BuildingSpecification;
+import specification.property.building.SupplyAndDemandBuilding;
 
 public class Economy {
 
@@ -40,7 +40,7 @@ public class Economy {
 		for (Iterator<SpecificationEntity<PropertySpecification>> it = pGrid.iterator();
 				it.hasNext();) {
 			SpecificationEntity<PropertySpecification> propertyEntity = it.next();
-			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
+			SupplyAndDemandBuilding buildingSpec = (SupplyAndDemandBuilding) propertyEntity.getSpecificationOfType(PropertySpecificationType.SUPPLY_AND_DEMAND_BUILDING);
 			if (buildingSpec != null) {
 				supplyLocationFinder.findProducts(propertyEntity, buildingSpec.getProductDemand());
 			}

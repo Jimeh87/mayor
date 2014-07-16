@@ -16,7 +16,7 @@ import specification.SpecificationEntity;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
-import specification.property.building.BuildingSpecification;
+import specification.property.building.SupplyAndDemandBuilding;
 import specification.property.zone.ZoneSpecification;
 import specification.property.zone.ZoneType;
 
@@ -64,7 +64,7 @@ public class SupplyLocationFinder {
 				i.hasNext();) {
 			SpecificationEntity<PropertySpecification> propertyEntity = i.next();
 			ZoneSpecification zoneSpec = (ZoneSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.ZONE);
-			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
+			SupplyAndDemandBuilding buildingSpec = (SupplyAndDemandBuilding) propertyEntity.getSpecificationOfType(PropertySpecificationType.SUPPLY_AND_DEMAND_BUILDING);
 			if (zoneSpec != null && suppliersForRequestedZoneType.contains(zoneSpec.getZoneType())) {
 				if (buildingSpec != null && buildingSpec.getProductForSale().containsProduct(product)) {
 					supplierPriorityQueue.add(propertyEntity);
@@ -77,7 +77,7 @@ public class SupplyLocationFinder {
 		for  (Iterator<SpecificationEntity<PropertySpecification>> i = supplierPriorityQueue.iterator();
 				(i.hasNext() && currentQuantity >= quantityNeeded);) {
 			SpecificationEntity<PropertySpecification> propertyEntity = i.next();
-			BuildingSpecification buildingSpec = (BuildingSpecification) propertyEntity.getSpecificationOfType(PropertySpecificationType.BUILDING);
+			SupplyAndDemandBuilding buildingSpec = (SupplyAndDemandBuilding) propertyEntity.getSpecificationOfType(PropertySpecificationType.SUPPLY_AND_DEMAND_BUILDING);
 			currentQuantity += buildingSpec.getProductForSale().getQuantityForProduct(product);
 			
 			supplierPropertyList.add(propertyEntity);
@@ -112,9 +112,9 @@ class SupplierComparator implements Comparator<SpecificationEntity<PropertySpeci
 	
 	@Override
 	public int compare(SpecificationEntity<PropertySpecification> p1, SpecificationEntity<PropertySpecification> p2) {
-		
-		BuildingSpecification buildingSpec1 = (BuildingSpecification) p1.getSpecificationOfType(PropertySpecificationType.BUILDING);
-		BuildingSpecification buildingSpec2 = (BuildingSpecification) p2.getSpecificationOfType(PropertySpecificationType.BUILDING);
+
+		SupplyAndDemandBuilding buildingSpec1 = (SupplyAndDemandBuilding) p1.getSpecificationOfType(PropertySpecificationType.SUPPLY_AND_DEMAND_BUILDING);
+		SupplyAndDemandBuilding buildingSpec2 = (SupplyAndDemandBuilding) p2.getSpecificationOfType(PropertySpecificationType.SUPPLY_AND_DEMAND_BUILDING);
 		
 		if (buildingSpec1 == null && buildingSpec2 != null) {
 			return 1;
