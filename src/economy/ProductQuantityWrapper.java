@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-public class ProductQuantityWrapper {
+public class ProductQuantityWrapper implements Cloneable {
 
 	public ProductQuantityWrapper() {
 		productQuantity = new HashMap<Product, Integer>();
@@ -59,6 +59,15 @@ public class ProductQuantityWrapper {
 		System.out.println("Product: Quantity");
 		for (Product product : Product.values()) {
 			System.out.println(product + ": " + productQuantity.get(product));
+		}
+	}
+	
+	public ProductQuantityWrapper clone() {
+		try {
+			return (ProductQuantityWrapper) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Clone failed");
 		}
 	}
 }

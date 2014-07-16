@@ -5,17 +5,21 @@ import specification.property.building.BuildingType;
 import specification.property.zone.ZoneType;
 import economy.Product;
 
-public class FarmSpecification extends BuildingSpecification {
+public class FarmSpecification extends BuildingSpecification implements GeneratedBuilding {
 
 	public FarmSpecification() {
 		super(BuildingType.FARM, ZoneType.AGRICULTURAL);
-		productForSale.setMaxQuantityForProduct(Product.UNPROCESSED_FOOD, 10);
-		productForSale.setQuantityForProduct(Product.UNPROCESSED_FOOD, 0);
+		productForSale = initProductForSale.clone();
+	}
+	
+	static {
+		initProductForSale.setMaxQuantityForProduct(Product.UNPROCESSED_FOOD, 5);
+		initProductForSale.setQuantityForProduct(Product.UNPROCESSED_FOOD, 0);
 	}
 
 	@Override
 	public void tick() {
-		productForSale.incrementQuantityForProduct(Product.UNPROCESSED_FOOD, 1);
+		productForSale.incrementQuantityForProduct(Product.UNPROCESSED_FOOD, 5);
 	}
 
 	@Override
