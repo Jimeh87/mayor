@@ -1,7 +1,14 @@
 package objects;
 
+import java.lang.reflect.Field;
 import java.security.SecureRandom;
 import java.util.Random;
+import java.util.Set;
+
+import org.reflections.Reflections;
+
+import specification.property.building.concrete.GeneratedBuilding;
+import specification.property.building.concrete.GroceryStoreSpecification;
 
 /**
  * @author Jim

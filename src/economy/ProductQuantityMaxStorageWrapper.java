@@ -46,4 +46,8 @@ public class ProductQuantityMaxStorageWrapper extends ProductQuantityWrapper {
 		}
 		return quantity;
 	}
+	
+	public ProductQuantityMaxStorageWrapper clone() {
+		return (ProductQuantityMaxStorageWrapper) super.clone();
+	}
 }
