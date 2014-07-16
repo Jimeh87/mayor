@@ -1,21 +1,19 @@
 package specification.property.building.concrete;
 
-import specification.property.building.BuildingSpecification;
 import specification.property.building.BuildingType;
-import specification.property.building.GeneratedBuilding;
+import specification.property.building.GeneratedBuildingSpecification;
 import specification.property.zone.ZoneType;
 import economy.Product;
+import economy.ProductQuantityMaxStorageWrapper;
 
-public class FarmSpecification extends BuildingSpecification implements GeneratedBuilding {
+public class FarmSpecification extends GeneratedBuildingSpecification {
 
 	public FarmSpecification() {
 		super(BuildingType.FARM, ZoneType.AGRICULTURAL);
-		productForSale = initProductForSale.clone();
 	}
 	
 	static {
-		initProductForSale.setMaxQuantityForProduct(Product.UNPROCESSED_FOOD, 5);
-		initProductForSale.setQuantityForProduct(Product.UNPROCESSED_FOOD, 0);
+
 	}
 
 	@Override
@@ -26,5 +24,12 @@ public class FarmSpecification extends BuildingSpecification implements Generate
 	@Override
 	public String getName() {
 		return "Farm";
+	}
+
+	@Override
+	public ProductQuantityMaxStorageWrapper getInitialProductForSale() {
+		ProductQuantityMaxStorageWrapper initProductForSale = new ProductQuantityMaxStorageWrapper();
+		initProductForSale.setQuantityAndMaxQuantityForProduct(Product.UNPROCESSED_FOOD, 0, 5);
+		return initProductForSale;
 	}
 }

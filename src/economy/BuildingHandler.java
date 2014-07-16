@@ -5,15 +5,16 @@ import grid.Grid;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Set;
 
+import objects.MayorUtil;
 import objects.Tile;
 import specification.SpecificationEntity;
-import specification.SpecificationType;
 import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 import specification.property.building.BuildingSpecification;
-import specification.property.building.BuildingSpecificationType;
+import specification.property.building.SupplyAndDemandBuilding;
 import specification.property.zone.ZoneSpecification;
 
 public class BuildingHandler {
@@ -22,13 +23,15 @@ public class BuildingHandler {
 		this.pGrid = propertyGrid;
 		this.supplyAndDemand = supplyAndDemand;
 		
-		productBuilding = new HashMap<Product, SpecificationType>();
+		Set<Class<? extends SupplyAndDemandBuilding>> supplyAndDemandClassSet = MayorUtil.<SupplyAndDemandBuilding>getAllNonAbstractClassesThatImplementOrExtend(SupplyAndDemandBuilding.class);
+
+		productBuilding = new HashMap<Product, Class<? extends SupplyAndDemandBuilding>>();
 		for (Product product : Product.values()) {
-			for (SpecificationType specificationType : BuildingSpecificationType.values()) {
+			for (Class<? extends SupplyAndDemandBuilding> supplyAndDemandClass : supplyAndDemandClassSet) {
 				try {
-					BuildingSpecification buildingSpec = (BuildingSpecification) specificationType.getSpecificationClass().newInstance();
+					SupplyAndDemandBuilding buildingSpec = (SupplyAndDemandBuilding) supplyAndDemandClass.newInstance();
 					if (buildingSpec.getProductForSale().containsProduct(product)) {
-						productBuilding.put(product, specificationType);
+						productBuilding.put(product, supplyAndDemandClass);
 					}
 				} catch (InstantiationException e) {
 					e.printStackTrace();
@@ -41,7 +44,7 @@ public class BuildingHandler {
 	
 	private SupplyAndDemand supplyAndDemand;
 	private Grid<PropertySpecification> pGrid;
-	private HashMap<Product, SpecificationType> productBuilding; //FOR NOW ONLY ONE BUILDING MAKES ONE PRODUCT
+	private HashMap<Product, Class<? extends SupplyAndDemandBuilding>> productBuilding; //FOR NOW ONLY ONE BUILDING MAKES ONE PRODUCT
 	
 	public void generateBuilding() {
 		//TODO needs to get list of buildings incase first one does not work. PriorityQueue!!!
@@ -49,13 +52,13 @@ public class BuildingHandler {
 		if (product == null) {
 			return;
 		}
-		SpecificationType specType = productBuilding.get(product);
-		if (specType == null) {
-			throw new IllegalStateException("No building types exist to produce: " + product + "... Most likely class didn't get added to BuildingSpecificationType");
+		Class<? extends SupplyAndDemandBuilding> supplyAndDemandClass = productBuilding.get(product);
+		if (supplyAndDemandClass == null) {
+			throw new IllegalStateException("No building types exist to produce: " + product);
 		}
 		
 		try {
-			BuildingSpecification newBuildingSpec = (BuildingSpecification) specType.getSpecificationClass().newInstance();
+			BuildingSpecification newBuildingSpec = (BuildingSpecification) supplyAndDemandClass.newInstance();
 			newBuildingSpec.getZoneType();
 			for (Iterator<SpecificationEntity<PropertySpecification>> it = pGrid.iterator();
 					it.hasNext();) {

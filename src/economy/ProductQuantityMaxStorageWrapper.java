@@ -26,14 +26,19 @@ public class ProductQuantityMaxStorageWrapper extends ProductQuantityWrapper {
 		productMaxQuantity.put(product, maxQuantity);
 	}
 	
+	public void setQuantityAndMaxQuantityForProduct(Product product, Integer quantity, Integer maxQuantity) {
+		setMaxQuantityForProduct(product, maxQuantity);
+		setQuantityForProduct(product, quantity);
+	}
+	
 	public Integer getMaxQuantityForProduct(Product product) {
 		return productMaxQuantity.get(product);
 	}
 	
 	@Override
 	public void incrementQuantityForProduct(Product product, Integer quantity) {
-		quantity = checkQuantity(product, quantity);
-		super.incrementQuantityForProduct(product, quantity);
+		quantity = checkQuantity(product, getQuantityForProduct(product) + quantity);
+		setQuantityForProduct(product, quantity);
 	}
 	
 	private Integer checkQuantity(Product product, Integer quantity) {

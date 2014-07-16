@@ -29,6 +29,7 @@ import specification.property.PropertySpecification;
 import specification.property.PropertySpecificationType;
 import specification.property.TileSpecification;
 import specification.property.building.BuildingSpecification;
+import specification.property.building.SupplyAndDemandBuilding;
 import specification.property.zone.ZoneSpecification;
 
 /**
@@ -168,10 +169,11 @@ public class EventController<T extends PropertySpecification> {
 			}
 		}
 		
-		if (buildingSpec != null) {
+		if (buildingSpec != null && SupplyAndDemandBuilding.class.isInstance(buildingSpec)) {
+			SupplyAndDemandBuilding supplyAndDemandBuilding = (SupplyAndDemandBuilding) buildingSpec;
 			sb.append("\nProduct demand: \n");
 			i = 0;
-			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductDemand().iterator();
+			for (Iterator<Entry<Product, Integer>> it = supplyAndDemandBuilding.getProductDemand().iterator();
 					it.hasNext();) {
 				Entry<Product, Integer> productDemandEntry = it.next();
 				sb.append(productDemandEntry.getKey() + ": " + productDemandEntry.getValue() + " ,  ");
@@ -182,7 +184,7 @@ public class EventController<T extends PropertySpecification> {
 			
 			sb.append("\nProduct for sale: \n");
 			i = 0;
-			for (Iterator<Entry<Product, Integer>> it = buildingSpec.getProductForSale().iterator();
+			for (Iterator<Entry<Product, Integer>> it = supplyAndDemandBuilding.getProductForSale().iterator();
 					it.hasNext();) {
 				Entry<Product, Integer> productForSale = it.next();
 				sb.append(productForSale.getKey() + ": " + productForSale.getValue() + " ,  ");

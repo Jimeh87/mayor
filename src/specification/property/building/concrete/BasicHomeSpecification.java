@@ -3,12 +3,13 @@ package specification.property.building.concrete;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import specification.property.building.BuildingSpecification;
 import specification.property.building.BuildingType;
+import specification.property.building.GeneratedBuildingSpecification;
 import specification.property.zone.ZoneType;
 import economy.Product;
+import economy.ProductQuantityMaxStorageWrapper;
 
-public class BasicHomeSpecification extends BuildingSpecification {
+public class BasicHomeSpecification extends GeneratedBuildingSpecification {
 
 	public BasicHomeSpecification() {
 		super(BuildingType.RES_SMALL, ZoneType.RESIDENTIAL);
@@ -28,5 +29,10 @@ public class BasicHomeSpecification extends BuildingSpecification {
 				this.getProductDemand().setQuantityForProduct(productDemandEntry.getKey(), productDemandEntry.getValue());
 			}
 		}
+	}
+
+	@Override
+	public ProductQuantityMaxStorageWrapper getInitialProductForSale() {
+		return new ProductQuantityMaxStorageWrapper();
 	}
 }
